@@ -1,6 +1,7 @@
 import { lazy } from 'react';
 import { RouteObject, createBrowserRouter } from 'react-router-dom';
 import ProductsPage from '../pages/products/ProductPage';
+import ProductEditForm from '@/pages/products/ProductEditForm';
 
 const Calendar = lazy(() => import('../pages/Calendar'));
 const Profile = lazy(() => import('../pages/Profile'));
@@ -14,7 +15,16 @@ const coreRoutes: RouteObject[] = [
             { index: true },
             {
                 path: '/products',
-                Component: ProductsPage,
+                children: [
+                    {
+                        index: true,
+                        Component: ProductsPage,
+                    },
+                    {
+                        path: ':id/edit',
+                        Component: ProductEditForm,
+                    },
+                ],
             },
             {
                 path: '/calendar',

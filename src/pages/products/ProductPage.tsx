@@ -1,9 +1,11 @@
+import ErrorUI from '@/common/ErrorUI';
+import EmptyData from '@/common/Loader/EmptyData';
+import TableLoading from '@/common/TableLoading';
 import useFilteredProducts from '@/hooks/queries/useFilteredProducts';
-import useProducts from '@/hooks/queries/useProducts';
 import ProductRow from '@/products/ProductRow';
 
 export default function ProductsPage() {
-    const { isLoading, isSuccess, data } = useFilteredProducts();
+    const { isLoading, isError, isSuccess, data } = useFilteredProducts();
 
     const headers = [
         { name: 'Image' },
@@ -12,26 +14,28 @@ export default function ProductsPage() {
         { name: 'Cost' },
         { name: 'Stock Quantity' },
         { name: 'Published' },
-        { name: 'Actions' },
+        { name: '' },
     ];
 
     const RenderBody = () => {
-        // if (isError) return <Error />;
+        if (isError) return <ErrorUI />;
 
-        // if (isLoading) return <TableLoading />;
+        if (isLoading) return <TableLoading />;
 
         if (isSuccess) {
-            return data.data.length
-                ? data.data.map((product) => <ProductRow {...product} />)
-                : 'empty';
-            // <EmptyData />
+            return data.data.length ? (
+                data.data.map((product) => (
+                    <ProductRow key={product.id} {...product} />
+                ))
+            ) : (
+                <EmptyData />
+            );
         }
     };
 
     return (
         <div className="overflow-x-auto">
-            <table className="table bg-white dark:text-white">
-                {/* head */}
+            <table className="table bg-white text-center dark:text-white">
                 <thead>
                     <tr>
                         <th>
@@ -43,7 +47,7 @@ export default function ProductsPage() {
                             </label>
                         </th>
                         {headers.map(({ name }) => (
-                            <th>{name}</th>
+                            <th key={name}>{name}</th>
                         ))}
                     </tr>
                 </thead>
@@ -52,7 +56,7 @@ export default function ProductsPage() {
                     <tr>
                         <th></th>
                         {headers.map(({ name }) => (
-                            <th>{name}</th>
+                            <th key={name}>{name}</th>
                         ))}
                         <th></th>
                     </tr>
