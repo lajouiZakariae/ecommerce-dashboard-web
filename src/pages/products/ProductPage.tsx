@@ -1,5 +1,6 @@
 import ErrorUI from '@/common/ErrorUI';
 import EmptyData from '@/common/Loader/EmptyData';
+import Table from '@/common/Table';
 import TableLoading from '@/common/TableLoading';
 import useFilteredProducts from '@/hooks/queries/useFilteredProducts';
 import ProductRow from '@/products/ProductRow';
@@ -35,33 +36,7 @@ export default function ProductsPage() {
 
     return (
         <div className="overflow-x-auto">
-            <table className="table bg-white text-center dark:text-white">
-                <thead>
-                    <tr>
-                        <th>
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    className="checkbox checkbox-sm"
-                                />
-                            </label>
-                        </th>
-                        {headers.map(({ name }) => (
-                            <th key={name}>{name}</th>
-                        ))}
-                    </tr>
-                </thead>
-                <tbody>{RenderBody()}</tbody>
-                <tfoot>
-                    <tr>
-                        <th></th>
-                        {headers.map(({ name }) => (
-                            <th key={name}>{name}</th>
-                        ))}
-                        <th></th>
-                    </tr>
-                </tfoot>
-            </table>
+            <Table headers={headers}>{RenderBody()}</Table>
         </div>
     );
 }
