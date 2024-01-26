@@ -1,8 +1,8 @@
+import { PropsWithChildren } from 'react';
 import EmptyData from '@/common/Loader/EmptyData';
 import Table from '@/common/Table';
 import ProductRow from '@/products/ProductRow';
 import { Product } from '@/types';
-import { PropsWithChildren } from 'react';
 
 type Props = PropsWithChildren<{
     headers: { name: string }[];
