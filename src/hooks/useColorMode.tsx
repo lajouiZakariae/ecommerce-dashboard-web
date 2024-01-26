@@ -13,7 +13,7 @@ const useColorMode = () => {
             document.body.dataset.theme = 'dark';
         } else {
             bodyClass.remove(className);
-            document.body.dataset.theme = 'light';
+            delete document.body.dataset.theme;
         }
     }, [colorMode]);
 
