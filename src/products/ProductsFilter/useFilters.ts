@@ -2,17 +2,7 @@ import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { appendSearchParams } from '@/utils/url-helpers';
 
-const sortByAllowedList = [
-    'latest',
-    'oldest',
-    'oldest',
-    'price_asc',
-    'price_desc',
-    'cost_asc',
-    'cost_desc',
-    'stock_quantity_asc',
-    'stock_quantity_desc',
-];
+const sortByAllowedList = ['time', 'price', 'cost', 'stock_quantity'];
 
 export default function useFilters() {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -29,9 +19,8 @@ export default function useFilters() {
             cost_from: searchParams.get('cost_from') ?? '',
             cost_to: searchParams.get('cost_to') ?? '',
             sort_by:
-                sortBy && sortByAllowedList.includes(sortBy)
-                    ? sortBy
-                    : 'latest',
+                sortBy && sortByAllowedList.includes(sortBy) ? sortBy : 'time',
+            order: searchParams.get('order') ?? 'desc',
             published,
         };
     });
@@ -43,7 +32,8 @@ export default function useFilters() {
             cost_from: '',
             cost_to: '',
             published: 'all',
-            sort_by: 'latest',
+            sort_by: 'time',
+            order: 'asc',
         };
 
         setFilters(defaultFilters);

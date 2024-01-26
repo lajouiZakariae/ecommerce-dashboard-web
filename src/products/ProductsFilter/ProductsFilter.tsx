@@ -32,7 +32,25 @@ export default function ProductsFilter() {
                         </button>
                     </div>
 
-                    <div>Sort By</div>
+                    <div>
+                        <h3 className="text-lg font-bold text-boxdark">
+                            Sort By
+                        </h3>
+                        <div className="flex">
+                            <div className="flex-grow btn rounded-none rounded-l">
+                                Time
+                            </div>
+                            <div className="flex-grow btn rounded-none">
+                                Price
+                            </div>
+                            <div className="flex-grow btn rounded-none">
+                                Cost
+                            </div>
+                            <div className="flex-grow btn rounded-none rounded-r">
+                                Stock Quanity
+                            </div>
+                        </div>
+                    </div>
                 </div>
             ) : null}
         </div>
