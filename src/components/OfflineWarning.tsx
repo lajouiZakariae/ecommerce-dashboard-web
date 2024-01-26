@@ -20,7 +20,7 @@ export default function OfflineWarning() {
     }, []);
 
     return show ? (
-        <div className="absolute top-4 left-1/2 -translate-x-1/2">
+        <div className="absolute top-4 left-1/2 -translate-x-1/2 z-99999">
             <Alert variant="error">
                 Make sure You are Connected to the internet!
             </Alert>

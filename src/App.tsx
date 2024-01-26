@@ -3,6 +3,7 @@ import { RouterProvider } from 'react-router-dom';
 import router from './routes';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
+import OfflineWarning from './components/OfflineWarning';
 
 type apiErrors = { message: string; errors: { [key: string]: string } };
 
@@ -22,6 +23,8 @@ function App() {
                 reverseOrder={false}
                 containerClassName="overflow-auto"
             />
+
+            <OfflineWarning />
 
             <RouterProvider router={router} />
         </QueryClientProvider>
