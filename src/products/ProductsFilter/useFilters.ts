@@ -4,6 +4,9 @@ import { appendSearchParams } from '@/utils/url-helpers';
 import { forOwn } from 'lodash';
 import useProductUrlFilters from '../useProductUrlFilters';
 
+/**
+ * Handles Filter Inputs State
+ */
 export default function useFilters() {
     const { defaultFilters, currentFilters } = useProductUrlFilters();
 
@@ -11,6 +14,7 @@ export default function useFilters() {
 
     const [filtersInputs, setFiltersInputs] = useState(currentFilters);
 
+    // Recalculating applied filters count
     const appliedFiltersCount = useMemo(() => {
         const applied: string[] = [];
 
@@ -18,12 +22,8 @@ export default function useFilters() {
             value !== defaultFilters[key] ? applied.push(key) : null,
         );
 
-        console.log('Calc');
-
         return applied.length;
     }, [currentFilters]);
-
-    console.log(currentFilters, appliedFiltersCount);
 
     const clearFilters = () => {
         setFiltersInputs(defaultFilters);
