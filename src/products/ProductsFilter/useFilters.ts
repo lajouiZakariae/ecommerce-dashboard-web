@@ -1,44 +1,57 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { appendSearchParams } from '@/utils/url-helpers';
 import { SortBy } from '@/types';
+import { forOwn } from 'lodash';
 
 const sortByAllowedList = ['created_at', 'price', 'cost', 'stock_quantity'];
+
+interface Filters {
+    price_from: string;
+    price_to: string;
+    cost_from: string;
+    cost_to: string;
+    sort_by: string;
+    page?: number;
+    order: 'asc' | 'desc';
+}
+
+const defaultFilters: Filters = {
+    price_from: '',
+    price_to: '',
+    cost_from: '',
+    cost_to: '',
+    // status: '',
+    sort_by: SortBy.CREATED_AT,
+    order: 'desc',
+};
 
 export default function useFilters() {
     const [searchParams, setSearchParams] = useSearchParams();
 
-    const [filters, setFilters] = useState(() => {
-        const priceFrom = searchParams.get('price_from');
-        const priceTo = searchParams.get('price_to');
-        const published = searchParams.get('published') ?? 'all';
-        const sortBy = searchParams.get('sort_by');
+    const currentFilters: Filters = {
+        price_from: searchParams.get('price_from') ?? defaultFilters.price_from,
+        price_to: searchParams.get('price_to') ?? defaultFilters.price_to,
+        cost_from: searchParams.get('cost_from') ?? defaultFilters.cost_from,
+        cost_to: searchParams.get('cost_to') ?? defaultFilters.cost_to,
+        sort_by: searchParams.get('sort_by') ?? defaultFilters.sort_by,
+        order:
+            searchParams.get('order') === 'asc' ? 'asc' : defaultFilters.order,
+    };
 
-        return {
-            price_from: priceFrom ?? '',
-            price_to: priceTo ?? '',
-            cost_from: searchParams.get('cost_from') ?? '',
-            cost_to: searchParams.get('cost_to') ?? '',
-            sort_by:
-                sortBy && sortByAllowedList.includes(sortBy)
-                    ? sortBy
-                    : SortBy.CREATED_AT,
-            order: searchParams.get('order') ?? 'desc',
-            published,
-        };
-    });
+    const [filters, setFilters] = useState<Filters>(currentFilters);
+
+    const appliedFilters = useMemo(() => {
+        const applied: string[] = [];
+        forOwn(filters, (value, key) =>
+            value !== defaultFilters[key] ? applied.push(key) : null,
+        );
+        return applied;
+    }, [currentFilters]);
+
+    console.log(appliedFilters);
 
     const clearFilters = () => {
-        const defaultFilters = {
-            price_from: '',
-            price_to: '',
-            cost_from: '',
-            cost_to: '',
-            published: 'all',
-            sort_by: SortBy.CREATED_AT,
-            order: 'asc',
-        };
-
         setFilters(defaultFilters);
 
         setSearchParams((prev) => appendSearchParams(prev, defaultFilters));
