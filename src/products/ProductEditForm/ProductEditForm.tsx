@@ -2,35 +2,45 @@ import Input from '@/common/Input';
 import Breadcrumb from '@/components/Breadcrumb';
 import { Product } from '@/types';
 import { PropsWithChildren } from 'react';
+import { useForm } from 'react-hook-form';
 
 interface Props extends PropsWithChildren {
     product: Product;
 }
 
 export default function ProductEditForm({ product }: Props) {
+    const { register } = useForm({ defaultValues: product });
+
     console.log(product);
 
     return (
         <>
             <Breadcrumb pageName="Edit" />
 
-            {/* <!-- Contact Form --> */}
             <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
                 <form action="#" className="p-6.5">
                     <div className="mb-4.5">
-                        <label className="mb-2.5 block text-black dark:text-white">
+                        <label
+                            className="mb-2.5 inline-block text-black dark:text-white"
+                            htmlFor="title"
+                        >
                             Title
                         </label>
+
                         <Input
-                            type="email"
-                            placeholder="Enter your email address"
+                            id="title"
+                            className="mb-2.5"
+                            {...register('title')}
                         />
+
+                        <p className="h-3.5 text-[14px] text-danger"></p>
                     </div>
 
                     <div className="mb-4.5">
                         <label className="mb-2.5 block text-black dark:text-white">
                             Subject
                         </label>
+
                         <div className="relative z-20 bg-transparent dark:bg-form-input">
                             <select className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
                                 <option value="">Type your subject</option>
