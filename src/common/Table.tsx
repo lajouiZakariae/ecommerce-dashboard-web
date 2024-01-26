@@ -4,8 +4,8 @@ type Props = PropsWithChildren<{ headers: { name: string }[] }>;
 
 export default function Table({ headers, children }: Props) {
     return (
-        <table className="table bg-white text-center dark:text-white dark:bg-boxdark">
-            <thead className="dark:text-bodydark">
+        <table className="table bg-white dark:bg-transparent">
+            <thead>
                 <tr>
                     <th>
                         <label>
