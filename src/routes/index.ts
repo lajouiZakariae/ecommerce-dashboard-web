@@ -1,5 +1,5 @@
 import ProductEditPage from '@/pages/products/ProductEditPage';
-import ProductsPage from '@/pages/products/ProductPage';
+import ProductsPage from '@/pages/products/ProductsPage';
 import { lazy } from 'react';
 import { RouteObject, createBrowserRouter } from 'react-router-dom';
 

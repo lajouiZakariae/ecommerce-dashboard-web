@@ -5,6 +5,7 @@ import ProductsFilter from '@/products/ProductsFilter/ProductsFilter';
 import ProductsTable from './ProductsTable';
 import ProductsPagination from '@/products/ProuductsPagination';
 import { useMediaQuery } from '@uidotdev/usehooks';
+import FeedLoading from '@/common/FeedLoading';
 
 export default function ProductsPage() {
     const { isLoading, isError, isSuccess, data } = useFilteredProducts();
@@ -22,9 +23,10 @@ export default function ProductsPage() {
     const isBigScreen = useMediaQuery('(min-width : 700px)');
 
     const renderContext = () => {
+        return <FeedLoading count={10} />;
         if (isError) return <ErrorUI />;
 
-        if (isLoading) return <TableLoading headers={headers} />;
+        if (isLoading) return <TableLoading count={10} headers={headers} />;
 
         if (isSuccess)
             return <ProductsTable headers={headers} products={data.data} />;
