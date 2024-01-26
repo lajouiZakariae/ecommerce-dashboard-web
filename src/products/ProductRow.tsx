@@ -54,7 +54,7 @@ export default function ProductRow({
                 </div>
             </td>
             <td>
-                <div className="font-bold">{title}</div>
+                <div className="font-bold dark:font-normal">{title}</div>
             </td>
             <td>{price}</td>
             <td>{cost}</td>
@@ -109,13 +109,13 @@ function OptionsDropDown({ children }: PropsWithChildren) {
                 className="m-1"
                 onClick={() => setShow((prev) => !prev)}
             >
-                <MenuIcon className="text-2xl rotate-90 text-graydark" />
+                <MenuIcon className="text-2xl rotate-90 text- dark:text-bodydark" />
             </button>
 
             {show && (
                 <ClickAwayListener onClickAway={() => setShow(false)}>
                     <animated.ul
-                        className="absolute right-0 top-full z-999 bg-whiten w-56 rounded-box py-2 flex flex-col space-y-2 shadow-1 shadow-bodydark"
+                        className="absolute right-0 top-full z-999 bg-whiten w-56 rounded-box py-2 flex flex-col space-y-2 shadow-1 shadow-bodydark dark:shadow-boxdark dark:bg-boxdark-2"
                         style={{ ...springs }}
                     >
                         {children}

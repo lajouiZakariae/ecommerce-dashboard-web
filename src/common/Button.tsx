@@ -25,7 +25,7 @@ const Button = forwardRef<element, ButtonProps>(
 
         return (
             <button
-                className={`btn ${sizes[size]} border-none shadow-none hover:bg-opacity-15 ${variants[variant]} ${className}`}
+                className={`btn ${sizes[size]} border-none shadow-none dark:bg-boxdark-2 hover:bg-opacity-15 ${variants[variant]} ${className}`}
                 ref={ref}
                 {...other}
             >

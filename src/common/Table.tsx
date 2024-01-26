@@ -1,11 +1,11 @@
-import { Children, PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 
 type Props = PropsWithChildren<{ headers: { name: string }[] }>;
 
 export default function Table({ headers, children }: Props) {
     return (
-        <table className="table bg-white text-center dark:text-white">
-            <thead>
+        <table className="table bg-white text-center dark:text-white dark:bg-boxdark">
+            <thead className="dark:text-bodydark">
                 <tr>
                     <th>
                         <label>
