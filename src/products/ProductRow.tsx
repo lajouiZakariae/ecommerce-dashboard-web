@@ -32,6 +32,7 @@ export default function ProductRow({
     stockQuantity,
     published,
     url,
+    thumbnail,
 }: PropsWithChildren<Product>) {
     return (
         <tr key={id}>
@@ -45,7 +46,7 @@ export default function ProductRow({
                     <div className="avatar">
                         <div className="mask mask-squircle w-15 h-15">
                             <img
-                                src="/placeholder.jpg"
+                                src={thumbnail?.url ?? '/placeholder.jpg'}
                                 alt="Avatar Tailwind CSS Component"
                             />
                         </div>

@@ -57,18 +57,13 @@ export enum Operation {
     SALE = 'sale',
 }
 
-export interface Medium {
+export interface Image {
     id?: number;
     altText: string;
-    path: string;
+    url?: string;
     productId: number;
     createdAt?: Date;
     updatedAt?: Date;
-}
-
-export enum Type {
-    IMAGE = 'image',
-    VIDEO = 'video',
 }
 
 export interface OrderItem {
@@ -127,6 +122,7 @@ export interface Product {
     storeId?: number;
     createdAt?: Date;
     updatedAt?: Date;
+    thumbnail: Image;
 }
 
 export interface PurchaseItem {

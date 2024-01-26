@@ -6,6 +6,7 @@ import ProductsTable from './ProductsTable';
 import ProductsPagination from '@/products/ProuductsPagination';
 import { useMediaQuery } from '@uidotdev/usehooks';
 import FeedLoading from '@/common/FeedLoading';
+import ProductsFeed from '@/products/ProductFeed';
 
 export default function ProductsPage() {
     const { isLoading, isError, isSuccess, data } = useFilteredProducts();
@@ -23,10 +24,15 @@ export default function ProductsPage() {
     const isBigScreen = useMediaQuery('(min-width : 700px)');
 
     const renderContext = () => {
-        return <FeedLoading count={10} />;
+        // return <ProductsFeed products={[]} />;
         if (isError) return <ErrorUI />;
 
-        if (isLoading) return <TableLoading count={10} headers={headers} />;
+        if (isLoading)
+            return isBigScreen ? (
+                <TableLoading count={10} headers={headers} />
+            ) : (
+                <FeedLoading count={10} />
+            );
 
         if (isSuccess)
             return <ProductsTable headers={headers} products={data.data} />;
@@ -41,12 +47,12 @@ export default function ProductsPage() {
     };
 
     return (
-        <div className="overflow-x-auto sm:overflow-x-visible">
+        <div className="overflow-x-visible sm:overflow-x-visible">
             <ProductsFilter />
 
             {renderContext()}
 
-            <div className="flex justify-center mt-4">{renderPagination()}</div>
+            {/* <div className="flex justify-center mt-4">{renderPagination()}</div> */}
         </div>
     );
 }
