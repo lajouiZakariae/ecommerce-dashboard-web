@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
 import apiClient from '@/utils/api-client';
-
 import { Category } from '@/types';
 
 export default function useCategories() {
