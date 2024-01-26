@@ -1,6 +1,13 @@
-export default function TableLoading() {
+import { PropsWithChildren } from 'react';
+import Table from './Table';
+
+interface Props extends PropsWithChildren {
+    headers: { name: string }[];
+}
+
+export default function TableLoading({ headers }: Props) {
     return (
-        <>
+        <Table headers={headers}>
             {[...Array(10).keys()].map((index) => (
                 <tr key={index}>
                     <td colSpan={8}>
@@ -8,6 +15,6 @@ export default function TableLoading() {
                     </td>
                 </tr>
             ))}
-        </>
+        </Table>
     );
 }

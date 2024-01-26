@@ -5,6 +5,7 @@ import TableLoading from '@/common/TableLoading';
 import useFilteredProducts from '@/hooks/queries/useFilteredProducts';
 import ProductRow from '@/products/ProductRow';
 import ProductsFilter from '@/products/ProductsFilter/ProductsFilter';
+import ProductsTable from './ProductsTable';
 
 export default function ProductsPage() {
     const { isLoading, isError, isSuccess, data } = useFilteredProducts();
@@ -19,19 +20,13 @@ export default function ProductsPage() {
         { name: '' },
     ];
 
-    const RenderBody = () => {
+    const renderContext = () => {
         if (isError) return <ErrorUI />;
 
-        if (isLoading) return <TableLoading />;
+        if (isLoading) return <TableLoading headers={headers} />;
 
         if (isSuccess) {
-            return data.data.length ? (
-                data.data.map((product) => (
-                    <ProductRow key={product.id} {...product} />
-                ))
-            ) : (
-                <EmptyData />
-            );
+            return <ProductsTable headers={headers} products={data.data} />;
         }
     };
 
@@ -39,7 +34,7 @@ export default function ProductsPage() {
         <div className="overflow-x-auto sm:overflow-x-visible">
             <ProductsFilter />
 
-            <Table headers={headers}>{RenderBody()}</Table>
+            {renderContext()}
         </div>
     );
 }
