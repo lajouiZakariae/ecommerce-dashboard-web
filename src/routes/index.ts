@@ -1,8 +1,10 @@
+import ProductEditPage from '@/pages/products/ProductEditPage';
+import ProductsPage from '@/pages/products/ProductPage';
 import { lazy } from 'react';
 import { RouteObject, createBrowserRouter } from 'react-router-dom';
 
-const ProductsPage = lazy(() => import('@/pages/products/ProductPage'));
-const ProductEditPage = lazy(() => import('@/pages/products/ProductEditPage'));
+// const ProductsPage = lazy(() => import('@/pages/products/ProductPage'));
+// const ProductEditPage = lazy(() => import('@/pages/products/ProductEditPage'));
 
 const Calendar = lazy(() => import('@/pages/Calendar'));
 const Profile = lazy(() => import('@/pages/Profile'));
