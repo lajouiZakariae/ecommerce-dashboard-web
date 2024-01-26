@@ -1,4 +1,5 @@
 import Input from '@/common/Input';
+import TextArea from '@/common/TextArea';
 import Breadcrumb from '@/components/Breadcrumb';
 import { Product } from '@/types';
 import { PropsWithChildren } from 'react';
@@ -36,6 +37,20 @@ export default function ProductEditForm({ product }: Props) {
                         <p className="h-3.5 text-[14px] text-danger"></p>
                     </div>
 
+                    <div className="mb-6">
+                        <label className="mb-2.5 block text-black dark:text-white">
+                            Message
+                        </label>
+
+                        <TextArea
+                            rows={6}
+                            placeholder="Type your message"
+                        ></TextArea>
+
+                        <p className="h-3.5 text-[14px] text-danger"></p>
+                    </div>
+
+                    {/* 
                     <div className="mb-4.5">
                         <label className="mb-2.5 block text-black dark:text-white">
                             Subject
@@ -68,18 +83,7 @@ export default function ProductEditForm({ product }: Props) {
                                 </svg>
                             </span>
                         </div>
-                    </div>
-
-                    <div className="mb-6">
-                        <label className="mb-2.5 block text-black dark:text-white">
-                            Message
-                        </label>
-                        <textarea
-                            rows={6}
-                            placeholder="Type your message"
-                            className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                        ></textarea>
-                    </div>
+                    </div>*/}
 
                     <input
                         type="submit"

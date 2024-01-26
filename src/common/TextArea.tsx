@@ -1,13 +1,13 @@
-import { InputHTMLAttributes, forwardRef } from 'react';
+import { TextareaHTMLAttributes, forwardRef } from 'react';
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
     error?: boolean;
 }
 
-const Input = forwardRef<HTMLInputElement, InputProps>(
+const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
     ({ className, error = false, ...other }, ref) => {
         return (
-            <input
+            <textarea
                 className={`w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary ${error ? 'border-danger' : ''} ${className}`}
                 ref={ref}
                 {...other}
@@ -16,4 +16,4 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     },
 );
 
-export default Input;
+export default TextArea;
