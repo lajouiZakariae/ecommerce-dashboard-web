@@ -22,7 +22,6 @@ export interface Filters {
 
 export enum SortBy {
     CREATED_AT = 'created_at',
-    TIME = 'time',
     PRICE = 'price',
     COST = 'cost',
     STOCK_QUANTITY = 'stock_quantity',

@@ -7,12 +7,14 @@ export default function useFilteredProducts() {
     const { page } = usePage();
     const [searchParams] = useSearchParams();
 
+    const sortBy = searchParams.get('sort_by') ?? SortBy.CREATED_AT;
+
     const filters: Filters = {
         price_from: searchParams.get('price_from') ?? '',
         price_to: searchParams.get('price_to') ?? '',
         cost_from: searchParams.get('cost_from') ?? '',
         cost_to: searchParams.get('cost_to') ?? '',
-        sort_by: searchParams.get('sort_by') ?? SortBy.TIME,
+        sort_by: sortBy,
         order: searchParams.get('order') ?? 'asc',
         page: page,
     };

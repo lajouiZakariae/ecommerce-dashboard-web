@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { appendSearchParams } from '@/utils/url-helpers';
+import { SortBy } from '@/types';
 
-const sortByAllowedList = ['time', 'price', 'cost', 'stock_quantity'];
+const sortByAllowedList = ['created_at', 'price', 'cost', 'stock_quantity'];
 
 export default function useFilters() {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -10,8 +11,8 @@ export default function useFilters() {
     const [filters, setFilters] = useState(() => {
         const priceFrom = searchParams.get('price_from');
         const priceTo = searchParams.get('price_to');
-        const sortBy = searchParams.get('sort_by');
         const published = searchParams.get('published') ?? 'all';
+        const sortBy = searchParams.get('sort_by');
 
         return {
             price_from: priceFrom ?? '',
@@ -19,7 +20,9 @@ export default function useFilters() {
             cost_from: searchParams.get('cost_from') ?? '',
             cost_to: searchParams.get('cost_to') ?? '',
             sort_by:
-                sortBy && sortByAllowedList.includes(sortBy) ? sortBy : sortBy,
+                sortBy && sortByAllowedList.includes(sortBy)
+                    ? sortBy
+                    : SortBy.CREATED_AT,
             order: searchParams.get('order') ?? 'desc',
             published,
         };
@@ -32,7 +35,7 @@ export default function useFilters() {
             cost_from: '',
             cost_to: '',
             published: 'all',
-            sort_by: 'time',
+            sort_by: SortBy.CREATED_AT,
             order: 'asc',
         };
 
