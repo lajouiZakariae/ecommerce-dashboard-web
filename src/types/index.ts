@@ -16,11 +16,12 @@ export interface Filters {
     price_to: string;
     cost_from: string;
     cost_to: string;
-    sort_by: sortBy;
+    sort_by: SortBy;
     page: number;
 }
 
-export enum sortBy {
+export enum SortBy {
+    CREATED_AT = 'created_at',
     TIME = 'time',
     PRICE = 'price',
     COST = 'cost',

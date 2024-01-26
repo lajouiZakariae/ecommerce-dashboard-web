@@ -19,7 +19,7 @@ export default function useFilters() {
             cost_from: searchParams.get('cost_from') ?? '',
             cost_to: searchParams.get('cost_to') ?? '',
             sort_by:
-                sortBy && sortByAllowedList.includes(sortBy) ? sortBy : 'time',
+                sortBy && sortByAllowedList.includes(sortBy) ? sortBy : sortBy,
             order: searchParams.get('order') ?? 'desc',
             published,
         };

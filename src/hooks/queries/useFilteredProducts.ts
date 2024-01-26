@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router-dom';
-import { Filters, sortBy } from '@/types';
+import { Filters, SortBy } from '@/types';
 import useProducts from '@/hooks/queries/useProducts';
 import usePage from '@/hooks/usePage';
 
@@ -12,7 +12,7 @@ export default function useFilteredProducts() {
         price_to: searchParams.get('price_to') ?? '',
         cost_from: searchParams.get('cost_from') ?? '',
         cost_to: searchParams.get('cost_to') ?? '',
-        sort_by: sortBy.LATEST,
+        sort_by: SortBy.CREATED_AT,
         page: page,
     };
 
