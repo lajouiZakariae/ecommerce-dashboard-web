@@ -1,7 +1,7 @@
 import { ButtonHTMLAttributes } from 'react';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    variant: 'error' | 'info' | 'success' | 'warning';
+    variant: 'error' | 'info' | 'success' | 'warning' | 'primary';
 }
 
 export default function Button({ variant, children, ...other }: ButtonProps) {
@@ -10,6 +10,7 @@ export default function Button({ variant, children, ...other }: ButtonProps) {
         info: 'text-info hover:bg-info',
         success: 'text-success hover:bg-success',
         warning: 'text-warning hover:bg-warning',
+        primary: 'text-primary hover:bg-primary',
     };
 
     return (

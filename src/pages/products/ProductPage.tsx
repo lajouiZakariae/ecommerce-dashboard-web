@@ -4,6 +4,7 @@ import Table from '@/common/Table';
 import TableLoading from '@/common/TableLoading';
 import useFilteredProducts from '@/hooks/queries/useFilteredProducts';
 import ProductRow from '@/products/ProductRow';
+import ProductsFilter from '@/products/ProductsFilter/ProductsFilter';
 
 export default function ProductsPage() {
     const { isLoading, isError, isSuccess, data } = useFilteredProducts();
@@ -36,7 +37,8 @@ export default function ProductsPage() {
 
     return (
         <div className="overflow-x-auto">
-            <Table headers={headers}>{RenderBody()}</Table>
+            <ProductsFilter />
+            {/* <Table headers={headers}>{RenderBody()}</Table> */}
         </div>
     );
 }
