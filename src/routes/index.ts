@@ -1,3 +1,4 @@
+import NotFound from '@/common/NotFound';
 import ProductEditPage from '@/pages/products/ProductEditPage';
 import ProductsPage from '@/pages/products/ProductsPage';
 import { lazy } from 'react';
@@ -36,6 +37,10 @@ const coreRoutes: RouteObject[] = [
             {
                 path: '/profile',
                 Component: Profile,
+            },
+            {
+                path: '*',
+                Component: NotFound,
             },
         ],
     },
