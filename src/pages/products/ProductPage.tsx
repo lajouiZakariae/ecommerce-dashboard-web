@@ -19,6 +19,8 @@ export default function ProductsPage() {
         { name: '' },
     ];
 
+    console.log(data?.data);
+
     const RenderBody = () => {
         if (isError) return <ErrorUI />;
 
@@ -39,7 +41,7 @@ export default function ProductsPage() {
         <div className="overflow-x-auto sm:overflow-x-visible">
             <ProductsFilter />
 
-            {/* <Table headers={headers}>{RenderBody()}</Table> */}
+            <Table headers={headers}>{RenderBody()}</Table>
         </div>
     );
 }

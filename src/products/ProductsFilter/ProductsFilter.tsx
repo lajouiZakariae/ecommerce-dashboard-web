@@ -19,13 +19,13 @@ export default function ProductsFilter() {
     };
 
     return (
-        <div className="flex justify-end relative">
+        <div className="flex justify-end relative mb-2">
             <Button type="button" variant="primary" onClick={toggleOpen}>
                 Filters
             </Button>
             {open ? (
                 <ClickAwayListener onClickAway={toggleOpen}>
-                    <div className="fixed bottom-0 left-0 px-4 pb-4 max-h-100 overflow-y-auto w-full border-none rounded-t-3xl bg-white shadow-[#ccc] shadow-3 sm:absolute sm:bottom-auto sm:top-10 sm:left-auto sm:right-0 sm:w-full sm:rounded-lg ">
+                    <div className="fixed bottom-0 left-0 px-4 pb-4 max-h-100 overflow-y-auto w-full border-none rounded-t-3xl bg-white shadow-[#ccc] shadow-3 sm:absolute sm:bottom-auto sm:top-10 sm:left-auto sm:right-0 sm:w-full sm:rounded-lg sm:z-999">
                         <form onSubmit={submitHandler}>
                             <div className="sticky bg-white top-0 left-0 w-full pt-4 flex justify-between mb-4">
                                 <Button

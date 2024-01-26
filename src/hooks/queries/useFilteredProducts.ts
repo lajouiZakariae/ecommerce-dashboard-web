@@ -12,7 +12,8 @@ export default function useFilteredProducts() {
         price_to: searchParams.get('price_to') ?? '',
         cost_from: searchParams.get('cost_from') ?? '',
         cost_to: searchParams.get('cost_to') ?? '',
-        sort_by: SortBy.CREATED_AT,
+        sort_by: searchParams.get('sort_by') ?? SortBy.TIME,
+        order: searchParams.get('order') ?? 'asc',
         page: page,
     };
 
