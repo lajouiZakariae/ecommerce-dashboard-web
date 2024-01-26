@@ -114,15 +114,17 @@ export default function ProductsFilter() {
                             Price Range
                         </h3>
 
-                        <div className="flex items-center gap-3">
+                        <div className="flex justify-between items-center gap-3">
                             <input
                                 type="text"
-                                className="input input-bordered input-sm"
+                                className="input input-bordered w-full"
+                                placeholder="0.00"
                             />
-                            <span className="text-lg grow">To</span>
+                            <span className="text-lg">To</span>
                             <input
                                 type="text"
-                                className="input input-bordered input-sm grow"
+                                className="input input-bordered w-full"
+                                placeholder="0.00"
                             />
                         </div>
                     </div>
