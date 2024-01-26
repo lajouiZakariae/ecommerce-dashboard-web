@@ -19,8 +19,6 @@ export default function ProductsPage() {
         { name: '' },
     ];
 
-    console.log(data?.data);
-
     const RenderBody = () => {
         if (isError) return <ErrorUI />;
 

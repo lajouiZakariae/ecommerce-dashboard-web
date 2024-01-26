@@ -11,17 +11,19 @@ export default function useFilters() {
 
     const [filtersInputs, setFiltersInputs] = useState(currentFilters);
 
-    const appliedFilters = useMemo(() => {
+    const appliedFiltersCount = useMemo(() => {
         const applied: string[] = [];
 
-        forOwn(filtersInputs, (value, key) =>
+        forOwn(currentFilters, (value, key) =>
             value !== defaultFilters[key] ? applied.push(key) : null,
         );
 
-        return applied;
+        console.log('Calc');
+
+        return applied.length;
     }, [currentFilters]);
 
-    console.log(appliedFilters);
+    console.log(currentFilters, appliedFiltersCount);
 
     const clearFilters = () => {
         setFiltersInputs(defaultFilters);
@@ -32,5 +34,11 @@ export default function useFilters() {
     const applyFilters = () =>
         setSearchParams((prev) => appendSearchParams(prev, filtersInputs));
 
-    return { filtersInputs, setFiltersInputs, clearFilters, applyFilters };
+    return {
+        filtersInputs,
+        setFiltersInputs,
+        appliedFiltersCount,
+        clearFilters,
+        applyFilters,
+    };
 }

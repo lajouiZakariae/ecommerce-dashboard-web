@@ -6,8 +6,13 @@ import { SortBy } from '@/types';
 import ClickAwayListener from 'react-click-away-listener';
 
 export default function ProductsFilter() {
-    const { filtersInputs, setFiltersInputs, clearFilters, applyFilters } =
-        useFilters();
+    const {
+        filtersInputs,
+        setFiltersInputs,
+        appliedFiltersCount,
+        clearFilters,
+        applyFilters,
+    } = useFilters();
 
     const [open, setOpen] = useState(false);
 
@@ -22,7 +27,7 @@ export default function ProductsFilter() {
     return (
         <div className="flex justify-end relative mb-2">
             <Button type="button" variant="primary" onClick={toggleOpen}>
-                Filters
+                Filters {appliedFiltersCount > 0 ? appliedFiltersCount : null}
             </Button>
             {open ? (
                 <ClickAwayListener onClickAway={toggleOpen}>
