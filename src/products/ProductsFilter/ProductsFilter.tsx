@@ -29,6 +29,7 @@ export default function ProductsFilter() {
     return (
         <div className="flex justify-end relative mb-2">
             <Button
+                size="sm"
                 type="button"
                 variant="primary"
                 onClick={(ev) => {
@@ -36,7 +37,8 @@ export default function ProductsFilter() {
                     setIsOpen(true);
                 }}
             >
-                Filters {appliedFiltersCount > 0 ? appliedFiltersCount : null}
+                Filters{' '}
+                {appliedFiltersCount > 0 ? `( ${appliedFiltersCount} )` : null}
             </Button>
 
             {isOpen ? (
@@ -48,9 +50,13 @@ export default function ProductsFilter() {
                     <form onSubmit={submitHandler}>
                         <div className="sticky bg-white top-0 left-0 w-full pt-4 flex justify-between mb-4">
                             <Button
+                                size="sm"
                                 type="button"
                                 variant="primary"
-                                onClick={() => clearFilters()}
+                                onClick={() => {
+                                    clearFilters();
+                                    toggleOpen();
+                                }}
                             >
                                 Clear
                             </Button>
