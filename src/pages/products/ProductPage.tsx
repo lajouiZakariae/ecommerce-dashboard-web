@@ -36,7 +36,7 @@ export default function ProductsPage() {
     };
 
     return (
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto sm:overflow-x-visible">
             <ProductsFilter />
             {/* <Table headers={headers}>{RenderBody()}</Table> */}
         </div>
