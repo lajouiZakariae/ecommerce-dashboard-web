@@ -21,14 +21,10 @@ export interface Filters {
 }
 
 export enum sortBy {
-    LATEST = 'latest',
-    OLDEST = 'oldest',
-    PRICE_ASC = 'price_asc',
-    PRICE_DESC = 'price_desc',
-    COST_ASC = 'cost_asc',
-    COST_DESC = 'cost_desc',
-    STOCK_QUANTITY_ASC = 'stock_quantity_asc',
-    STOCK_QUANTITY_DESC = 'stock_quantity_desc',
+    TIME = 'time',
+    PRICE = 'price',
+    COST = 'cost',
+    STOCK_QUANTITY = 'stock_quantity',
 }
 
 export interface Category {
