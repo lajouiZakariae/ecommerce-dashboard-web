@@ -6,7 +6,8 @@ import { SortBy } from '@/types';
 import ClickAwayListener from 'react-click-away-listener';
 
 export default function ProductsFilter() {
-    const { filters, setFilters, clearFilters, applyFilters } = useFilters();
+    const { filtersInputs, setFiltersInputs, clearFilters, applyFilters } =
+        useFilters();
 
     const [open, setOpen] = useState(false);
 
@@ -54,50 +55,60 @@ export default function ProductsFilter() {
                                         <div className="flex grow">
                                             <button
                                                 type="button"
-                                                className={`grow btn rounded-none rounded-l ${filters.sort_by === SortBy.CREATED_AT ? 'btn-primary' : ''}`}
+                                                className={`grow btn rounded-none rounded-l ${filtersInputs.sort_by === SortBy.CREATED_AT ? 'btn-primary' : ''}`}
                                                 onClick={() =>
-                                                    setFilters((prev) => ({
-                                                        ...prev,
-                                                        sort_by:
-                                                            SortBy.CREATED_AT,
-                                                    }))
+                                                    setFiltersInputs(
+                                                        (prev) => ({
+                                                            ...prev,
+                                                            sort_by:
+                                                                SortBy.CREATED_AT,
+                                                        }),
+                                                    )
                                                 }
                                             >
                                                 Time
                                             </button>
                                             <button
                                                 type="button"
-                                                className={`grow btn rounded-none ${filters.sort_by === SortBy.PRICE ? 'btn-primary' : ''}`}
+                                                className={`grow btn rounded-none ${filtersInputs.sort_by === SortBy.PRICE ? 'btn-primary' : ''}`}
                                                 onClick={() =>
-                                                    setFilters((prev) => ({
-                                                        ...prev,
-                                                        sort_by: SortBy.PRICE,
-                                                    }))
+                                                    setFiltersInputs(
+                                                        (prev) => ({
+                                                            ...prev,
+                                                            sort_by:
+                                                                SortBy.PRICE,
+                                                        }),
+                                                    )
                                                 }
                                             >
                                                 Price
                                             </button>
                                             <button
                                                 type="button"
-                                                className={`grow btn rounded-none ${filters.sort_by === SortBy.COST ? 'btn-primary' : ''}`}
+                                                className={`grow btn rounded-none ${filtersInputs.sort_by === SortBy.COST ? 'btn-primary' : ''}`}
                                                 onClick={() =>
-                                                    setFilters((prev) => ({
-                                                        ...prev,
-                                                        sort_by: SortBy.COST,
-                                                    }))
+                                                    setFiltersInputs(
+                                                        (prev) => ({
+                                                            ...prev,
+                                                            sort_by:
+                                                                SortBy.COST,
+                                                        }),
+                                                    )
                                                 }
                                             >
                                                 Cost
                                             </button>
                                             <button
                                                 type="button"
-                                                className={`grow btn rounded-none rounded-r ${filters.sort_by === SortBy.STOCK_QUANTITY ? 'btn-primary' : ''}`}
+                                                className={`grow btn rounded-none rounded-r ${filtersInputs.sort_by === SortBy.STOCK_QUANTITY ? 'btn-primary' : ''}`}
                                                 onClick={() =>
-                                                    setFilters((prev) => ({
-                                                        ...prev,
-                                                        sort_by:
-                                                            SortBy.STOCK_QUANTITY,
-                                                    }))
+                                                    setFiltersInputs(
+                                                        (prev) => ({
+                                                            ...prev,
+                                                            sort_by:
+                                                                SortBy.STOCK_QUANTITY,
+                                                        }),
+                                                    )
                                                 }
                                             >
                                                 Stock Quanity
@@ -106,24 +117,28 @@ export default function ProductsFilter() {
                                         <div className="flex grow">
                                             <button
                                                 type="button"
-                                                className={`grow btn rounded-none rounded-l ${filters.order === 'asc' ? 'btn-primary' : ''}`}
+                                                className={`grow btn rounded-none rounded-l ${filtersInputs.order === 'asc' ? 'btn-primary' : ''}`}
                                                 onClick={() =>
-                                                    setFilters((prev) => ({
-                                                        ...prev,
-                                                        order: 'asc',
-                                                    }))
+                                                    setFiltersInputs(
+                                                        (prev) => ({
+                                                            ...prev,
+                                                            order: 'asc',
+                                                        }),
+                                                    )
                                                 }
                                             >
                                                 Low to High
                                             </button>
                                             <button
                                                 type="button"
-                                                className={`grow btn rounded-none rounded-r ${filters.order === 'desc' ? 'btn-primary' : ''}`}
+                                                className={`grow btn rounded-none rounded-r ${filtersInputs.order === 'desc' ? 'btn-primary' : ''}`}
                                                 onClick={() =>
-                                                    setFilters((prev) => ({
-                                                        ...prev,
-                                                        order: 'desc',
-                                                    }))
+                                                    setFiltersInputs(
+                                                        (prev) => ({
+                                                            ...prev,
+                                                            order: 'desc',
+                                                        }),
+                                                    )
                                                 }
                                             >
                                                 High to Low
@@ -142,9 +157,9 @@ export default function ProductsFilter() {
                                             type="text"
                                             className="input input-bordered w-full"
                                             placeholder="0.00"
-                                            value={filters.price_from}
+                                            value={filtersInputs.price_from}
                                             onChange={(ev) =>
-                                                setFilters((prev) => ({
+                                                setFiltersInputs((prev) => ({
                                                     ...prev,
                                                     price_from: ev.target.value,
                                                 }))
@@ -155,9 +170,9 @@ export default function ProductsFilter() {
                                             type="text"
                                             className="input input-bordered w-full"
                                             placeholder="0.00"
-                                            value={filters.price_to}
+                                            value={filtersInputs.price_to}
                                             onChange={(ev) =>
-                                                setFilters((prev) => ({
+                                                setFiltersInputs((prev) => ({
                                                     ...prev,
                                                     price_to: ev.target.value,
                                                 }))
@@ -176,9 +191,9 @@ export default function ProductsFilter() {
                                             type="text"
                                             className="input input-bordered w-full"
                                             placeholder="0.00"
-                                            value={filters.cost_from}
+                                            value={filtersInputs.cost_from}
                                             onChange={(ev) =>
-                                                setFilters((prev) => ({
+                                                setFiltersInputs((prev) => ({
                                                     ...prev,
                                                     cost_from: ev.target.value,
                                                 }))
@@ -189,9 +204,9 @@ export default function ProductsFilter() {
                                             type="text"
                                             className="input input-bordered w-full"
                                             placeholder="0.00"
-                                            value={filters.cost_to}
+                                            value={filtersInputs.cost_to}
                                             onChange={(ev) =>
-                                                setFilters((prev) => ({
+                                                setFiltersInputs((prev) => ({
                                                     ...prev,
                                                     cost_to: ev.target.value,
                                                 }))
