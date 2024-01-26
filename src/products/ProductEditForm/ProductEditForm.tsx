@@ -1,9 +1,11 @@
+import Button from '@/common/Button';
 import Input from '@/common/Input';
 import Select from '@/common/Select';
 import TextArea from '@/common/TextArea';
+import useUpdateProduct from '@/hooks/mutations/useUpdateProduct';
 import { Category, Product } from '@/types';
 import { PropsWithChildren } from 'react';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
 interface Props extends PropsWithChildren {
     product: Product;
@@ -11,11 +13,17 @@ interface Props extends PropsWithChildren {
 }
 
 export default function ProductEditForm({ product, categories }: Props) {
-    const { register } = useForm({ defaultValues: product });
+    const { register, handleSubmit } = useForm({ defaultValues: product });
+
+    const { isPending, mutate } = useUpdateProduct(product.id);
+
+    const submitHandler: SubmitHandler<Product> = (data) => {
+        mutate(data);
+    };
 
     return (
         <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-            <form action="#" className="p-6.5">
+            <form className="p-6.5" onSubmit={handleSubmit(submitHandler)}>
                 <div className="mb-4.5">
                     <label
                         className="mb-2.5 inline-block text-black dark:text-white"
@@ -28,6 +36,7 @@ export default function ProductEditForm({ product, categories }: Props) {
                         id="title"
                         className="mb-2.5"
                         {...register('title')}
+                        disabled={isPending}
                     />
 
                     <p className="h-3.5 text-[14px] text-danger"></p>
@@ -42,6 +51,7 @@ export default function ProductEditForm({ product, categories }: Props) {
                         rows={6}
                         placeholder="Describe your product"
                         {...register('description')}
+                        disabled={isPending}
                     ></TextArea>
 
                     <p className="h-3.5 text-[14px] text-danger"></p>
@@ -59,6 +69,7 @@ export default function ProductEditForm({ product, categories }: Props) {
                         id="title"
                         className="mb-2.5"
                         {...register('stockQuantity')}
+                        disabled={isPending}
                     />
 
                     <p className="h-3.5 text-[14px] text-danger"></p>
@@ -77,6 +88,7 @@ export default function ProductEditForm({ product, categories }: Props) {
                             id="title"
                             className="mb-2.5"
                             {...register('price')}
+                            disabled={isPending}
                         />
 
                         <p className="h-3.5 text-[14px] text-danger"></p>
@@ -94,6 +106,7 @@ export default function ProductEditForm({ product, categories }: Props) {
                             id="title"
                             className="mb-2.5"
                             {...register('cost')}
+                            disabled={isPending}
                         />
 
                         <p className="h-3.5 text-[14px] text-danger"></p>
@@ -106,19 +119,26 @@ export default function ProductEditForm({ product, categories }: Props) {
                     </label>
 
                     <Select
+                        {...register('categoryId')}
                         options={categories}
                         renderItem={({ id, name }: Category) => (
-                            <option value={id}>{name}</option>
+                            <option key={id} value={id}>
+                                {name}
+                            </option>
                         )}
-                        {...register('categoryId')}
+                        disabled={isPending}
                     />
                 </div>
 
-                <input
-                    type="submit"
-                    className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray"
-                    value="Save Product"
-                />
+                {isPending ? (
+                    <p className="text-success bg-success bg-opacity-15 min-h-12 rounded-lg inline-flex items-center justify-center w-full font-bold">
+                        Saving...
+                    </p>
+                ) : (
+                    <button className="btn btn-success text-white w-full">
+                        Save Product
+                    </button>
+                )}
             </form>
         </div>
     );

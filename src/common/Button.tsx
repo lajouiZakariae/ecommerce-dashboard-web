@@ -4,10 +4,11 @@ type element = HTMLButtonElement;
 
 interface ButtonProps extends ButtonHTMLAttributes<element> {
     variant: 'error' | 'info' | 'success' | 'warning' | 'primary';
+    size: 'sm' | 'md' | 'lg';
 }
 
 const Button = forwardRef<element, ButtonProps>(
-    ({ variant, children, ...other }) => {
+    ({ variant, size = 'md', className, children, ...other }, ref) => {
         const variants = {
             error: 'text-error hover:bg-error',
             info: 'text-info hover:bg-info',
@@ -16,9 +17,16 @@ const Button = forwardRef<element, ButtonProps>(
             primary: 'text-primary hover:bg-primary',
         };
 
+        const sizes = {
+            sm: 'btn-sm',
+            md: 'btn-md',
+            lg: 'btn-lg',
+        };
+
         return (
             <button
-                className={`btn btn-sm border-none shadow-none hover:bg-opacity-15 ${variants[variant]}`}
+                className={`btn ${sizes[size]} border-none shadow-none hover:bg-opacity-15 ${variants[variant]} ${className}`}
+                ref={ref}
                 {...other}
             >
                 {children}
