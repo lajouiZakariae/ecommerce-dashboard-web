@@ -8,7 +8,7 @@ import { Filters } from '@/products/useProductUrlFilters';
 
 interface Result {
     data: Product[];
-    meta: { last_page: number };
+    meta: { last_page: number; links: [] };
 }
 
 export default function useProducts(filters: Filters) {
@@ -22,11 +22,8 @@ export default function useProducts(filters: Filters) {
             .get(`products${queryString.length ? `?${queryString}` : ''}`)
             .then((response) => response.data);
 
-    const query = useQuery({
+    return useQuery({
         queryKey: ['products', filters],
         queryFn: getProducts,
     });
-
-    return query;
-    // return { products: query.data, isSuccess: query.isSuccess, status: query.status };
 }

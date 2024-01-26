@@ -19,6 +19,7 @@ export default function useFilters() {
         const applied: string[] = [];
 
         forOwn(currentFilters, (value, key) =>
+            // @ts-ignore
             value !== defaultFilters[key] ? applied.push(key) : null,
         );
 
@@ -32,7 +33,9 @@ export default function useFilters() {
     };
 
     const applyFilters = () =>
-        setSearchParams((prev) => appendSearchParams(prev, filtersInputs));
+        setSearchParams((prev) =>
+            appendSearchParams(prev, { ...filtersInputs, page: 1 }),
+        );
 
     return {
         filtersInputs,
