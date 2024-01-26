@@ -11,7 +11,7 @@ export default function TableLoading({ headers }: Props) {
             {[...Array(10).keys()].map((index) => (
                 <tr key={index}>
                     <td colSpan={8}>
-                        <div className="my-1 h-8 bg-[#e7e7e7] rounded-full dark:bg-gray animate-pulse"></div>
+                        <div className="skeleton my-1 h-8"></div>
                     </td>
                 </tr>
             ))}
