@@ -1,3 +1,4 @@
+import FormGroup from '@/common/FormGroup';
 import Input from '@/common/Input';
 import Select from '@/common/Select';
 import TextArea from '@/common/TextArea';
@@ -12,105 +13,100 @@ interface Props extends PropsWithChildren {
 }
 
 export default function ProductEditForm({ product, categories }: Props) {
-    const { register, handleSubmit } = useForm({ defaultValues: product });
+    const {
+        register,
+        handleSubmit,
+        setError,
+        clearErrors,
+        formState: { errors },
+    } = useForm({
+        defaultValues: product,
+    });
 
-    const { isPending, mutate } = useUpdateProduct(product.id);
+    const { isPending, mutate } = useUpdateProduct(product.id, setError);
 
-    const submitHandler: SubmitHandler<Product> = (data) => mutate(data);
+    const submitHandler: SubmitHandler<Product> = (data) => {
+        clearErrors();
+        mutate(data);
+    };
+
+    console.log(errors);
 
     return (
         <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
             <form className="p-6.5" onSubmit={handleSubmit(submitHandler)}>
-                <div className="mb-4.5">
-                    <label
-                        className="mb-2.5 inline-block text-black dark:text-white"
-                        htmlFor="title"
-                    >
-                        Title
-                    </label>
-
+                <FormGroup
+                    className="mb-4"
+                    labelText="Title"
+                    errorMessage={errors?.root?.title?.message}
+                >
                     <Input
                         id="title"
                         className="mb-2.5"
                         {...register('title')}
                         disabled={isPending}
                     />
+                </FormGroup>
 
-                    <p className="h-3.5 text-[14px] text-danger"></p>
-                </div>
-
-                <div className="mb-6">
-                    <label className="mb-2.5 block text-black dark:text-white">
-                        Description
-                    </label>
-
+                <FormGroup
+                    className="mb-4"
+                    labelText="Description"
+                    errorMessage={errors?.root?.description?.message}
+                >
                     <TextArea
                         rows={6}
                         placeholder="Describe your product"
                         {...register('description')}
                         disabled={isPending}
+                        error={Boolean(errors?.root?.description?.message)}
                     ></TextArea>
+                </FormGroup>
 
-                    <p className="h-3.5 text-[14px] text-danger"></p>
-                </div>
-
-                <div className="mb-4.5">
-                    <label
-                        className="mb-2.5 inline-block text-black dark:text-white"
-                        htmlFor="title"
-                    >
-                        Stock Quantity
-                    </label>
-
+                <FormGroup
+                    className="mb-4"
+                    labelText="Stock Quantity"
+                    errorMessage={errors?.root?.stock_quantity?.message}
+                >
                     <Input
                         id="title"
                         className="mb-2.5"
                         {...register('stockQuantity')}
                         disabled={isPending}
+                        error={Boolean(errors?.root?.stock_quantity?.message)}
                     />
-
-                    <p className="h-3.5 text-[14px] text-danger"></p>
-                </div>
+                </FormGroup>
 
                 <div className="mb-4.5 flex flex-col gap-6 xl:flex-row">
-                    <div className="w-full xl:w-1/2">
-                        <label
-                            className="mb-2.5 inline-block text-black dark:text-white"
-                            htmlFor="title"
-                        >
-                            Price
-                        </label>
-
+                    <FormGroup
+                        labelText="Price"
+                        errorMessage={errors?.root?.price?.message}
+                        className="w-full xl:w-1/2"
+                    >
                         <Input
                             id="title"
                             className="mb-2.5"
                             {...register('price')}
                             disabled={isPending}
+                            error={Boolean(errors?.root?.price?.message)}
                         />
+                    </FormGroup>
 
-                        <p className="h-3.5 text-[14px] text-danger"></p>
-                    </div>
-
-                    <div className="w-full xl:w-1/2">
-                        <label
-                            className="mb-2.5 inline-block text-black dark:text-white"
-                            htmlFor="title"
-                        >
-                            Cost
-                        </label>
-
+                    <FormGroup
+                        className="w-full xl:w-1/2"
+                        labelText="Cost"
+                        errorMessage={errors?.root?.cost?.message}
+                    >
                         <Input
                             id="title"
                             className="mb-2.5"
                             {...register('cost')}
                             disabled={isPending}
+                            error={Boolean(errors?.root?.cost?.message)}
                         />
-
-                        <p className="h-3.5 text-[14px] text-danger"></p>
-                    </div>
+                    </FormGroup>
                 </div>
 
-                <div className="mb-4.5">
+                {/* <div className="mb-4.5">
                     <label className="mb-2.5 block text-black dark:text-white">
                         Subject
                     </label>
@@ -125,7 +121,7 @@ export default function ProductEditForm({ product, categories }: Props) {
                         )}
                         disabled={isPending}
                     />
-                </div>
+                </div> */}
 
                 {isPending ? (
                     <p className="text-success bg-success bg-opacity-15 min-h-12 rounded-lg inline-flex items-center justify-center w-full font-bold">

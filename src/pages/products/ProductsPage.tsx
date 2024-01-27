@@ -27,7 +27,6 @@ export default function ProductsPage() {
     const isBigScreen = useMediaQuery('(min-width : 700px)');
 
     const renderContext = () => {
-        // return <ProductsFeed products={[]} />;
         if (isError) return <ErrorUI />;
 
         if (isLoading)

@@ -3,8 +3,12 @@ import { AxiosResponse, HttpStatusCode } from 'axios';
 import { Product } from '@/types';
 import apiClient from '@/utils/api-client';
 import toast from 'react-hot-toast';
+import { UseFormSetError } from 'react-hook-form';
 
-export default function useUpdateProduct(id: number) {
+export default function useUpdateProduct(
+    id: number,
+    setError: UseFormSetError<Product>,
+) {
     const queryClient = useQueryClient();
 
     return useMutation({
@@ -30,10 +34,14 @@ export default function useUpdateProduct(id: number) {
 
             for (const key in errorList) {
                 const firstMessage = errorList[key].at(0);
+
+                setError(`root.${key}`, {
+                    type: 'server',
+                    message: firstMessage,
+                });
+
                 errors[key] = firstMessage;
             }
-
-            // setErrors(errors);
         },
     });
 }
