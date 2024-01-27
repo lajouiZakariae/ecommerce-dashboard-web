@@ -1,18 +1,13 @@
 import CreateProductForm from '@/products/CreateProductForm';
-import {
-    HTMLAttributes,
-    PropsWithChildren,
-    forwardRef,
-    useEffect,
-    useState,
-} from 'react';
+import { HTMLAttributes, PropsWithChildren, forwardRef, useState } from 'react';
 import { IoAdd } from 'react-icons/io5';
+import { FaChevronLeft } from 'react-icons/fa6';
 
 const Box = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
     function ({ children, ...other }, ref) {
         return (
             <div
-                className="text-center bg-slate-200 cursor-pointer h-25 w-25 flex items-center justify-center rounded hover:bg-slate-300 transition-colors duration-300"
+                className="text-center bg-slate-200 dark:bg-boxdark hover:dark:bg-opacity-70 hover:bg-slate-300 cursor-pointer h-25 w-25 flex items-center justify-center rounded  transition-colors duration-300"
                 ref={ref}
                 {...other}
             >
@@ -51,8 +46,8 @@ export default function Modal() {
             </FAB>
 
             <dialog id="createModal" className="modal">
-                {step === 'choose' ? (
-                    <div className="modal-box">
+                <div className="modal-box min-h-65">
+                    {step === 'choose' ? (
                         <div className="flex space-x-3">
                             <Box
                                 onClick={() => {
@@ -64,14 +59,24 @@ export default function Modal() {
                             </Box>
                             <Box>Payment Method</Box>
                         </div>
-                    </div>
-                ) : null}
+                    ) : null}
 
-                {step === 'form' ? (
-                    <div className="modal-box">
-                        <CreateProductForm />
-                    </div>
-                ) : null}
+                    {step === 'form' ? (
+                        <>
+                            <button
+                                className="btn btn-sm btn-circle mb-2"
+                                onClick={() => {
+                                    setItem(null);
+                                    setStep('choose');
+                                }}
+                            >
+                                <FaChevronLeft />
+                            </button>
+
+                            <CreateProductForm />
+                        </>
+                    ) : null}
+                </div>
                 <form method="dialog" className="modal-backdrop">
                     <button>close</button>
                 </form>
