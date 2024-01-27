@@ -1,12 +1,12 @@
-import { PropsWithChildren, useMemo, useState } from 'react';
+import { PropsWithChildren, useMemo } from 'react';
 
 interface Props extends PropsWithChildren {
     page: number;
     count: number;
-    pageChange: (page: number) => void;
+    pageChangeHandler: (page: number) => void;
 }
 
-export default function Pagination({ page, count }: Props) {
+export default function Pagination({ page, count, pageChangeHandler }: Props) {
     const surrondedLinks = useMemo(() => {
         const links = [];
 
@@ -35,7 +35,21 @@ export default function Pagination({ page, count }: Props) {
         return links;
     }, [page, count]);
 
-    console.log(surrondedLinks);
-
-    return <div></div>;
+    return (
+        <div className="flex space-x-4">
+            <button className="btn">Previous</button>
+            <div className="join">
+                {surrondedLinks.map((_page) => (
+                    <button
+                        key={_page}
+                        className={`join-item btn ${page === _page ? 'btn-primary' : ''}`}
+                        onClick={() => pageChangeHandler(_page)}
+                    >
+                        {_page}
+                    </button>
+                ))}
+            </div>
+            <button className="btn">Next</button>
+        </div>
+    );
 }

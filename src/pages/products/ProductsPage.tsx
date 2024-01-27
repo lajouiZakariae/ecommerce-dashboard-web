@@ -8,8 +8,10 @@ import { useMediaQuery } from '@uidotdev/usehooks';
 import FeedLoading from '@/common/FeedLoading';
 import ProductsFeed from '@/products/ProductFeed';
 import Pagination from './Pagination';
+import usePage from '@/hooks/usePage';
 
 export default function ProductsPage() {
+    const { page, setPage } = usePage();
     const { isLoading, isError, isSuccess, data } = useFilteredProducts();
 
     const headers = [
@@ -56,9 +58,9 @@ export default function ProductsPage() {
 
             <div className="flex justify-center mt-4">{renderPagination()}</div> */}
             <Pagination
-                page={8}
+                page={page}
                 count={7}
-                pageChange={(page) => console.log(page)}
+                pageChangeHandler={(_page) => setPage(_page)}
             />
         </div>
     );
