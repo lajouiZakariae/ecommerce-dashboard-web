@@ -45,30 +45,29 @@ export default function ProductsFilter() {
                 <div
                     // @ts-ignore
                     ref={clickAwayTarget}
-                    className="fixed bottom-0 left-0 px-4 pb-4 max-h-100 overflow-y-auto w-full border-none rounded-t-3xl bg-white dark:bg-boxdark dark:text-bodydark shadow-[#ccc] dark:shadow-black shadow-3 sm:absolute sm:bottom-auto sm:top-10 sm:left-auto sm:right-0 sm:max-w-203 sm:rounded-lg z-999999"
+                    className="fixed bottom-0 left-0 pb-4 max-h-100 overflow-y-auto w-full border-none rounded-t-3xl bg-white dark:bg-boxdark dark:text-bodydark shadow-[#ccc] dark:shadow-black shadow-3 sm:absolute sm:bottom-auto sm:top-10 sm:left-auto sm:right-0 sm:max-w-203 sm:rounded-lg z-999999"
                 >
-                    <form onSubmit={submitHandler}>
-                        <div className="sticky bg-white dark:bg-boxdark top-0 left-0 w-full pt-4 flex justify-between mb-4">
-                            <Button
-                                size="sm"
-                                type="button"
-                                color="primary"
-                                onClick={() => {
-                                    clearFilters();
-                                    toggleOpen();
-                                }}
-                            >
-                                Clear
-                            </Button>
-                            <button
-                                type="button"
-                                className="btn btn-sm btn-circle"
-                                onClick={() => setIsOpen(false)}
-                            >
-                                <CloseIcon className="text-2xl text-graydark" />
-                            </button>
-                        </div>
-
+                    <div className="sticky top-0 left-0 w-full p-4 flex justify-between bg-white dark:bg-boxdark">
+                        <Button
+                            size="sm"
+                            type="button"
+                            color="primary"
+                            onClick={() => {
+                                clearFilters();
+                                toggleOpen();
+                            }}
+                        >
+                            Clear
+                        </Button>
+                        <button
+                            type="button"
+                            className="btn btn-sm btn-circle"
+                            onClick={() => setIsOpen(false)}
+                        >
+                            <CloseIcon className="text-2xl text-graydark" />
+                        </button>
+                    </div>
+                    <form className="mx-4" onSubmit={submitHandler}>
                         <div className="flex flex-col space-y-4 mb-4 sm:flex-row sm:flex-wrap">
                             <div className="flex flex-col space-y-2 sm:basis-full">
                                 <h3 className="text-lg font-bold text-boxdark dark:text-bodydark1">

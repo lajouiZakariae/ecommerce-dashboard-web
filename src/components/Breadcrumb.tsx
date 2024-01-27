@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react';
+import { Fragment, PropsWithChildren } from 'react';
 import { Link } from 'react-router-dom';
 
 interface BreadcrumbProps extends PropsWithChildren {
@@ -16,12 +16,12 @@ const Breadcrumb = ({ links, pageName }: BreadcrumbProps) => {
             <nav>
                 <ol className="flex items-center gap-2">
                     {links.map(({ text, path }) => (
-                        <>
+                        <Fragment key={text}>
                             <li>
                                 <Link to={path}>{text}</Link>
                             </li>
                             {'/'}
-                        </>
+                        </Fragment>
                     ))}
                     <li className="text-primary">{pageName}</li>
                 </ol>

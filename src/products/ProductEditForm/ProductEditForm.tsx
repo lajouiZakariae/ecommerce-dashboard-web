@@ -6,6 +6,7 @@ import useUpdateProduct from '@/hooks/mutations/useUpdateProduct';
 import { Category, Product } from '@/types';
 import { PropsWithChildren } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import ButtonLoading from './ButtonLoading';
 
 interface Props extends PropsWithChildren {
     product: Product;
@@ -118,9 +119,9 @@ export default function ProductEditForm({ product, categories }: Props) {
                 </FormGroup>
 
                 {isPending ? (
-                    <p className="text-success bg-success bg-opacity-15 min-h-12 rounded-lg inline-flex items-center justify-center w-full font-bold">
+                    <ButtonLoading color="success" className="w-full">
                         Saving...
-                    </p>
+                    </ButtonLoading>
                 ) : (
                     <button className="btn btn-success text-white w-full">
                         Save Product

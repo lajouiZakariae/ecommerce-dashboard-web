@@ -115,7 +115,7 @@ function OptionsDropDown({ children }: PropsWithChildren) {
             {show && (
                 <ClickAwayListener onClickAway={() => setShow(false)}>
                     <animated.ul
-                        className="absolute right-0 top-full z-999 bg-whiten w-56 rounded-box py-2 flex flex-col space-y-2 shadow-1 shadow-bodydark"
+                        className="absolute right-0 top-full z-999 bg-whiten w-56 rounded-box py-2 flex flex-col space-y-2 shadow-1 shadow-bodydark items-center"
                         style={{ ...springs }}
                     >
                         {children}
