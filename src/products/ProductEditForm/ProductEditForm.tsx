@@ -30,8 +30,6 @@ export default function ProductEditForm({ product, categories }: Props) {
         mutate(data);
     };
 
-    console.log(errors);
-
     return (
         <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
             <form className="p-6.5" onSubmit={handleSubmit(submitHandler)}>
