@@ -7,6 +7,7 @@ import ProductsPagination from '@/products/ProuductsPagination';
 import { useMediaQuery } from '@uidotdev/usehooks';
 import FeedLoading from '@/common/FeedLoading';
 import ProductsFeed from '@/products/ProductFeed';
+import Pagination from './Pagination';
 
 export default function ProductsPage() {
     const { isLoading, isError, isSuccess, data } = useFilteredProducts();
@@ -43,16 +44,22 @@ export default function ProductsPage() {
 
         if (isLoading) return 'Loading...';
 
-        if (isSuccess) return <ProductsPagination links={data?.meta.links} />;
+        // if (isSuccess) return <ProductsPagination links={data.meta.links} />;
+        if (isSuccess) return <ProductsPagination links={data.meta.links} />;
     };
 
     return (
         <div className="overflow-x-visible sm:overflow-x-visible">
-            <ProductsFilter />
+            {/* <ProductsFilter />
 
             {renderContext()}
 
-            {/* <div className="flex justify-center mt-4">{renderPagination()}</div> */}
+            <div className="flex justify-center mt-4">{renderPagination()}</div> */}
+            <Pagination
+                page={8}
+                count={7}
+                pageChange={(page) => console.log(page)}
+            />
         </div>
     );
 }

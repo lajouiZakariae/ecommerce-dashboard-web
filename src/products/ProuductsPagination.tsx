@@ -8,15 +8,18 @@ export default function ProductsPagination({ links }: Props) {
 
     return (
         <div className="join">
-            {links.map(({ label, active }) => (
-                <button
-                    key={label}
-                    className={`join-item btn ${active ? 'btn-primary' : ''}`}
-                    onClick={() => setPage(parseInt(label))}
-                >
-                    {label}
-                </button>
-            ))}
+            {links.map(({ label, active }) =>
+                label === '&laquo; Previous' ||
+                label === 'Next &raquo;' ? null : (
+                    <button
+                        key={label}
+                        className={`join-item btn ${active ? 'btn-primary' : ''}`}
+                        onClick={() => setPage(parseInt(label))}
+                    >
+                        {label}
+                    </button>
+                ),
+            )}
         </div>
     );
 }

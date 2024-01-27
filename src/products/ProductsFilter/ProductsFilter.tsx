@@ -71,7 +71,7 @@ export default function ProductsFilter() {
 
                         <div className="flex flex-col space-y-4 mb-4 sm:flex-row sm:flex-wrap">
                             <div className="flex flex-col space-y-2 sm:basis-full">
-                                <h3 className="text-lg font-bold text-boxdark dark:text-bodydark">
+                                <h3 className="text-lg font-bold text-boxdark dark:text-bodydark1">
                                     Sort By
                                 </h3>
 
@@ -157,7 +157,7 @@ export default function ProductsFilter() {
                             </div>
 
                             <div className="flex flex-col space-y-2 sm:basis-1/2 sm:pr-2">
-                                <h3 className="text-lg font-bold text-boxdark dark:text-bodydark">
+                                <h3 className="text-lg font-bold text-boxdark dark:text-bodydark1">
                                     Price Range
                                 </h3>
 
@@ -191,7 +191,7 @@ export default function ProductsFilter() {
                             </div>
 
                             <div className="flex flex-col space-y-2 sm:basis-1/2 sm:pl-2">
-                                <h3 className="text-lg font-bold text-boxdark dark:text-bodydark">
+                                <h3 className="text-lg font-bold text-boxdark dark:text-bodydark1">
                                     Cost Range
                                 </h3>
 

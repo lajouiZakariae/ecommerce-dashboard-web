@@ -16,9 +16,7 @@ export default function ProductEditForm({ product, categories }: Props) {
 
     const { isPending, mutate } = useUpdateProduct(product.id);
 
-    const submitHandler: SubmitHandler<Product> = (data) => {
-        mutate(data);
-    };
+    const submitHandler: SubmitHandler<Product> = (data) => mutate(data);
 
     return (
         <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
