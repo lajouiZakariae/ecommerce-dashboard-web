@@ -9,6 +9,8 @@ import FeedLoading from '@/common/FeedLoading';
 import ProductsFeed from '@/products/ProductFeed';
 import Pagination from './Pagination';
 import usePage from '@/hooks/usePage';
+import { IoAdd, IoAddCircle, IoAddOutline, IoAddSharp } from 'react-icons/io5';
+import Modal from './Modal';
 
 export default function ProductsPage() {
     const { page, setPage } = usePage();
@@ -62,6 +64,8 @@ export default function ProductsPage() {
             {renderContext()}
 
             <div className="flex justify-center mt-4">{renderPagination()}</div>
+
+            <Modal />
         </div>
     );
 }
