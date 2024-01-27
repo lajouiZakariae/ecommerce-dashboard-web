@@ -46,22 +46,23 @@ export default function ProductsPage() {
 
         if (isLoading) return 'Loading...';
 
-        // if (isSuccess) return <ProductsPagination links={data.meta.links} />;
-        if (isSuccess) return <ProductsPagination links={data.meta.links} />;
+        if (isSuccess)
+            return (
+                <Pagination
+                    page={page}
+                    count={data.meta.last_page}
+                    pageChangeHandler={(_page) => setPage(_page)}
+                />
+            );
     };
 
     return (
         <div className="overflow-x-visible sm:overflow-x-visible">
-            {/* <ProductsFilter />
+            <ProductsFilter />
 
             {renderContext()}
 
-            <div className="flex justify-center mt-4">{renderPagination()}</div> */}
-            <Pagination
-                page={page}
-                count={7}
-                pageChangeHandler={(_page) => setPage(_page)}
-            />
+            <div className="flex justify-center mt-4">{renderPagination()}</div>
         </div>
     );
 }
