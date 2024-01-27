@@ -2,7 +2,7 @@ import { HTMLAttributes } from 'react';
 
 interface FormGroupProps extends HTMLAttributes<HTMLDivElement> {
     labelText: string;
-    errorMessage: string | undefined;
+    errorMessage?: string;
 }
 
 export default function FormGroup({

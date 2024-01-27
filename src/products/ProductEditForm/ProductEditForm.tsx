@@ -78,9 +78,9 @@ export default function ProductEditForm({ product, categories }: Props) {
 
                 <div className="mb-4.5 flex flex-col gap-6 xl:flex-row">
                     <FormGroup
+                        className="w-full xl:w-1/2"
                         labelText="Price"
                         errorMessage={errors?.root?.price?.message}
-                        className="w-full xl:w-1/2"
                     >
                         <Input
                             id="title"
@@ -106,22 +106,18 @@ export default function ProductEditForm({ product, categories }: Props) {
                     </FormGroup>
                 </div>
 
-                {/* <div className="mb-4.5">
-                    <label className="mb-2.5 block text-black dark:text-white">
-                        Subject
-                    </label>
-
+                <FormGroup className="mb-4.5" labelText="Category">
                     <Select
                         {...register('categoryId')}
                         options={categories}
+                        disabled={isPending}
                         renderItem={({ id, name }: Category) => (
                             <option key={id} value={id}>
                                 {name}
                             </option>
                         )}
-                        disabled={isPending}
                     />
-                </div> */}
+                </FormGroup>
 
                 {isPending ? (
                     <p className="text-success bg-success bg-opacity-15 min-h-12 rounded-lg inline-flex items-center justify-center w-full font-bold">
