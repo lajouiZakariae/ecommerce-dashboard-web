@@ -1,13 +1,20 @@
-import { PropsWithChildren } from 'react';
+import CreateProductForm from '@/products/CreateProductForm';
+import { HTMLAttributes, PropsWithChildren, forwardRef, useState } from 'react';
 import { IoAdd } from 'react-icons/io5';
 
-function Box({ children }: PropsWithChildren) {
-    return (
-        <div className="text-center bg-slate-200 cursor-pointer h-25 w-25 flex items-center justify-center rounded hover:bg-slate-300 transition-colors duration-300">
-            {children}
-        </div>
-    );
-}
+const Box = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
+    function ({ children, ...other }, ref) {
+        return (
+            <div
+                className="text-center bg-slate-200 cursor-pointer h-25 w-25 flex items-center justify-center rounded hover:bg-slate-300 transition-colors duration-300"
+                ref={ref}
+                {...other}
+            >
+                {children}
+            </div>
+        );
+    },
+);
 
 function FAB({ children }: PropsWithChildren) {
     return (
@@ -25,6 +32,12 @@ function FAB({ children }: PropsWithChildren) {
 }
 
 export default function Modal() {
+    type step = 'choose' | 'form' | 'done';
+    type itemType = 'product' | null;
+
+    const [step, setStep] = useState<step>('choose');
+    const [item, setItem] = useState<itemType>(null);
+
     return (
         <>
             <FAB>
@@ -32,12 +45,27 @@ export default function Modal() {
             </FAB>
 
             <dialog id="createModal" className="modal">
-                <div className="modal-box">
-                    <div className="flex space-x-3">
-                        <Box>Product</Box>
-                        <Box>Payment Method</Box>
+                {step === 'choose' ? (
+                    <div className="modal-box">
+                        <div className="flex space-x-3">
+                            <Box
+                                onClick={() => {
+                                    setStep('form');
+                                    setItem('product');
+                                }}
+                            >
+                                Product
+                            </Box>
+                            <Box>Payment Method</Box>
+                        </div>
                     </div>
-                </div>
+                ) : null}
+
+                {step === 'form' ? (
+                    <div className="modal-box">
+                        <CreateProductForm />
+                    </div>
+                ) : null}
                 <form method="dialog" className="modal-backdrop">
                     <button>close</button>
                 </form>

@@ -3,13 +3,13 @@ import { ButtonHTMLAttributes, forwardRef } from 'react';
 type element = HTMLButtonElement;
 
 interface ButtonProps extends ButtonHTMLAttributes<element> {
-    variant: 'error' | 'info' | 'success' | 'warning' | 'primary';
-    size: 'sm' | 'md' | 'lg';
+    color: 'error' | 'info' | 'success' | 'warning' | 'primary';
+    size?: 'sm' | 'md' | 'lg';
 }
 
 const Button = forwardRef<element, ButtonProps>(
-    ({ variant, size = 'md', className, children, ...other }, ref) => {
-        const variants = {
+    ({ color, size = 'md', className, children, ...other }, ref) => {
+        const colors = {
             error: 'text-error hover:bg-error',
             info: 'text-info hover:bg-info',
             success: 'text-success hover:bg-success',
@@ -25,7 +25,7 @@ const Button = forwardRef<element, ButtonProps>(
 
         return (
             <button
-                className={`btn ${sizes[size]} border-none shadow-none hover:bg-opacity-15 ${variants[variant]} ${className}`}
+                className={`btn ${size ? sizes[size] : ''} border-none shadow-none hover:bg-opacity-15 ${colors[color]} ${className}`}
                 ref={ref}
                 {...other}
             >

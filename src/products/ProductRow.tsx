@@ -78,7 +78,7 @@ export default function ProductRow({
 
                     <li>
                         <Link to={`/products/${id}/edit`}>
-                            <Button size="md" variant="info">
+                            <Button size="md" color="info">
                                 Edit
                             </Button>
                         </Link>

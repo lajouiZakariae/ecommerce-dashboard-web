@@ -18,7 +18,7 @@ export default function DeleteResource({
     const { isPending, mutate } = useDelete(url, queryKey);
 
     return (
-        <Button variant="error" onClick={() => mutate()}>
+        <Button color="error" onClick={() => mutate()}>
             {isPending ? pendingTxt : children}
         </Button>
     );

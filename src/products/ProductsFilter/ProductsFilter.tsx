@@ -31,7 +31,7 @@ export default function ProductsFilter() {
             <Button
                 size="sm"
                 type="button"
-                variant="primary"
+                color="primary"
                 onClick={(ev) => {
                     ev.stopPropagation;
                     setIsOpen(true);
@@ -52,7 +52,7 @@ export default function ProductsFilter() {
                             <Button
                                 size="sm"
                                 type="button"
-                                variant="primary"
+                                color="primary"
                                 onClick={() => {
                                     clearFilters();
                                     toggleOpen();
