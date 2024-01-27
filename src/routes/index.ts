@@ -8,6 +8,7 @@ import { RouteObject, createBrowserRouter } from 'react-router-dom';
 // const ProductEditPage = lazy(() => import('@/pages/products/ProductEditPage'));
 
 const Calendar = lazy(() => import('@/pages/Calendar'));
+const ECommerce = lazy(() => import('@/pages/Dashboard/ECommerce'));
 const Profile = lazy(() => import('@/pages/Profile'));
 const DefaultLayout = lazy(() => import('@/layout/DefaultLayout'));
 
@@ -16,7 +17,7 @@ const coreRoutes: RouteObject[] = [
         Component: DefaultLayout,
         path: '/',
         children: [
-            { index: true },
+            { index: true, Component: ECommerce },
             {
                 path: '/products',
                 children: [

@@ -18,7 +18,13 @@ export default function ProductEditPage() {
     if (isSuccess && categories.isSuccess) {
         return (
             <>
-                <Breadcrumb pageName="Edit" />
+                <Breadcrumb
+                    links={[
+                        { text: 'Dashboard', path: '/' },
+                        { text: 'Products', path: '/products' },
+                    ]}
+                    pageName={data.title}
+                />
                 <ProductEditForm product={data} categories={categories.data} />;
             </>
         );
