@@ -1,3 +1,4 @@
+import { useMediaQuery } from '@uidotdev/usehooks';
 import { PropsWithChildren, useMemo } from 'react';
 
 interface Props extends PropsWithChildren {
@@ -35,21 +36,41 @@ export default function Pagination({ page, count, pageChangeHandler }: Props) {
         return links;
     }, [page, count]);
 
+    const isBiggerScreen = useMediaQuery('(min-width : 500px)');
+
     return (
         <div className="flex space-x-4">
-            <button className="btn">Previous</button>
-            <div className="join">
-                {surrondedLinks.map((_page) => (
-                    <button
-                        key={_page}
-                        className={`join-item btn ${page === _page ? 'btn-primary' : ''}`}
-                        onClick={() => pageChangeHandler(_page)}
-                    >
-                        {_page}
-                    </button>
-                ))}
-            </div>
-            <button className="btn">Next</button>
+            <button
+                className="btn"
+                disabled={page === 1}
+                onClick={() => pageChangeHandler(page - 1)}
+            >
+                Previous
+            </button>
+
+            {isBiggerScreen ? (
+                <div className="join">
+                    {surrondedLinks.map((_page) => (
+                        <button
+                            key={_page}
+                            className={`join-item btn ${page === _page ? 'btn-primary' : ''}`}
+                            onClick={() => pageChangeHandler(_page)}
+                        >
+                            {_page}
+                        </button>
+                    ))}
+                </div>
+            ) : (
+                <button className="btn">{page}</button>
+            )}
+
+            <button
+                className="btn"
+                disabled={page === count}
+                onClick={() => pageChangeHandler(page + 1)}
+            >
+                Next
+            </button>
         </div>
     );
 }
