@@ -1,5 +1,6 @@
 import NotFound from '@/common/NotFound';
 import ECommerce from '@/pages/Dashboard/ECommerce';
+import PaymentMethodsPage from '@/pages/PaymentMethodsPage';
 import ProductEditPage from '@/pages/products/ProductEditPage';
 import ProductsPage from '@/pages/products/ProductsPage';
 import { lazy } from 'react';
@@ -32,6 +33,7 @@ const coreRoutes: RouteObject[] = [
                     },
                 ],
             },
+            { path: 'payment-methods', Component: PaymentMethodsPage },
             {
                 path: '/calendar',
                 Component: Calendar,

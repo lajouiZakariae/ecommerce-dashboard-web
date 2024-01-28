@@ -3,16 +3,11 @@ import TableLoading from '@/common/TableLoading';
 import useFilteredProducts from '@/hooks/queries/useFilteredProducts';
 import ProductsFilter from '@/products/ProductsFilter/ProductsFilter';
 import ProductsTable from './ProductsTable';
-import ProductsPagination from '@/products/ProuductsPagination';
 import { useMediaQuery } from '@uidotdev/usehooks';
 import FeedLoading from '@/common/FeedLoading';
-import ProductsFeed from '@/products/ProductFeed';
 import Pagination from './Pagination';
 import usePage from '@/hooks/usePage';
-import { IoAdd, IoAddCircle, IoAddOutline, IoAddSharp } from 'react-icons/io5';
 import Modal from './Modal';
-import CustomButton from '@/common/CustomButton';
-import ButtonLoading from '@/products/ProductEditForm/ButtonLoading';
 
 export default function ProductsPage() {
     const { page, setPage } = usePage();

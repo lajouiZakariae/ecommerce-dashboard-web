@@ -4,10 +4,10 @@ import Table from '@/common/Table';
 import ProductRow from '@/products/ProductRow';
 import { Product } from '@/types';
 
-type Props = PropsWithChildren<{
+interface Props extends PropsWithChildren {
     headers: { name: string }[];
     products: Product[];
-}>;
+}
 
 export default function ProductsTable({ headers, products }: Props) {
     return (

@@ -11,7 +11,7 @@ export interface Filters {
     page?: number;
 }
 
-export default function useProductUrlFilters() {
+export default function useFiltersFromUrl() {
     const defaultFilters: Filters = {
         price_from: '',
         price_to: '',

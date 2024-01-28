@@ -2,13 +2,13 @@ import { useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { appendSearchParams } from '@/utils/url-helpers';
 import { forOwn } from 'lodash';
-import useProductUrlFilters from '../useProductUrlFilters';
+import useFiltersFromUrl from '../useFiltersFromUrl';
 
 /**
  * Handles Filter Inputs State
  */
 export default function useFilters() {
-    const { defaultFilters, currentFilters } = useProductUrlFilters();
+    const { defaultFilters, currentFilters } = useFiltersFromUrl();
 
     const [_, setSearchParams] = useSearchParams();
 

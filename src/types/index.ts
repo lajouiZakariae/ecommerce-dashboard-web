@@ -1,16 +1,3 @@
-export interface ProductInputs {
-    id: number;
-    title: string;
-    description: string;
-    cost: number;
-    price: number;
-    stockQuantity: number;
-    published: boolean;
-    categoryId?: number;
-    storeId?: number;
-}
-
-//
 export interface Filters {
     price_from: string;
     price_to: string;
@@ -106,7 +93,7 @@ export interface PaymentMethod {
     description?: string;
     createdAt?: Date;
     updatedAt?: Date;
-    url?: string;
+    url: string;
 }
 
 export interface Product {

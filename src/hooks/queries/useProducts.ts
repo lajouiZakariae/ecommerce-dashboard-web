@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import apiClient from '@/utils/api-client';
 import { resolveQueryParamsString } from '@/utils/url-helpers';
 import { Product } from '@/types';
-import { Filters } from '@/products/useProductUrlFilters';
+import { Filters } from '@/products/useFiltersFromUrl';
 
 interface Result {
     data: Product[];

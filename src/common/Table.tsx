@@ -1,10 +1,20 @@
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, TableHTMLAttributes } from 'react';
 
-type Props = PropsWithChildren<{ headers: { name: string }[] }>;
+interface Props extends TableHTMLAttributes<HTMLTableElement> {
+    headers: { name: string; colSpan?: number }[];
+}
 
-export default function Table({ headers, children }: Props) {
+export default function Table({
+    headers,
+    className,
+    children,
+    ...other
+}: Props) {
     return (
-        <table className="table bg-white dark:bg-transparent">
+        <table
+            className={`table bg-white dark:bg-transparent ${className}`}
+            {...other}
+        >
             <thead>
                 <tr>
                     <th>
@@ -15,8 +25,10 @@ export default function Table({ headers, children }: Props) {
                             />
                         </label>
                     </th>
-                    {headers.map(({ name }) => (
-                        <th key={name}>{name}</th>
+                    {headers.map(({ name, colSpan }) => (
+                        <th key={name} colSpan={colSpan ?? 1}>
+                            {name}
+                        </th>
                     ))}
                 </tr>
             </thead>

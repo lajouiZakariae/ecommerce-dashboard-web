@@ -25,7 +25,7 @@ export default function TogglePublish({ id, url, published }: Props) {
 
     return (
         <Button
-            color={published ? 'warning' : 'success'}
+            purpose={published ? 'warning' : 'success'}
             onClick={() => mutate()}
         >
             {isPending ? pendingText : text}

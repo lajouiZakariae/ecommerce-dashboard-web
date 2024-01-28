@@ -1,11 +1,11 @@
 import useProducts from '@/hooks/queries/useProducts';
 import usePage from '@/hooks/usePage';
-import useProductUrlFilters from '@/products/useProductUrlFilters';
+import useFiltersFromUrl from '@/products/useFiltersFromUrl';
 
 export default function useFilteredProducts() {
     const { page } = usePage();
 
-    const { currentFilters } = useProductUrlFilters();
+    const { currentFilters } = useFiltersFromUrl();
 
     return useProducts({ ...currentFilters, page });
 }
