@@ -4,6 +4,7 @@ import Input from '@/common/Input';
 import useUpdatePaymentMethod from '@/hooks/mutations/useUpdatePaymentMethod';
 import { omitBy } from 'lodash';
 import DeleteResource from '@/common/DeleteResource';
+import ButtonLoading from '@/products/ProductEditForm/ButtonLoading';
 
 type Props = PropsWithChildren<PaymentMethod>;
 
@@ -13,7 +14,7 @@ export default function PaymentMethodRow({
     description,
     url,
 }: Props) {
-    const [isEdit, setIsEdit] = useState(true);
+    const [isEdit, setIsEdit] = useState(false);
 
     const [inputs, setInputs] = useState({ name, description });
 
@@ -53,13 +54,20 @@ export default function PaymentMethodRow({
                 >
                     Delete
                 </DeleteResource>
+
                 {isEdit ? (
-                    <button
-                        className="btn btn-sm btn-success text-white"
-                        onClick={submitHandler}
-                    >
-                        Save
-                    </button>
+                    isPending ? (
+                        <p className="btn btn-sm bg-success bg-opacity-15 text-success">
+                            Saving...
+                        </p>
+                    ) : (
+                        <button
+                            className="btn btn-sm btn-success text-white"
+                            onClick={submitHandler}
+                        >
+                            Save
+                        </button>
+                    )
                 ) : (
                     <button
                         className="btn btn-sm btn-primary"
