@@ -40,7 +40,7 @@ export default function ProductsPage() {
     };
 
     const renderPagination = () => {
-        if (isError) return 'Error...';
+        if (isError) return;
 
         if (isLoading) return 'Loading...';
 
