@@ -66,21 +66,23 @@ export default function ProductRow({
             </td>
             <td className="p-0">
                 <OptionsDropDown>
-                    <li>
-                        <Link to={`/products/${id}/edit`}>
-                            <OptionItem>Edit</OptionItem>
-                        </Link>
-                    </li>
+                    <div className="px-2">
+                        <li>
+                            <Link to={`/products/${id}/edit`}>
+                                <OptionItem>Edit</OptionItem>
+                            </Link>
+                        </li>
 
-                    <li>
-                        <TogglePublish
-                            id={id}
-                            url={url}
-                            published={published}
-                        />
-                    </li>
+                        <li>
+                            <TogglePublish
+                                id={id}
+                                url={url}
+                                published={published}
+                            />
+                        </li>
+                    </div>
 
-                    <li>
+                    <li className="border-t border-t-[#dddddd] px-2 pt-2">
                         <DeleteResource
                             url={url}
                             queryKey={['products']}
@@ -113,7 +115,7 @@ function OptionsDropDown({ children }: PropsWithChildren) {
             {show && (
                 <ClickAwayListener onClickAway={() => setShow(false)}>
                     <animated.ul
-                        className="absolute p-2 bg-white dark:bg-boxdark right-0 top-full z-999 w-36 rounded-box py-2 flex flex-col shadow-1 space-y-2"
+                        className="absolute bg-white dark:bg-boxdark right-0 top-full z-999 w-36 rounded-box flex flex-col shadow-1 space-y-2 py-2"
                         style={{ ...springs }}
                     >
                         {children}
