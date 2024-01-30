@@ -107,7 +107,7 @@ export default function ProductEditForm({ product, categories }: Props) {
 
                 <FormGroup className="mb-4.5" labelText="Category">
                     <Select
-                        {...register('categoryId')}
+                        {...register('category_id')}
                         options={categories}
                         disabled={isPending}
                         renderItem={({ id, name }: Category) => (
