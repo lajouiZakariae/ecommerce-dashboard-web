@@ -8,6 +8,7 @@ import DeleteResource from '@/common/DeleteResource';
 import TogglePublish from './TogglePublish';
 import { Link } from 'react-router-dom';
 import Badge from '@/common/Badge';
+import OptionItem from './OptionItem';
 
 // function Badge({
 //     variant,
@@ -66,20 +67,8 @@ export default function ProductRow({
             <td className="p-0">
                 <OptionsDropDown>
                     <li>
-                        <DeleteResource
-                            url={url}
-                            queryKey={['products']}
-                            pendingTxt="deleting..."
-                        >
-                            Delete
-                        </DeleteResource>
-                    </li>
-
-                    <li>
                         <Link to={`/products/${id}/edit`}>
-                            <Button size="md" purpose="info">
-                                Edit
-                            </Button>
+                            <OptionItem>Edit</OptionItem>
                         </Link>
                     </li>
 
@@ -90,6 +79,16 @@ export default function ProductRow({
                             published={published}
                         />
                     </li>
+
+                    <li>
+                        <DeleteResource
+                            url={url}
+                            queryKey={['products']}
+                            pendingTxt="deleting..."
+                        >
+                            Delete
+                        </DeleteResource>
+                    </li>
                 </OptionsDropDown>
             </td>
         </tr>
@@ -97,7 +96,7 @@ export default function ProductRow({
 }
 
 function OptionsDropDown({ children }: PropsWithChildren) {
-    const [show, setShow] = useState(false);
+    const [show, setShow] = useState(true);
 
     const springs = useSpring({ from: { opacity: 0 }, to: { opacity: 1 } });
 
@@ -114,7 +113,7 @@ function OptionsDropDown({ children }: PropsWithChildren) {
             {show && (
                 <ClickAwayListener onClickAway={() => setShow(false)}>
                     <animated.ul
-                        className="absolute right-0 top-full z-999 bg-whiten w-56 rounded-box py-2 flex flex-col space-y-2 shadow-1 shadow-bodydark items-center"
+                        className="absolute p-2 bg-white dark:bg-boxdark right-0 top-full z-999 w-36 rounded-box py-2 flex flex-col shadow-1 space-y-2"
                         style={{ ...springs }}
                     >
                         {children}

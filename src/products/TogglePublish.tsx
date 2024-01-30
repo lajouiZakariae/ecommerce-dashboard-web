@@ -2,6 +2,7 @@ import Button from '@/common/Button';
 import apiClient from '@/utils/api-client';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { PropsWithChildren } from 'react';
+import OptionItem from './OptionItem';
 
 interface Props extends PropsWithChildren {
     id: number;
@@ -24,11 +25,8 @@ export default function TogglePublish({ id, url, published }: Props) {
     const text = published ? 'Unpublish' : 'Publish';
 
     return (
-        <Button
-            purpose={published ? 'warning' : 'success'}
-            onClick={() => mutate()}
-        >
+        <OptionItem onClick={() => mutate()}>
             {isPending ? pendingText : text}
-        </Button>
+        </OptionItem>
     );
 }
