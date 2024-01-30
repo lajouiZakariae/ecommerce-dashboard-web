@@ -1,30 +1,13 @@
-import { GoKebabHorizontal as MenuIcon } from 'react-icons/go';
+import { PropsWithChildren } from 'react';
+import { FaEdit } from 'react-icons/fa';
+
 import { Product } from '@/types';
-import { PropsWithChildren, useState } from 'react';
-import ClickAwayListener from 'react-click-away-listener';
-import { animated, useSpring } from '@react-spring/web';
-import Button from '@/common/Button';
 import DeleteResource from '@/common/DeleteResource';
 import TogglePublish from './TogglePublish';
-import { Link } from 'react-router-dom';
 import Badge from '@/common/Badge';
-import OptionItem from './OptionItem';
-
-// function Badge({
-//     variant,
-//     children,
-// }: PropsWithChildren<{ variant: 'error' | 'success' }>) {
-//     const badgeClass = {
-//         error: 'badge-error',
-//         success: 'badge-success',
-//     };
-
-//     return (
-//         <div className={`badge ${badgeClass[variant]} py-3 px-3 text-white`}>
-//             {children}
-//         </div>
-//     );
-// }
+import DropdownDefault from '@/components/DropdownDefault';
+import DropdownButton from './DropdownButton';
+import { Link } from 'react-router-dom';
 
 export default function ProductRow({
     id,
@@ -65,63 +48,25 @@ export default function ProductRow({
                 </Badge>
             </td>
             <td className="p-0">
-                <OptionsDropDown>
-                    <div className="px-2">
-                        <li>
-                            <Link to={`/products/${id}/edit`}>
-                                <OptionItem>Edit</OptionItem>
-                            </Link>
-                        </li>
+                <DropdownDefault>
+                    <TogglePublish id={id} url={url} published={published} />
 
-                        <li>
-                            <TogglePublish
-                                id={id}
-                                url={url}
-                                published={published}
-                            />
-                        </li>
-                    </div>
+                    <Link to={`/products/${id}/edit`}>
+                        <DropdownButton>
+                            <FaEdit />
+                            Edit
+                        </DropdownButton>
+                    </Link>
 
-                    <li className="border-t border-t-[#dddddd] px-2 pt-2">
-                        <DeleteResource
-                            url={url}
-                            queryKey={['products']}
-                            pendingTxt="deleting..."
-                        >
-                            Delete
-                        </DeleteResource>
-                    </li>
-                </OptionsDropDown>
+                    <DeleteResource
+                        url={url}
+                        pendingTxt="Deleting..."
+                        queryKey={['products']}
+                    >
+                        Delete
+                    </DeleteResource>
+                </DropdownDefault>
             </td>
         </tr>
-    );
-}
-
-function OptionsDropDown({ children }: PropsWithChildren) {
-    const [show, setShow] = useState(true);
-
-    const springs = useSpring({ from: { opacity: 0 }, to: { opacity: 1 } });
-
-    return (
-        <div className="dropdown dropdown-end">
-            <button
-                role="button"
-                className="m-1"
-                onClick={() => setShow((prev) => !prev)}
-            >
-                <MenuIcon className="text-2xl rotate-90 text- dark:text-bodydark" />
-            </button>
-
-            {show && (
-                <ClickAwayListener onClickAway={() => setShow(false)}>
-                    <animated.ul
-                        className="absolute bg-white dark:bg-boxdark right-0 top-full z-999 w-36 rounded-box flex flex-col shadow-1 space-y-2 py-2"
-                        style={{ ...springs }}
-                    >
-                        {children}
-                    </animated.ul>
-                </ClickAwayListener>
-            )}
-        </div>
     );
 }

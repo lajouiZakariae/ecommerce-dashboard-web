@@ -1,8 +1,10 @@
-import Button from '@/common/Button';
-import apiClient from '@/utils/api-client';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { PropsWithChildren } from 'react';
-import OptionItem from './OptionItem';
+import { FaRegEye } from 'react-icons/fa';
+import { FaRegEyeSlash } from 'react-icons/fa';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+
+import apiClient from '@/utils/api-client';
+import DropdownButton from './DropdownButton';
 
 interface Props extends PropsWithChildren {
     id: number;
@@ -24,9 +26,11 @@ export default function TogglePublish({ id, url, published }: Props) {
 
     const text = published ? 'Unpublish' : 'Publish';
 
+    const icon = published ? <FaRegEyeSlash /> : <FaRegEye />;
     return (
-        <OptionItem onClick={() => mutate()}>
+        <DropdownButton onClick={() => mutate()}>
+            {icon}
             {isPending ? pendingText : text}
-        </OptionItem>
+        </DropdownButton>
     );
 }
