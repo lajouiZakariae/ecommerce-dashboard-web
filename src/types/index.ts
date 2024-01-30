@@ -18,24 +18,24 @@ export interface Category {
     id?: number;
     name: string;
     description?: string;
-    createdAt?: Date;
-    updatedAt?: Date;
+    created_at?: Date;
+    updated_at?: Date;
 }
 
 export interface CouponCode {
     id?: number;
     code: string;
     amount: number;
-    createdAt?: Date;
-    updatedAt?: Date;
+    created_at?: Date;
+    updated_at?: Date;
 }
 
 export interface History {
     id?: number;
     operation: Operation;
-    productId: number;
-    createdAt?: Date;
-    updatedAt?: Date;
+    product_id: number;
+    created_at?: Date;
+    updated_at?: Date;
 }
 
 export enum Operation {
@@ -46,20 +46,20 @@ export enum Operation {
 
 export interface Image {
     id?: number;
-    altText: string;
+    alt_text: string;
     url?: string;
-    productId: number;
-    createdAt?: Date;
-    updatedAt?: Date;
+    product_id: number;
+    created_at?: Date;
+    updated_at?: Date;
 }
 
 export interface OrderItem {
     id?: number;
-    orderId: number;
-    productId: number;
+    order_id: number;
+    product_id: number;
     quantity: number;
-    createdAt?: Date;
-    updatedAt?: Date;
+    created_at?: Date;
+    updated_at?: Date;
 }
 
 export interface Order {
@@ -69,13 +69,13 @@ export interface Order {
     phoneNumber: string;
     status: Status;
     city: string;
-    paymentMethodId: number;
-    zipCode: string;
-    couponCodeId: number;
+    payment_method_id: number;
+    zip_code: string;
+    couponc_code_id: number;
     address: string;
     delivery: boolean;
-    createdAt?: Date;
-    updatedAt?: Date;
+    created_at?: Date;
+    updated_at?: Date;
 }
 
 export enum Status {
@@ -91,8 +91,8 @@ export interface PaymentMethod {
     id?: number;
     name: string;
     description?: string;
-    createdAt?: Date;
-    updatedAt?: Date;
+    created_at?: Date;
+    updated_at?: Date;
     url: string;
 }
 
@@ -103,57 +103,57 @@ export interface Product {
     description?: string;
     cost: number;
     price: number;
-    stockQuantity: number;
+    stock_quantity: number;
     published: boolean;
-    categoryId?: number;
-    storeId?: number;
-    createdAt?: Date;
-    updatedAt?: Date;
+    category_id?: number;
+    store_id?: number;
+    created_at?: Date;
+    updated_at?: Date;
     thumbnail: Image;
 }
 
 export interface PurchaseItem {
     id?: number;
-    purchaseId: number;
-    productId: number;
+    purchase_id: number;
+    product_id: number;
     quantity: number;
-    createdAt?: Date;
-    updatedAt?: Date;
+    created_at?: Date;
+    updated_at?: Date;
 }
 
 export interface Purchase {
     id?: number;
-    supplierId: number;
-    deliveryDate: Date;
+    supplier_id: number;
+    delivery_date: Date;
     paid: boolean;
-    paymentMethodId?: number;
-    storeId: number;
-    createdAt?: Date;
-    updatedAt?: Date;
+    payment_method_id?: number;
+    store_id: number;
+    created_at?: Date;
+    updated_at?: Date;
 }
 
 export interface Review {
     id?: number;
     email: string;
     body: string;
-    productId: number;
+    product_id: number;
     approved: boolean;
-    createdAt?: Date;
-    updatedAt?: Date;
+    created_at?: Date;
+    updated_at?: Date;
 }
 
 export interface Role {
     id?: number;
     name: string;
-    createdAt?: Date;
-    updatedAt?: Date;
+    created_at?: Date;
+    updated_at?: Date;
 }
 
 export interface Setting {
     id?: number;
     platform: Platform;
-    settingsValue: string;
-    settingsDefault: string;
+    settings_value: string;
+    settings_default: string;
 }
 
 export enum Platform {
@@ -168,16 +168,16 @@ export interface Store {
     address?: string;
     latitude?: number;
     longitude?: number;
-    createdAt?: Date;
-    updatedAt?: Date;
+    created_at?: Date;
+    updated_at?: Date;
 }
 
 export interface Supplier {
     id?: number;
     name: string;
     email: string;
-    phoneNumber: string;
+    phone_number: string;
     address: string;
-    createdAt?: Date;
-    updatedAt?: Date;
+    created_at?: Date;
+    updated_at?: Date;
 }

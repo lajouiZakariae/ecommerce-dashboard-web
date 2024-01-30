@@ -69,7 +69,7 @@ export default function ProductEditForm({ product, categories }: Props) {
                     <Input
                         id="title"
                         className="mb-2.5"
-                        {...register('stockQuantity')}
+                        {...register('stock_quantity')}
                         disabled={isPending}
                         error={Boolean(errors?.root?.stock_quantity?.message)}
                     />
@@ -119,7 +119,7 @@ export default function ProductEditForm({ product, categories }: Props) {
                 </FormGroup>
 
                 {isPending ? (
-                    <ButtonLoading color="success" className="w-full">
+                    <ButtonLoading purpose="success" className="w-full">
                         Saving...
                     </ButtonLoading>
                 ) : (

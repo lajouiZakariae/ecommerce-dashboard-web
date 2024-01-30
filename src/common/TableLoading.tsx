@@ -11,8 +11,8 @@ export default function TableLoading({ count, headers, ...other }: Props) {
         <Table headers={headers} {...other}>
             {[...Array(count).keys()].map((index) => (
                 <tr key={index}>
-                    <td colSpan={8}>
-                        <div className="skeleton my-1 h-8"></div>
+                    <td colSpan={7}>
+                        <div className="skeleton h-6"></div>
                     </td>
                 </tr>
             ))}

@@ -7,40 +7,36 @@ import Button from '@/common/Button';
 import DeleteResource from '@/common/DeleteResource';
 import TogglePublish from './TogglePublish';
 import { Link } from 'react-router-dom';
+import Badge from '@/common/Badge';
 
-function Badge({
-    variant,
-    children,
-}: PropsWithChildren<{ variant: 'error' | 'success' }>) {
-    const badgeClass = {
-        error: 'badge-error',
-        success: 'badge-success',
-    };
+// function Badge({
+//     variant,
+//     children,
+// }: PropsWithChildren<{ variant: 'error' | 'success' }>) {
+//     const badgeClass = {
+//         error: 'badge-error',
+//         success: 'badge-success',
+//     };
 
-    return (
-        <div className={`badge ${badgeClass[variant]} py-3 px-3 text-white`}>
-            {children}
-        </div>
-    );
-}
+//     return (
+//         <div className={`badge ${badgeClass[variant]} py-3 px-3 text-white`}>
+//             {children}
+//         </div>
+//     );
+// }
 
 export default function ProductRow({
     id,
     title,
     cost,
     price,
-    stockQuantity,
+    stock_quantity,
     published,
     url,
     thumbnail,
 }: PropsWithChildren<Product>) {
     return (
         <tr key={id}>
-            <td>
-                <label>
-                    <input type="checkbox" className="checkbox checkbox-sm" />
-                </label>
-            </td>
             <td>
                 <div className="flex items-center gap-3">
                     <div className="avatar">
@@ -58,9 +54,9 @@ export default function ProductRow({
             </td>
             <td>{price}</td>
             <td>{cost}</td>
-            <td>{stockQuantity}</td>
+            <td>{stock_quantity}</td>
             <td>
-                <Badge variant={published ? 'success' : 'error'}>
+                <Badge color={published ? 'success' : 'danger'}>
                     {published ? 'published' : 'unpublished'}
                 </Badge>
             </td>
