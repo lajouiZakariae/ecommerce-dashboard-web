@@ -8,8 +8,6 @@ import FeedLoading from '@/common/FeedLoading';
 import Pagination from './Pagination';
 import usePage from '@/hooks/usePage';
 import Modal from './Modal';
-import DropdownMessage from '@/components/DropdownMessage';
-import DropdownNotification from '@/components/DropdownNotification';
 
 export default function ProductsPage() {
     const { page, setPage } = usePage();
