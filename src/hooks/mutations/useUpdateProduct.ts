@@ -21,9 +21,7 @@ export default function useUpdateProduct(
         onSuccess: async (data) => {
             if (data.status === HttpStatusCode.NoContent) {
                 toast.success('Product Saved Successfully', { duration: 2000 });
-                await queryClient.invalidateQueries({
-                    queryKey: ['products', { id }],
-                });
+                queryClient.refetchQueries({ queryKey: ['products'] });
             }
         },
 

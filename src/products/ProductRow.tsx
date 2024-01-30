@@ -56,7 +56,10 @@ export default function ProductRow({
             <td>{cost}</td>
             <td>{stock_quantity}</td>
             <td>
-                <Badge color={published ? 'success' : 'danger'}>
+                <Badge
+                    color={published ? 'success' : 'danger'}
+                    className="min-w-28"
+                >
                     {published ? 'published' : 'unpublished'}
                 </Badge>
             </td>
