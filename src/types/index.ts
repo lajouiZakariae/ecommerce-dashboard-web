@@ -14,28 +14,61 @@ export enum SortBy {
     STOCK_QUANTITY = 'stock_quantity',
 }
 
+export interface Order {
+    id: number;
+    full_name: string;
+    status:
+        | 'pending'
+        | 'in transit'
+        | 'delivered'
+        | 'delivery attempt'
+        | 'cancelled'
+        | 'return to sender';
+    delivery: boolean;
+    created_at: string;
+    order_items_url: string;
+    order_items_count: number;
+    total_price: number;
+    order_items: OrderItem[];
+}
+
+export interface OrderItem {
+    id: number;
+    order_id: number;
+    product_id: number;
+    quantity: number;
+    url: string;
+    product: {
+        id: number;
+        title: string;
+        price: number;
+        url: number;
+        total_price: number;
+    };
+}
+
 export interface Category {
     id?: number;
     name: string;
     description?: string;
-    created_at?: Date;
-    updated_at?: Date;
+    created_at?: string;
+    updated_at?: string;
 }
 
 export interface CouponCode {
     id?: number;
     code: string;
     amount: number;
-    created_at?: Date;
-    updated_at?: Date;
+    created_at?: string;
+    updated_at?: string;
 }
 
 export interface History {
     id?: number;
     operation: Operation;
     product_id: number;
-    created_at?: Date;
-    updated_at?: Date;
+    created_at?: string;
+    updated_at?: string;
 }
 
 export enum Operation {
@@ -49,33 +82,8 @@ export interface Image {
     alt_text: string;
     url?: string;
     product_id: number;
-    created_at?: Date;
-    updated_at?: Date;
-}
-
-export interface OrderItem {
-    id?: number;
-    order_id: number;
-    product_id: number;
-    quantity: number;
-    created_at?: Date;
-    updated_at?: Date;
-}
-
-export interface Order {
-    id?: number;
-    fullName: string;
-    email: string;
-    phoneNumber: string;
-    status: Status;
-    city: string;
-    payment_method_id: number;
-    zip_code: string;
-    couponc_code_id: number;
-    address: string;
-    delivery: boolean;
-    created_at?: Date;
-    updated_at?: Date;
+    created_at?: string;
+    updated_at?: string;
 }
 
 export enum Status {
@@ -91,8 +99,8 @@ export interface PaymentMethod {
     id?: number;
     name: string;
     description?: string;
-    created_at?: Date;
-    updated_at?: Date;
+    created_at?: string;
+    updated_at?: string;
     url: string;
 }
 
@@ -107,8 +115,8 @@ export interface Product {
     published: boolean;
     category_id?: number;
     store_id?: number;
-    created_at?: Date;
-    updated_at?: Date;
+    created_at?: string;
+    updated_at?: string;
     thumbnail: Image;
 }
 
@@ -117,8 +125,8 @@ export interface PurchaseItem {
     purchase_id: number;
     product_id: number;
     quantity: number;
-    created_at?: Date;
-    updated_at?: Date;
+    created_at?: string;
+    updated_at?: string;
 }
 
 export interface Purchase {
@@ -128,8 +136,8 @@ export interface Purchase {
     paid: boolean;
     payment_method_id?: number;
     store_id: number;
-    created_at?: Date;
-    updated_at?: Date;
+    created_at?: string;
+    updated_at?: string;
 }
 
 export interface Review {
@@ -138,15 +146,15 @@ export interface Review {
     body: string;
     product_id: number;
     approved: boolean;
-    created_at?: Date;
-    updated_at?: Date;
+    created_at?: string;
+    updated_at?: string;
 }
 
 export interface Role {
     id?: number;
     name: string;
-    created_at?: Date;
-    updated_at?: Date;
+    created_at?: string;
+    updated_at?: string;
 }
 
 export interface Setting {
@@ -168,8 +176,8 @@ export interface Store {
     address?: string;
     latitude?: number;
     longitude?: number;
-    created_at?: Date;
-    updated_at?: Date;
+    created_at?: string;
+    updated_at?: string;
 }
 
 export interface Supplier {
@@ -178,6 +186,6 @@ export interface Supplier {
     email: string;
     phone_number: string;
     address: string;
-    created_at?: Date;
-    updated_at?: Date;
+    created_at?: string;
+    updated_at?: string;
 }

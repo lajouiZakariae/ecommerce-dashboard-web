@@ -1,5 +1,6 @@
 import NotFound from '@/common/NotFound';
 import Home from '@/pages/Home';
+import OrdersPage from '@/pages/orders/OrdersPage';
 import PaymentMethodEditPage from '@/pages/payment-methods/PaymentMethodEditPage';
 import PaymentMethodsPage from '@/pages/payment-methods/PaymentMethodsPage';
 import ProductEditPage from '@/pages/products/ProductEditPage';
@@ -39,6 +40,10 @@ const coreRoutes: RouteObject[] = [
                     { index: true, Component: PaymentMethodsPage },
                     { path: ':id/edit', Component: PaymentMethodEditPage },
                 ],
+            },
+            {
+                path: 'orders',
+                children: [{ index: true, Component: OrdersPage }],
             },
             {
                 path: '/profile',
