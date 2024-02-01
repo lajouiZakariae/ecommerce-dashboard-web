@@ -1,5 +1,5 @@
 import { TableHTMLAttributes } from 'react';
-import Table from './Table';
+import Table from '../Table';
 
 interface Props extends TableHTMLAttributes<HTMLTableElement> {
     count: number;

@@ -1,5 +1,5 @@
 import ErrorUI from '@/common/ErrorUI';
-import TableLoading from '@/common/TableLoading';
+import TableLoading from '@/common/Loaders/TableLoading';
 import useFilteredProducts from '@/hooks/queries/useFilteredProducts';
 import ProductsFilter from '@/products/ProductsFilter/ProductsFilter';
 import ProductsTable from '@/products/ProductsTable';

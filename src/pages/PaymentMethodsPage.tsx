@@ -2,7 +2,7 @@ import Alert from '@/common/Alert/Alert';
 import FormGroup from '@/common/FormGroup';
 import Input from '@/common/Input';
 import Table from '@/common/Table';
-import TableLoading from '@/common/TableLoading';
+import TableLoading from '@/common/Loaders/TableLoading';
 import Breadcrumb from '@/components/Breadcrumb';
 import usePaymentMethodes from '@/hooks/queries/usePaymentMethods';
 import PaymentMethodRow from '@/payment-methods/PaymentMethodRow';

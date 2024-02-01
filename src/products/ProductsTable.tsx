@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react';
-import EmptyData from '@/common/Loader/EmptyData';
+import EmptyData from '@/common/Loaders/EmptyData';
 import Table from '@/common/Table';
 import ProductRow from '@/products/ProductRow';
 import { Product } from '@/types';
