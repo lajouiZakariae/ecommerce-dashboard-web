@@ -13,7 +13,7 @@ export default function usePaymentMethod(
     extraQueryOptions: ExtraQueryOptions = {},
 ) {
     return useQuery({
-        queryKey: ['products', { id }],
+        queryKey: ['payment-methods', { id }],
         queryFn: async (): Promise<PaymentMethod> =>
             await apiClient
                 .get(`payment-methods/${id}`)

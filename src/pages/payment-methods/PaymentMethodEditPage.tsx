@@ -2,7 +2,6 @@ import NotFound from '@/common/NotFound';
 import Breadcrumb from '@/components/Breadcrumb';
 import usePaymentMethod from '@/hooks/queries/usePaymentMethod';
 import PaymentMethodEditForm from '@/payment-methods/PaymentMethodEditForm';
-import ProductEditForm from '@/products/ProductEditForm/ProductEditForm';
 import { useParams } from 'react-router-dom';
 
 export default function PaymentMethodEditPage() {

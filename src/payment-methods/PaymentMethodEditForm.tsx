@@ -1,14 +1,13 @@
+import { PropsWithChildren } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { omitBy } from 'lodash';
+
 import FormGroup from '@/common/FormGroup';
 import Input from '@/common/Input';
 import ButtonLoading from '@/common/Loaders/ButtonLoading';
-import Select from '@/common/Select';
 import TextArea from '@/common/TextArea';
 import useUpdatePaymentMethod from '@/hooks/mutations/useUpdatePaymentMethod';
-import useUpdateProduct from '@/hooks/mutations/useUpdateProduct';
-import { Category, PaymentMethod, Product } from '@/types';
-import { omitBy } from 'lodash';
-import { PropsWithChildren } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { PaymentMethod } from '@/types';
 
 interface Props extends PropsWithChildren {
     paymentMethod: PaymentMethod;
@@ -53,8 +52,8 @@ export default function PaymentMethodEditForm({ paymentMethod }: Props) {
 
                 <FormGroup
                     className="mb-4"
-                    labelText="Title"
-                    errorMessage={errors?.root?.title?.message}
+                    labelText="Description"
+                    errorMessage={errors?.root?.description?.message}
                 >
                     <TextArea
                         id="decription"

@@ -29,7 +29,7 @@ export default function useUpdatePaymentMethod(
                     duration: 2000,
                 });
 
-                await queryClient.invalidateQueries({
+                queryClient.refetchQueries({
                     queryKey: ['payment-methods'],
                 });
             }
