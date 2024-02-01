@@ -1,6 +1,7 @@
 import NotFound from '@/common/NotFound';
 import Home from '@/pages/Home';
-import PaymentMethodsPage from '@/pages/PaymentMethodsPage';
+import PaymentMethodEditPage from '@/pages/payment-methods/PaymentMethodEditPage';
+import PaymentMethodsPage from '@/pages/payment-methods/PaymentMethodsPage';
 import ProductEditPage from '@/pages/products/ProductEditPage';
 import ProductsPage from '@/pages/products/ProductsPage';
 import { lazy } from 'react';
@@ -32,7 +33,13 @@ const coreRoutes: RouteObject[] = [
                     },
                 ],
             },
-            { path: 'payment-methods', Component: PaymentMethodsPage },
+            {
+                path: 'payment-methods',
+                children: [
+                    { index: true, Component: PaymentMethodsPage },
+                    { path: ':id/edit', Component: PaymentMethodEditPage },
+                ],
+            },
             {
                 path: '/profile',
                 Component: Profile,

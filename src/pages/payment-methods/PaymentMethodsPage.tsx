@@ -1,6 +1,4 @@
 import Alert from '@/common/Alert/Alert';
-import FormGroup from '@/common/FormGroup';
-import Input from '@/common/Input';
 import Table from '@/common/Table';
 import TableLoading from '@/common/Loaders/TableLoading';
 import Breadcrumb from '@/components/Breadcrumb';
@@ -26,7 +24,7 @@ export default function PaymentMethodsPage() {
                 />
             );
 
-        if (error) return <Alert variant="error">500 Server Error</Alert>;
+        if (error) return <Alert color="error">500 Server Error</Alert>;
 
         if (isSuccess)
             return (

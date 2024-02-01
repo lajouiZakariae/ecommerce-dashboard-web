@@ -6,7 +6,7 @@ import useUpdateProduct from '@/hooks/mutations/useUpdateProduct';
 import { Category, Product } from '@/types';
 import { PropsWithChildren } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import ButtonLoading from './ButtonLoading';
+import ButtonLoading from '@/common/Loaders/ButtonLoading';
 
 interface Props extends PropsWithChildren {
     product: Product;

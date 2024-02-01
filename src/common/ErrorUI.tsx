@@ -3,7 +3,7 @@ import Alert from './Alert/Alert';
 
 export default function ErrorUI() {
     return (
-        <Alert variant="error" className="flex items-center space-x-2 text-lg">
+        <Alert color="error" className="flex items-center space-x-2 text-lg">
             <IoAlertCircleOutline />
             <span>Server Error</span>
         </Alert>

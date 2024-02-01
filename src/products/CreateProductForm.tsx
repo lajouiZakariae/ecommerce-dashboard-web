@@ -2,7 +2,7 @@ import FormGroup from '@/common/FormGroup';
 import Input from '@/common/Input';
 import useCreateProduct from './useCreateProduct';
 import { FormEvent, useState } from 'react';
-import ButtonLoading from './ProductEditForm/ButtonLoading';
+import ButtonLoading from '@/common/Loaders/ButtonLoading';
 
 export default function CreateProductForm() {
     const [title, setTitle] = useState('');

@@ -3,16 +3,17 @@ import { AxiosResponse, HttpStatusCode } from 'axios';
 import apiClient from '@/utils/api-client';
 import toast from 'react-hot-toast';
 import { Dictionary } from 'lodash';
-import { Dispatch, SetStateAction } from 'react';
+import { UseFormSetError } from 'react-hook-form';
+import { PaymentMethod } from '@/types';
 
 export default function useUpdatePaymentMethod(
     id: number | undefined,
-    setIsEdit: Dispatch<SetStateAction<boolean>>,
+    setError: UseFormSetError<PaymentMethod>,
 ) {
     const queryClient = useQueryClient();
 
     const updatePaymentMethod = async (
-        paymentMethod: Dictionary<string | undefined>,
+        paymentMethod: Dictionary<string | number | undefined | Date>,
     ): Promise<AxiosResponse> => {
         return await apiClient.put(`/payment-methods/${id}`, paymentMethod);
     };
@@ -31,8 +32,6 @@ export default function useUpdatePaymentMethod(
                 await queryClient.invalidateQueries({
                     queryKey: ['payment-methods'],
                 });
-
-                setIsEdit(false);
             }
         },
 

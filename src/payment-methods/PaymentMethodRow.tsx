@@ -4,7 +4,10 @@ import Input from '@/common/Input';
 import useUpdatePaymentMethod from '@/hooks/mutations/useUpdatePaymentMethod';
 import { omitBy } from 'lodash';
 import DeleteResource from '@/common/DeleteResource';
-import ButtonLoading from '@/products/ProductEditForm/ButtonLoading';
+import { Link } from 'react-router-dom';
+import DropdownButton from '@/products/DropdownButton';
+import DropdownDefault from '@/components/DropdownDefault';
+import { FaEdit } from 'react-icons/fa';
 
 type Props = PropsWithChildren<PaymentMethod>;
 
@@ -32,7 +35,6 @@ export default function PaymentMethodRow({
 
     return (
         <tr>
-            <td></td>
             <td>
                 {isEdit ? (
                     <Input
@@ -46,36 +48,22 @@ export default function PaymentMethodRow({
             </td>
             <td colSpan={3}>{description}</td>
             <td className="flex space-x-2">
-                <DeleteResource
-                    url={url}
-                    queryKey={['payment-methods']}
-                    pendingTxt="deleting..."
-                    size="sm"
-                >
-                    Delete
-                </DeleteResource>
+                <DropdownDefault>
+                    <Link to={`/payment-methods/${id}/edit`}>
+                        <DropdownButton>
+                            <FaEdit />
+                            Edit
+                        </DropdownButton>
+                    </Link>
 
-                {isEdit ? (
-                    isPending ? (
-                        <p className="btn btn-sm bg-success bg-opacity-15 text-success">
-                            Saving...
-                        </p>
-                    ) : (
-                        <button
-                            className="btn btn-sm btn-success text-white"
-                            onClick={submitHandler}
-                        >
-                            Save
-                        </button>
-                    )
-                ) : (
-                    <button
-                        className="btn btn-sm btn-primary"
-                        onClick={() => setIsEdit((prev) => !prev)}
+                    <DeleteResource
+                        url={url}
+                        pendingTxt="Deleting..."
+                        queryKey={['payment-methods']}
                     >
-                        Edit
-                    </button>
-                )}
+                        Delete
+                    </DeleteResource>
+                </DropdownDefault>
             </td>
         </tr>
     );

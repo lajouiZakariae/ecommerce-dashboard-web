@@ -4,7 +4,7 @@ import useFilteredProducts from '@/hooks/queries/useFilteredProducts';
 import ProductsFilter from '@/products/ProductsFilter/ProductsFilter';
 import ProductsTable from '@/products/ProductsTable';
 import { useMediaQuery } from '@uidotdev/usehooks';
-import FeedLoading from '@/common/FeedLoading';
+import FeedLoading from '@/common/Loaders/FeedLoading';
 import Pagination from '@/products/Pagination';
 import usePage from '@/hooks/usePage';
 import Modal from '@/products/Modal';
