@@ -1,5 +1,5 @@
 import NotFound from '@/common/NotFound';
-import ECommerce from '@/pages/Dashboard/ECommerce';
+import Home from '@/pages/Home';
 import PaymentMethodsPage from '@/pages/PaymentMethodsPage';
 import ProductEditPage from '@/pages/products/ProductEditPage';
 import ProductsPage from '@/pages/products/ProductsPage';
@@ -9,7 +9,6 @@ import { RouteObject, createBrowserRouter } from 'react-router-dom';
 // const ProductsPage = lazy(() => import('@/pages/products/ProductPage'));
 // const ProductEditPage = lazy(() => import('@/pages/products/ProductEditPage'));
 
-const Calendar = lazy(() => import('@/pages/Calendar'));
 // const ECommerce = lazy(() => import('@/pages/Dashboard/ECommerce'));
 const Profile = lazy(() => import('@/pages/Profile'));
 const DefaultLayout = lazy(() => import('@/layout/DefaultLayout'));
@@ -19,7 +18,7 @@ const coreRoutes: RouteObject[] = [
         Component: DefaultLayout,
         path: '/',
         children: [
-            { index: true, Component: ECommerce },
+            { index: true, Component: Home },
             {
                 path: '/products',
                 children: [
@@ -34,10 +33,6 @@ const coreRoutes: RouteObject[] = [
                 ],
             },
             { path: 'payment-methods', Component: PaymentMethodsPage },
-            {
-                path: '/calendar',
-                Component: Calendar,
-            },
             {
                 path: '/profile',
                 Component: Profile,

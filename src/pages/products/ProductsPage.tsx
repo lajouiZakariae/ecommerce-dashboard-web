@@ -2,12 +2,12 @@ import ErrorUI from '@/common/ErrorUI';
 import TableLoading from '@/common/TableLoading';
 import useFilteredProducts from '@/hooks/queries/useFilteredProducts';
 import ProductsFilter from '@/products/ProductsFilter/ProductsFilter';
-import ProductsTable from './ProductsTable';
+import ProductsTable from '@/products/ProductsTable';
 import { useMediaQuery } from '@uidotdev/usehooks';
 import FeedLoading from '@/common/FeedLoading';
-import Pagination from './Pagination';
+import Pagination from '@/products/Pagination';
 import usePage from '@/hooks/usePage';
-import Modal from './Modal';
+import Modal from '@/products/Modal';
 
 export default function ProductsPage() {
     const { page, setPage } = usePage();

@@ -22,6 +22,7 @@ function FAB({ children }: PropsWithChildren) {
         <div className="fixed bottom-6 right-6 p-4">
             <button
                 onClick={() =>
+                    // @ts-ignore
                     document.getElementById('createModal')!.showModal()
                 }
                 className="bg-boxdark text-white rounded-full w-12 h-12 flex items-center justify-center text-4xl"
