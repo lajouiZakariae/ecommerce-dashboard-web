@@ -10,8 +10,8 @@ import { RouteObject, createBrowserRouter } from 'react-router-dom';
 // const ProductEditPage = lazy(() => import('@/pages/products/ProductEditPage'));
 
 // const ECommerce = lazy(() => import('@/pages/Dashboard/ECommerce'));
-const Profile = lazy(() => import('@/pages/Profile'));
 const DefaultLayout = lazy(() => import('@/layout/DefaultLayout'));
+const Profile = lazy(() => import('@/pages/Profile'));
 
 const coreRoutes: RouteObject[] = [
     {
