@@ -38,12 +38,12 @@ export interface OrderItem {
     product_id: number;
     quantity: number;
     url: string;
+    total_price: number;
     product: {
         id: number;
         title: string;
         price: number;
         url: number;
-        total_price: number;
     };
 }
 

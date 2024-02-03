@@ -6,17 +6,13 @@ import useOrders from './useOrders';
 import OrdersTable from '@/orders/OrdersTable';
 
 export default function OrdersPage() {
-    // const { page, setPage } = usePage();
     const { isLoading, isError, isSuccess, data } = useOrders();
 
     const headers = [
         { name: 'Full Name' },
         { name: 'Total Price' },
         { name: 'Status' },
-        { name: 'Cost' },
-        { name: 'Stock Quantity' },
-        { name: 'Published' },
-        { name: '' },
+        { name: 'Date' },
     ];
 
     const isBigScreen = useMediaQuery('(min-width : 700px)');
