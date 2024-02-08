@@ -110,7 +110,7 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
                                     paramaters below)
                                 </label>
                                 <input
-                                    className="w-full rounded border border-stroke bg-gray py-3 pl-3 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                                    className="w-full rounded border border-stroke bg-gray-default py-3 pl-3 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                                     name="id"
                                     onChange={handleChange}
                                     value={formState.id}
@@ -126,7 +126,7 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
                                 </label>
                                 <div className="relative z-20 w-full rounded border border-stroke p-1.5 pr-8 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input">
                                     <div className="flex flex-wrap items-center"></div>
-                                    <span className="m-1.5 flex items-center justify-center rounded border-[.5px] border-stroke bg-gray py-1.5 px-2.5 text-sm font-medium dark:border-strokedark dark:bg-white/30">
+                                    <span className="m-1.5 flex items-center justify-center rounded border-[.5px] border-stroke bg-gray-default py-1.5 px-2.5 text-sm font-medium dark:border-strokedark dark:bg-white/30">
                                         {formState.para}
                                     </span>
                                     <select
@@ -173,7 +173,7 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
                                 </label>
                                 <div className="relative z-20 w-full rounded border border-stroke p-1.5 pr-8 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input">
                                     <div className="flex flex-wrap items-center"></div>
-                                    <span className="m-1.5 flex items-center justify-center rounded border-[.5px] border-stroke bg-gray py-1.5 px-2.5 text-sm font-medium dark:border-strokedark dark:bg-white/30">
+                                    <span className="m-1.5 flex items-center justify-center rounded border-[.5px] border-stroke bg-gray-default py-1.5 px-2.5 text-sm font-medium dark:border-strokedark dark:bg-white/30">
                                         {formState.criterion == 0
                                             ? 'goes down by'
                                             : formState.criterion == 1
@@ -233,7 +233,7 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
                                     Value to give Alert
                                 </label>
                                 <input
-                                    className="w-full rounded border border-stroke bg-gray py-3 pl-3 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                                    className="w-full rounded border border-stroke bg-gray-default py-3 pl-3 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                                     name="value"
                                     onChange={handleChange}
                                     value={formState.value}
@@ -320,7 +320,7 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
 
                         <br></br>
                         <button
-                            className="btn flex justify-center rounded bg-primary py-2 px-6 font-medium text-gray hover:shadow-1"
+                            className="btn flex justify-center rounded bg-primary py-2 px-6 font-medium text-gray-default hover:shadow-1"
                             type="submit"
                             onClick={handleSubmit}
                         >

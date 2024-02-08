@@ -1,27 +1,41 @@
 import { HTMLAttributes } from 'react';
+import { CheckmarkIcon } from 'react-hot-toast';
+import { FaTriangleExclamation } from 'react-icons/fa6';
+import { IoAlertCircle, IoWarning } from 'react-icons/io5';
 
-interface Props extends HTMLAttributes<HTMLDivElement> {
-    color?: 'secondary' | 'info' | 'success' | 'error' | 'warning';
+type variant = 'success' | 'info' | 'warning' | 'danger';
+
+interface DivProps extends HTMLAttributes<HTMLDivElement> {
+    variant?: variant;
 }
 
-function Alert({ color = 'info', children, ...rest }: Props) {
-    const colorsTw = {
-        secondary: 'bg-gray-100  border-gray-200 text-gray-800',
-        info: 'border-blue-200 text-blue-800 bg-blue-100',
-        success: 'bg-teal-100 border-teal-200 text-teal-800',
-        error: 'bg-red-100 border-red-200 text-red-800',
-        warning: 'bg-yellow-100 border-yellow-200 text-yellow-800',
+export default function Alert({
+    variant = 'success',
+    className,
+    children,
+    ...rest
+}: DivProps) {
+    const variantsStyle = {
+        success: 'bg-green-200/80 dark:bg-green-500/15',
+        info: 'bg-teal-200/80 dark:bg-teal-500/15',
+        danger: 'bg-red-200/80 dark:bg-red-500/15',
+        warning: 'bg-yellow-200/80 dark:bg-yellow-500/15',
+    };
+
+    const iconVariants = {
+        success: <CheckmarkIcon className="size-6 text-green-500" />,
+        info: <IoWarning className="size-6 text-teal-500" />,
+        danger: <IoAlertCircle className="size-6 text-red-500" />,
+        warning: <FaTriangleExclamation className="size-6 text-yellow-500" />,
     };
 
     return (
         <div
-            className={`border text-sm rounded-lg p-4 ${colorsTw[color]}`}
-            role="alert"
+            className={`flex items-center rounded-lg px-5 py-3 text-slate-700 dark:text-gray-100 ${variantsStyle[variant]} ${className}`}
             {...rest}
         >
-            {children}
+            {iconVariants[variant]}
+            <div className="ml-4">{children}</div>
         </div>
     );
 }
-
-export default Alert;

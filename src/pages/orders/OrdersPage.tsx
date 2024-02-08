@@ -10,9 +10,9 @@ export default function OrdersPage() {
 
     const headers = [
         { name: 'Full Name' },
-        { name: 'Total Price' },
         { name: 'Status' },
         { name: 'Date' },
+        { name: 'Total Price' },
     ];
 
     const isBigScreen = useMediaQuery('(min-width : 700px)');

@@ -14,16 +14,18 @@ export enum SortBy {
     STOCK_QUANTITY = 'stock_quantity',
 }
 
+export type status =
+    | 'pending'
+    | 'in transit'
+    | 'delivered'
+    | 'delivery attempt'
+    | 'cancelled'
+    | 'return to sender';
+
 export interface Order {
     id: number;
     full_name: string;
-    status:
-        | 'pending'
-        | 'in transit'
-        | 'delivered'
-        | 'delivery attempt'
-        | 'cancelled'
-        | 'return to sender';
+    status: status;
     delivery: boolean;
     created_at: string;
     order_items_url: string;

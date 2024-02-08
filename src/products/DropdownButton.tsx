@@ -9,7 +9,7 @@ export default function DropdownButton({
 }: Props) {
     return (
         <button
-            className={`flex w-full items-center gap-2 rounded-sm py-1.5 px-4 text-left text-sm hover:bg-gray dark:hover:bg-meta-4 ${className}`}
+            className={`flex w-full items-center gap-2 rounded-sm py-1.5 px-4 text-left text-sm hover:bg-gray-default dark:hover:bg-meta-4 ${className}`}
             {...rest}
         >
             {children}

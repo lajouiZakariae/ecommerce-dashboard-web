@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react';
-import EmptyData from '@/common/Loaders/EmptyData';
+import EmptyDataRow from '@/common/Loaders/EmptyData';
 import Table from '@/common/Table';
 import ProductRow from '@/products/ProductRow';
 import { Product } from '@/types';
@@ -17,7 +17,7 @@ export default function ProductsTable({ headers, products }: Props) {
                     <ProductRow key={product.id} {...product} />
                 ))
             ) : (
-                <EmptyData />
+                <EmptyDataRow cols={8} />
             )}
         </Table>
     );
