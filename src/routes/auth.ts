@@ -7,6 +7,7 @@ import PaymentMethodEditPage from '../pages/payment-methods/PaymentMethodEditPag
 import PaymentMethodsPage from '../pages/payment-methods/PaymentMethodsPage';
 import ProductEditPage from '../pages/products/ProductEditPage';
 import ProductsPage from '../pages/products/ProductsPage';
+import OrderEditPage from '@/pages/orders/OrderEditPage';
 
 const authRoutes: RouteObject[] = [
     { index: true, Component: Home },
@@ -32,7 +33,10 @@ const authRoutes: RouteObject[] = [
     },
     {
         path: 'orders',
-        children: [{ index: true, Component: OrdersPage }],
+        children: [
+            { index: true, Component: OrdersPage },
+            { path: ':id/edit', Component: OrderEditPage },
+        ],
     },
     {
         path: 'profile',
