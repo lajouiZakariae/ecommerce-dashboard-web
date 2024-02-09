@@ -1,3 +1,12 @@
+export interface User {
+    id: number;
+    first_name: string;
+    last_name: string;
+    email: string;
+    email_verified_at: null | string;
+    role: { name: string };
+}
+
 export interface Filters {
     price_from: string;
     price_to: string;

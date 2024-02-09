@@ -76,7 +76,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
         >
             {/* <!-- SIDEBAR HEADER --> */}
             <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
-                <NavLink to="/">
+                <NavLink to="/dashboard">
                     <img src={Logo} alt="Logo" />
                 </NavLink>
 
@@ -219,7 +219,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             {/* <!-- Menu Item Calendar --> */}
                             <li>
                                 <NavLink
-                                    to="/payment-methods"
+                                    to="/dashboard/payment-methods"
                                     className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
                                         pathname.includes('payment-methods') &&
                                         'bg-graydark dark:bg-meta-4'
@@ -234,7 +234,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             {/* <!-- Menu Item Profile --> */}
                             <li>
                                 <NavLink
-                                    to="/products"
+                                    to="/dashboard/products"
                                     className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
                                         pathname.includes('products') &&
                                         'bg-graydark dark:bg-meta-4'
@@ -249,7 +249,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             {/* <!-- Menu Item Tables --> */}
                             <li>
                                 <NavLink
-                                    to="/orders"
+                                    to="/dashboard/orders"
                                     className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
                                         pathname.includes('tables') &&
                                         'bg-graydark dark:bg-meta-4'

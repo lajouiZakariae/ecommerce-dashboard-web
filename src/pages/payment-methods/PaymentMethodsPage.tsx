@@ -24,7 +24,7 @@ export default function PaymentMethodsPage() {
                 />
             );
 
-        if (error) return <Alert color="error">500 Server Error</Alert>;
+        if (error) return <Alert variant="danger">500 Server Error</Alert>;
 
         if (isSuccess)
             return (

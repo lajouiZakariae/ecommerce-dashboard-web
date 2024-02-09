@@ -21,6 +21,7 @@
     "apexcharts": "^3.41.0",
     "axios": "^1.6.6",
     "headlessui": "^0.0.0",
+    "jotai": "^2.6.4",
     "jsvectormap": "^1.5.3",
     "lodash": "^4.17.21",
     "match-sorter": "^6.3.1",

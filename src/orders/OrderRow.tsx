@@ -51,8 +51,11 @@ export function OrderRow({
                 <th>Total Price</th>
             </tr>
 
-            {order_items.map(({ product, quantity, total_price }) => (
-                <tr className="bg-gray-100 dark:bg-slate-800 border-none">
+            {order_items.map(({ id, product, quantity, total_price }) => (
+                <tr
+                    key={id}
+                    className="bg-gray-100 dark:bg-slate-800 border-none"
+                >
                     <td className="relative">
                         <span className="absolute h-full w-8/12 left-1/4 top-0 border-l border-gray-400">
                             <span className="absolute top-1/2 w-full border-t border-gray-400"></span>

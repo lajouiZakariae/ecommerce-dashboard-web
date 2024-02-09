@@ -1,19 +1,9 @@
 import { Toaster } from 'react-hot-toast';
 import { RouterProvider } from 'react-router-dom';
 import router from './routes';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { AxiosError } from 'axios';
+import { QueryClientProvider } from '@tanstack/react-query';
 import OfflineWarning from './components/OfflineWarning';
-
-type apiErrors = { message: string; errors: { [key: string]: string } };
-
-declare module '@tanstack/react-query' {
-    interface Register {
-        defaultError: AxiosError<apiErrors>;
-    }
-}
-
-const client = new QueryClient({});
+import client from './utils/query-client';
 
 function App() {
     return (
