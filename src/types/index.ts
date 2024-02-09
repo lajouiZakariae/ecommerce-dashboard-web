@@ -50,6 +50,8 @@ export interface OrderItem {
     quantity: number;
     url: string;
     total_price: number;
+    decrement_quantity_url: string;
+    increment_quantity_url: string;
     product: {
         id: number;
         title: string;

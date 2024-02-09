@@ -124,7 +124,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                                 {(handleClick, open) => {
                                     return (
                                         <React.Fragment>
-                                            <NavLink
+                                            {/* <NavLink
                                                 to="#"
                                                 className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
                                                     (pathname === '/' ||
@@ -185,9 +185,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                                                         fill=""
                                                     />
                                                 </svg>
-                                            </NavLink>
+                                            </NavLink> */}
                                             {/* <!-- Dropdown Menu Start --> */}
-                                            <div
+                                            {/* <div
                                                 className={`translate transform overflow-hidden ${
                                                     !open && 'hidden'
                                                 }`}
@@ -208,13 +208,27 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                                                         </NavLink>
                                                     </li>
                                                 </ul>
-                                            </div>
+                                            </div> */}
                                             {/* <!-- Dropdown Menu End --> */}
                                         </React.Fragment>
                                     );
                                 }}
                             </SidebarLinkGroup>
+
                             {/* <!-- Menu Item Dashboard --> */}
+                            {/* <!-- Menu Item Profile --> */}
+                            <li>
+                                <NavLink
+                                    to="/dashboard/products"
+                                    className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                                        pathname.includes('products') &&
+                                        'bg-graydark dark:bg-meta-4'
+                                    }`}
+                                >
+                                    <BsBox2 />
+                                    Products
+                                </NavLink>
+                            </li>
 
                             {/* <!-- Menu Item Calendar --> */}
                             <li>
@@ -230,22 +244,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                                 </NavLink>
                             </li>
                             {/* <!-- Menu Item Calendar --> */}
-
                             {/* <!-- Menu Item Profile --> */}
-                            <li>
-                                <NavLink
-                                    to="/dashboard/products"
-                                    className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                                        pathname.includes('products') &&
-                                        'bg-graydark dark:bg-meta-4'
-                                    }`}
-                                >
-                                    <BsBox2 />
-                                    Products
-                                </NavLink>
-                            </li>
-                            {/* <!-- Menu Item Profile --> */}
-
                             {/* <!-- Menu Item Tables --> */}
                             <li>
                                 <NavLink
@@ -260,7 +259,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                                 </NavLink>
                             </li>
                             {/* <!-- Menu Item Tables --> */}
-
                             {/* <!-- Menu Item Settings --> */}
                             <li>
                                 <NavLink
