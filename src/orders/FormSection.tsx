@@ -17,16 +17,16 @@ export default function FormSection({ title, children }: Props) {
             {({ open }) => (
                 <>
                     <div className="flex justify-between">
-                        <h3 className="text-lg font-bold text-gray-700">
+                        <h3 className="text-lg font-bold text-gray-700 dark:text-slate-100">
                             {title}
                         </h3>
                         <Disclosure.Button
                             as="button"
                             ref={ref}
                             type="button"
-                            className={`flex items-center justify-center mr-3 hover:bg-gray-100 rounded-full size-7 transition duration-300 ${open ? '-rotate-90' : ''}`}
+                            className={`flex items-center justify-center mr-3 hover:bg-gray-100 dark:hover:bg-form-input rounded-full size-7 transition duration-300 ${open ? '-rotate-90' : ''}`}
                         >
-                            <FaChevronDown className="size-4 text-gray-700" />
+                            <FaChevronDown className="size-4 text-gray-700 dark:text-slate-100" />
                         </Disclosure.Button>
                     </div>
 

@@ -4,6 +4,7 @@ import { Order } from './types/order';
 import FormGroup from '@/common/FormGroup';
 import Input from '@/common/Input';
 import FormSection from './FormSection';
+import { FaMinus, FaPlus } from 'react-icons/fa6';
 
 interface Props extends PropsWithChildren {
     order: Order;
@@ -30,7 +31,7 @@ export default function OrderEditForm({ order }: Props) {
     return (
         <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
             <form className="p-6.5">
-                <FormSection title="Customer Information">
+                {/* <FormSection title="Customer Information">
                     <FormGroup
                         className="mb-4"
                         labelText="Full Name"
@@ -118,9 +119,50 @@ export default function OrderEditForm({ order }: Props) {
                             // disabled={isPending}
                         />
                     </FormGroup>
-                </FormSection>
+                </FormSection> */}
 
-                {/* <FormSection title="Ordered Prodcuts"></FormSection> */}
+                <FormSection title="Ordered Prodcuts">
+                    <div>
+                        <div className="flex items-center text-lg py-2">
+                            <h4 className="italic font-bold grow">Title</h4>
+                            <p className="text-sm italic basis-1/6">Price</p>
+                            <p className="text-sm italic basis-1/12">
+                                Quantity
+                            </p>
+                        </div>
+                        {order.order_items.map(({ product, quantity }) => (
+                            <div
+                                className="flex items-center text-lg py-2"
+                                key={product.id}
+                            >
+                                <h4 className="italic grow">{product.title}</h4>
+
+                                <p className="text-sm italic basis-1/6">
+                                    {product.price}
+                                    {' MAD'}
+                                </p>
+
+                                <div className="basis-1/12 flex items-center space-x-1">
+                                    <button
+                                        type="button"
+                                        className="bg-slate-200 hover:bg-slate-100 dark:bg-form-input transition duration-300 rounded-full size-5 flex items-center justify-center"
+                                    >
+                                        <FaMinus className="size-2 text-slate-800 dark:text-slate-100" />
+                                    </button>
+
+                                    <p>{quantity}</p>
+
+                                    <button
+                                        type="button"
+                                        className="bg-slate-200 hover:bg-slate-100 dark:bg-form-input transition duration-300 rounded-full size-5 flex items-center justify-center"
+                                    >
+                                        <FaPlus className="size-2 text-slate-800 dark:text-slate-100" />
+                                    </button>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </FormSection>
 
                 {/* {isPending ? (
                     <ButtonLoading purpose="success" className="w-full">
