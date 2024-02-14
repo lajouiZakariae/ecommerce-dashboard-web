@@ -11,7 +11,7 @@ interface Result {
     meta: { last_page: number; links: [] };
 }
 
-export default function useProducts(filters: Filters) {
+export default function useProducts(filters: Filters = {}) {
     const queryString = useMemo(
         () => resolveQueryParamsString({ ...filters }),
         [filters],

@@ -1,15 +1,20 @@
-import { status } from '@/types';
+import { Image, status } from '@/types';
 
-export interface Order {
+export interface Client {
     id: number;
-    full_name: string;
+    first_name: string;
+    last_name: string;
     email: string;
     phone_number: string;
     city: string;
     zip_code: string;
     address: string;
+}
+
+export interface Order {
+    id: number;
+    client: Client;
     status: status;
-    delivery: boolean;
     created_at: string;
     order_items_url: string;
     order_items_count: number;
@@ -31,5 +36,6 @@ export interface OrderItem {
         title: string;
         price: number;
         url: number;
+        thumbnail: Image;
     };
 }

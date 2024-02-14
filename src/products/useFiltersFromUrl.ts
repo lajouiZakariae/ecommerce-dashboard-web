@@ -2,12 +2,12 @@ import { SortBy } from '@/types';
 import { useSearchParams } from 'react-router-dom';
 
 export interface Filters {
-    price_from: string;
-    price_to: string;
-    cost_from: string;
-    cost_to: string;
-    sort_by: string;
-    order: 'asc' | 'desc';
+    price_from?: string;
+    price_to?: string;
+    cost_from?: string;
+    cost_to?: string;
+    sort_by?: string;
+    order?: 'asc' | 'desc';
     page?: number;
 }
 

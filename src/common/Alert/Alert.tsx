@@ -16,10 +16,10 @@ export default function Alert({
     ...rest
 }: DivProps) {
     const variantsStyle = {
-        success: 'bg-green-200/80 dark:bg-green-500/15',
-        info: 'bg-teal-200/80 dark:bg-teal-500/15',
-        danger: 'bg-red-200/80 dark:bg-red-500/15',
-        warning: 'bg-yellow-200/80 dark:bg-yellow-500/15',
+        success: 'bg-green-200 dark:bg-green-500/15',
+        info: 'bg-teal-200 dark:bg-teal-500/15',
+        danger: 'bg-red-200 dark:bg-red-500/15',
+        warning: 'bg-yellow-200 dark:bg-yellow-500/15',
     };
 
     const iconVariants = {

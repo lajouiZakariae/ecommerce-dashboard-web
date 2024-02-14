@@ -51,7 +51,7 @@ export default function ProductRow({
                 <DropdownDefault>
                     <TogglePublish id={id} url={url} published={published} />
 
-                    <Link to={`/products/${id}/edit`}>
+                    <Link to={`/dashboard/products/${id}/edit`}>
                         <DropdownButton>
                             <FaEdit />
                             Edit

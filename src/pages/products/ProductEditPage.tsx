@@ -26,8 +26,8 @@ export default function ProductEditPage() {
             <>
                 <Breadcrumb
                     links={[
-                        { text: 'Dashboard', path: '/' },
-                        { text: 'Products', path: '/products' },
+                        { text: 'Dashboard', path: '/dashboard' },
+                        { text: 'Products', path: '/dashboard/products' },
                     ]}
                     pageName={data.title}
                 />

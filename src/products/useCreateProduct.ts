@@ -20,7 +20,7 @@ export default function useCreateProduct(
             if (status === HttpStatusCode.Created) {
                 await client.invalidateQueries({ queryKey: ['products'] });
                 console.log(data.id);
-                navigate({ pathname: `/products/${data.id}/edit` });
+                navigate({ pathname: `/dashboard/products/${data.id}/edit` });
             }
         },
         onError: (error) => {
