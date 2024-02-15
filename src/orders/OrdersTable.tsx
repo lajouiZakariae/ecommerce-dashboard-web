@@ -1,8 +1,8 @@
 import { PropsWithChildren } from 'react';
 import EmptyDataRow from '@/common/Loaders/EmptyData';
 import Table from '@/common/Table';
-import { Order } from '@/types';
 import { OrderRow } from './OrderRow';
+import { Order } from './types/order';
 
 interface Props extends PropsWithChildren {
     headers: { name: string }[];
@@ -10,6 +10,8 @@ interface Props extends PropsWithChildren {
 }
 
 export default function OrdersTable({ headers, orders }: Props) {
+    console.log(orders);
+
     return (
         <Table headers={headers}>
             {orders.length ? (

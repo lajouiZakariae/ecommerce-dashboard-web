@@ -18,8 +18,10 @@ export interface Order {
     created_at: string;
     order_items_url: string;
     order_items_count: number;
-    total_price: number;
     order_items: OrderItem[];
+    total_quantity: number;
+    total_unit_price: number;
+    total_price: number;
 }
 
 export interface OrderItem {

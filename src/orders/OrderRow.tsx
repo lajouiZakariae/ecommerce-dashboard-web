@@ -1,6 +1,8 @@
 import Badge from '@/common/Badge';
-import { Order, status } from '@/types';
+import { status } from '@/types';
 import moment from 'moment';
+import { Order } from './types/order';
+import { FaChevronRight } from 'react-icons/fa6';
 
 function getBadgeType(type: status): 'success' | 'info' | 'warning' | 'danger' {
     switch (type) {
@@ -19,12 +21,15 @@ function getBadgeType(type: status): 'success' | 'info' | 'warning' | 'danger' {
 }
 
 export function OrderRow({
-    full_name,
-    total_price,
+    client: { first_name, last_name },
     status,
     created_at,
     order_items,
+    total_quantity,
+    total_unit_price,
+    total_price,
 }: Order) {
+    const full_name = `${first_name} ${last_name}`;
     const date = moment(created_at).format('YYYY-MM-DD');
 
     return (
@@ -43,6 +48,7 @@ export function OrderRow({
                 <td className="relative">
                     <span className="absolute h-full w-8/12 left-1/4 top-0 border-l border-gray-400">
                         <span className="absolute top-1/2 w-full border-t border-gray-400"></span>
+                        <FaChevronRight className="text-gray-400 absolute -right-1 top-1/2 -translate-y-[6.5px]" />
                     </span>
                 </td>
                 <th>Product</th>
@@ -59,42 +65,26 @@ export function OrderRow({
                     <td className="relative">
                         <span className="absolute h-full w-8/12 left-1/4 top-0 border-l border-gray-400">
                             <span className="absolute top-1/2 w-full border-t border-gray-400"></span>
+                            <FaChevronRight className="text-gray-400 absolute -right-1 top-1/2 -translate-y-[6.5px]" />
                         </span>
                     </td>
                     <td>{product.title}</td>
                     <td>{quantity}</td>
-                    <td>
-                        {product.price}
-                        {' MAD'}
-                    </td>
-                    <td>
-                        {total_price}
-                        {' MAD'}
-                    </td>
+                    <td>{product.price} MAD</td>
+                    <td>{total_price} MAD</td>
                 </tr>
             ))}
 
             <tr className="bg-gray-100 dark:bg-slate-800 font-bold">
                 <td className="relative">
-                    <span className="absolute h-1/2 w-8/12 left-1/4 top-0 border-l border-b border-gray-400"></span>
+                    <span className="absolute h-1/2 w-8/12 left-1/4 top-0 border-l border-b border-gray-400">
+                        <FaChevronRight className="text-gray-400 absolute -right-1 top-full -translate-y-[6.5px]" />
+                    </span>
                 </td>
                 <td>Total</td>
-                <td>
-                    {order_items.reduce(
-                        (acc, { quantity }) => acc + quantity,
-                        0,
-                    )}
-                </td>
-                <td>
-                    {order_items.reduce(
-                        (acc, { product: { price } }) => acc + price,
-                        0,
-                    )}
-                </td>
-                <td>
-                    {total_price}
-                    {' MAD'}
-                </td>
+                <td>{total_quantity}</td>
+                <td>{total_unit_price} MAD</td>
+                <td>{total_price} MAD</td>
             </tr>
         </>
     );
