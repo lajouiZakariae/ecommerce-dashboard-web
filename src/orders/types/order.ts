@@ -37,7 +37,7 @@ export interface OrderItem {
         id: number;
         title: string;
         price: number;
-        url: number;
+        url: string;
         thumbnail: Image;
     };
 }

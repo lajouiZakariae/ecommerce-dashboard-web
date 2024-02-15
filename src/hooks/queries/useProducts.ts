@@ -17,6 +17,8 @@ export default function useProducts(filters: Filters = {}) {
         [filters],
     );
 
+    console.log(queryString);
+
     const getProducts = async (): Promise<Result> =>
         apiClient
             .get(`products${queryString.length ? `?${queryString}` : ''}`)

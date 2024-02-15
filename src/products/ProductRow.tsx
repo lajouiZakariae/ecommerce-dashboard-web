@@ -36,8 +36,8 @@ export default function ProductRow({
             <td>
                 <div className="font-bold dark:font-normal">{title}</div>
             </td>
-            <td>{price}</td>
-            <td>{cost}</td>
+            <td>{price} MAD</td>
+            <td>{cost} MAD</td>
             <td>{stock_quantity}</td>
             <td>
                 <Badge

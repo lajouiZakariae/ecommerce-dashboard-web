@@ -5,7 +5,7 @@ import FormSection from './FormSection';
 import OrderItemRow from './OrderItemRow';
 import FormGroup from '@/common/FormGroup';
 import Input from '@/common/Input';
-import OrderDetails from './OrderDetails';
+import OrderDetails from './OrderDetailsEdit/OrderDetailsEdit';
 
 interface Props extends PropsWithChildren {
     order: Order;

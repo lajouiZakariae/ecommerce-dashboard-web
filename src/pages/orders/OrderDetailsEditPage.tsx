@@ -1,5 +1,6 @@
 import Breadcrumb from '@/components/Breadcrumb';
-import OrderDetails from '@/orders/OrderDetails';
+import useProducts from '@/hooks/queries/useProducts';
+import OrderDetailsEdit from '@/orders/OrderDetailsEdit/OrderDetailsEdit';
 import { OrderItem } from '@/orders/types/order';
 import apiClient from '@/utils/api-client';
 import { useQuery } from '@tanstack/react-query';
@@ -8,7 +9,7 @@ import { useParams } from 'react-router-dom';
 export default function OrderDetailsPage() {
     const { id } = useParams();
 
-    const { data, isLoading, isSuccess } = useQuery({
+    const orderItemsQuery = useQuery({
         queryKey: ['orders', id, 'order-items'],
         queryFn: async (): Promise<OrderItem[]> => {
             const { data } = await apiClient.get(`orders/${id}/order-items`);
@@ -18,11 +19,13 @@ export default function OrderDetailsPage() {
         },
     });
 
-    if (isLoading) {
+    const productsQuery = useProducts();
+
+    if (productsQuery.isLoading || orderItemsQuery.isLoading) {
         return 'loading...';
     }
 
-    if (isSuccess) {
+    if (orderItemsQuery.isSuccess && productsQuery.isSuccess) {
         return (
             <>
                 <Breadcrumb
@@ -30,7 +33,10 @@ export default function OrderDetailsPage() {
                     pageName={`Items of Order ${id}`}
                 />
 
-                <OrderDetails order_items={data} />
+                <OrderDetailsEdit
+                    _products={productsQuery.data.data}
+                    order_items={orderItemsQuery.data}
+                />
             </>
         );
     }
