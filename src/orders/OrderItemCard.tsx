@@ -11,6 +11,7 @@ interface Props extends PropsWithChildren<Product> {
     orderItems: OrderItem[];
     orderId: number;
     setOrderItems: Dispatch<SetStateAction<OrderItem[]>>;
+    setTouched: Dispatch<SetStateAction<boolean>>;
 }
 
 export function OrderItemCard({
@@ -22,12 +23,14 @@ export function OrderItemCard({
     orderId,
     orderItems,
     setOrderItems,
+    setTouched,
 }: Props) {
     const foundOrderItem = orderItems.find(
         (orderItem) => orderItem.product_id === id,
     );
 
-    const addProductHandler = () =>
+    const addProductHandler = () => {
+        setTouched(true);
         setOrderItems((prev) => [
             ...prev,
             {
@@ -37,13 +40,17 @@ export function OrderItemCard({
                 product: { title, price },
             },
         ]);
+    };
 
-    const deleteProductHandler = () =>
+    const deleteProductHandler = () => {
+        setTouched(true);
         setOrderItems((prev) =>
             prev.filter((orderItem) => orderItem.product_id !== id),
         );
+    };
 
-    const decrementQuantityHandler = () =>
+    const decrementQuantityHandler = () => {
+        setTouched(true);
         setOrderItems((prev) =>
             prev.map((orderItem) =>
                 orderItem.product_id === id
@@ -51,8 +58,10 @@ export function OrderItemCard({
                     : orderItem,
             ),
         );
+    };
 
-    const updateQuantityHandler = (ev: ChangeEvent<HTMLInputElement>) =>
+    const updateQuantityHandler = (ev: ChangeEvent<HTMLInputElement>) => {
+        setTouched(true);
         setOrderItems((prev) =>
             prev.map((orderItem) =>
                 orderItem.product_id === id
@@ -66,8 +75,10 @@ export function OrderItemCard({
                     : orderItem,
             ),
         );
+    };
 
-    const incrementQuantityHandler = () =>
+    const incrementQuantityHandler = () => {
+        setTouched(true);
         setOrderItems((prev) =>
             prev.map((orderItem) =>
                 orderItem.product_id === id
@@ -75,10 +86,11 @@ export function OrderItemCard({
                     : orderItem,
             ),
         );
+    };
 
     return (
         <div
-            className={`flex flex-wrap p-4 bg-slate-50 shadow-1 h-full border ${foundOrderItem ? 'border-primary/45' : ''}`}
+            className={`flex flex-wrap p-4 bg-slate-50 dark:bg-black  shadow-1 h-full border ${foundOrderItem ? 'border-primary/45' : 'dark:border-slate-800'}`}
         >
             <img
                 src={thumbnail?.url ?? '/placeholder.jpg'}

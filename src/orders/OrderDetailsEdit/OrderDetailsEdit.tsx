@@ -3,6 +3,7 @@ import { OrderItemCard } from '../OrderItemCard';
 import { Result } from '@/hooks/queries/useProducts';
 import { OrderItem } from '../types/order';
 import { round } from 'lodash';
+import { BsX } from 'react-icons/bs';
 
 interface Props extends PropsWithChildren {
     products: Result;
@@ -15,26 +16,43 @@ export default function OrderDetailsEdit({
     _orderItems,
     orderId,
 }: Props) {
+    const [touched, setTouched] = useState(false);
+
     const [orderItems, setOrderItems] = useState(_orderItems);
 
     const resetOrderItems = () => setOrderItems(_orderItems);
 
     return (
         <>
-            <button
-                className="btn btn-sm btn-primary"
-                onClick={() =>
-                    document
-                        .querySelector('#previewOrderItemsModal')!
-                        // @ts-ignore
-                        .showModal()
-                }
-            >
-                See Preview
-            </button>
+            <div className="flex justify-end">
+                <button
+                    className="btn btn-sm btn-primary mr-2"
+                    onClick={() =>
+                        document
+                            .querySelector('#previewOrderItemsModal')!
+                            // @ts-ignore
+                            .showModal()
+                    }
+                >
+                    See Preview
+                </button>
+            </div>
 
             <dialog id="previewOrderItemsModal" className="modal">
-                <div className="modal-box min-h-65">
+                <div className="modal-box max-w-xl min-h-65">
+                    <div className="flex justify-end">
+                        <button
+                            className="size-8 rounded-full flex  items-center justify-center transition-colors duration-300 hover:bg-slate-800 cursor-pointer"
+                            onClick={() =>
+                                document
+                                    .querySelector('#previewOrderItemsModal')!
+                                    // @ts-ignore
+                                    .close()
+                            }
+                        >
+                            <BsX className="size-7" />
+                        </button>
+                    </div>
                     <table className="table">
                         <thead>
                             <tr>
@@ -101,11 +119,16 @@ export default function OrderDetailsEdit({
                     <div className="mt-1 flex justify-end">
                         <button
                             className="btn btn-sm btn-outline btn-primary mr-3"
+                            disabled={!touched}
                             onClick={() => resetOrderItems()}
                         >
                             Clear
                         </button>
-                        <button className="btn btn-sm btn-success text-gray-100">
+                        <button
+                            className="btn btn-sm btn-success text-gray-100"
+                            disabled={!touched}
+                            onClick={() => {}}
+                        >
                             Validate
                         </button>
                     </div>
@@ -124,6 +147,7 @@ export default function OrderDetailsEdit({
                             orderId={orderId}
                             orderItems={orderItems}
                             setOrderItems={setOrderItems}
+                            setTouched={setTouched}
                         />
                     </div>
                 ))}
