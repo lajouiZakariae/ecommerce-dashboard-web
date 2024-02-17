@@ -1,35 +1,31 @@
-import { PropsWithChildren, useEffect, useState } from 'react';
-import { OrderItem } from '../types/order';
-import { Product } from '@/types';
+import { PropsWithChildren, useState } from 'react';
 import { OrderItemCard } from '../OrderItemCard';
-import { orderItemsAtom } from './orderItemsAtom';
-import { atom, useAtom } from 'jotai';
+import { Result } from '@/hooks/queries/useProducts';
+import { OrderItem } from '../types/order';
 
 interface Props extends PropsWithChildren {
-    order_items: OrderItem[];
-    _products: Product[];
+    products: Result;
+    orderId: number;
+    _orderItems: OrderItem[];
 }
 
-const productsAtom = atom<Product[]>([]);
-
-export default function OrderDetailsEdit({ order_items, _products }: Props) {
-    // const [products, setProducts] = useState(_products);
-    const [products, setProducts] = useAtom(productsAtom);
-
-    const [orderItems, dispatch] = useAtom(orderItemsAtom);
-
-    useEffect(() => {
-        setProducts(_products);
-        dispatch({ type: 'update_order_items', payload: order_items });
-    }, []);
-
-    console.log(products);
+export default function OrderDetailsEdit({
+    products,
+    _orderItems,
+    orderId,
+}: Props) {
+    const [orderItems, setOrderItems] = useState(_orderItems);
 
     return (
-        <div className="flex flex-wrap">
-            {products.map((product) => (
+        <div className="flex flex-wrap items-stretch">
+            {products.data.map((product) => (
                 <div key={product.id} className="basis-1/2 p-2">
-                    <OrderItemCard {...product} />
+                    <OrderItemCard
+                        {...product}
+                        orderId={orderId}
+                        orderItems={orderItems}
+                        setOrderItems={setOrderItems}
+                    />
                 </div>
             ))}
         </div>

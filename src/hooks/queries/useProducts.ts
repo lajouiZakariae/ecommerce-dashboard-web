@@ -6,26 +6,32 @@ import { resolveQueryParamsString } from '@/utils/url-helpers';
 import { Product } from '@/types';
 import { Filters } from '@/products/useFiltersFromUrl';
 
-interface Result {
+export interface Result {
     data: Product[];
     meta: { last_page: number; links: [] };
 }
 
-export default function useProducts(filters: Filters = {}) {
-    const queryString = useMemo(
-        () => resolveQueryParamsString({ ...filters }),
-        [filters],
-    );
+export default function useProducts(
+    filters: Filters = {},
+    callback: ((_data: Result) => void) | null = null,
+) {
+    const memoCallback = () => resolveQueryParamsString({ ...filters });
 
-    console.log(queryString);
+    const queryString = useMemo(memoCallback, [filters]);
 
-    const getProducts = async (): Promise<Result> =>
-        apiClient
-            .get(`products${queryString.length ? `?${queryString}` : ''}`)
-            .then((response) => response.data);
+    const getProducts = async (): Promise<Result> => {
+        const { data } = await apiClient.get(
+            `products${queryString.length ? `?${queryString}` : ''}`,
+        );
+
+        if (callback) callback(data);
+
+        return data;
+    };
 
     return useQuery({
         queryKey: ['products', filters],
         queryFn: getProducts,
+        refetchOnWindowFocus: true,
     });
 }

@@ -1,43 +1,60 @@
+import NotFound from '@/common/NotFound';
 import Breadcrumb from '@/components/Breadcrumb';
+import useOrderItems from '@/hooks/queries/useOrderItems';
 import useProducts from '@/hooks/queries/useProducts';
+import usePage from '@/hooks/usePage';
 import OrderDetailsEdit from '@/orders/OrderDetailsEdit/OrderDetailsEdit';
-import { OrderItem } from '@/orders/types/order';
-import apiClient from '@/utils/api-client';
-import { useQuery } from '@tanstack/react-query';
+import Pagination from '@/products/Pagination';
 import { useParams } from 'react-router-dom';
 
 export default function OrderDetailsPage() {
-    const { id } = useParams();
+    const { id: orderId } = useParams();
+    const { page, setPage } = usePage();
 
-    const orderItemsQuery = useQuery({
-        queryKey: ['orders', id, 'order-items'],
-        queryFn: async (): Promise<OrderItem[]> => {
-            const { data } = await apiClient.get(`orders/${id}/order-items`);
+    if (orderId === undefined) return <NotFound />;
 
-            console.log(data);
-            return data;
-        },
-    });
+    const orderItemsQuery = useOrderItems(parseInt(orderId));
 
-    const productsQuery = useProducts();
+    const productsQuery = useProducts({ page });
 
-    if (productsQuery.isLoading || orderItemsQuery.isLoading) {
-        return 'loading...';
-    }
+    const renderPagination = () => {
+        if (productsQuery.isError) return;
 
-    if (orderItemsQuery.isSuccess && productsQuery.isSuccess) {
-        return (
-            <>
-                <Breadcrumb
-                    links={[{ path: '/dashboard', text: 'Dashboard' }]}
-                    pageName={`Items of Order ${id}`}
+        if (productsQuery.isLoading) return 'Loading...';
+
+        if (productsQuery.isSuccess)
+            return (
+                <Pagination
+                    page={page}
+                    count={productsQuery.data.meta.last_page}
+                    pageChangeHandler={(_page) => setPage(_page)}
                 />
+            );
+    };
 
-                <OrderDetailsEdit
-                    _products={productsQuery.data.data}
-                    order_items={orderItemsQuery.data}
-                />
-            </>
-        );
-    }
+    return (
+        <>
+            <Breadcrumb
+                links={[
+                    { path: '/dashboard', text: 'Dashboard' },
+                    { path: '/dashboard/orders', text: 'Orders' },
+                ]}
+                pageName={`Items of Order ${orderId}`}
+            />
+
+            {productsQuery.isSuccess && orderItemsQuery.isSuccess && (
+                <>
+                    <OrderDetailsEdit
+                        products={productsQuery.data}
+                        _orderItems={orderItemsQuery.data}
+                        orderId={parseInt(orderId)}
+                    />
+
+                    <div className="mt-5 flex items-center justify-center">
+                        {renderPagination()}
+                    </div>
+                </>
+            )}
+        </>
+    );
 }

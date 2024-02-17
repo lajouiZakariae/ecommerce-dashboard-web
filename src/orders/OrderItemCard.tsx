@@ -1,28 +1,87 @@
-import { PropsWithChildren } from 'react';
-import { OrderItem } from './types/order';
+import {
+    ChangeEvent,
+    Dispatch,
+    PropsWithChildren,
+    SetStateAction,
+} from 'react';
 import { Product } from '@/types';
-import { useAtom, useAtomValue } from 'jotai';
-import { orderItemsAtom } from './OrderDetailsEdit/orderItemsAtom';
-import { useParams } from 'react-router-dom';
+import { OrderItem } from './types/order';
 
-type Props = PropsWithChildren<Product>;
+interface Props extends PropsWithChildren<Product> {
+    orderItems: OrderItem[];
+    orderId: number;
+    setOrderItems: Dispatch<SetStateAction<OrderItem[]>>;
+}
 
-export function OrderItemCard({ id, thumbnail, title, price, url }: Props) {
-    const [orderItems, dispatch] = useAtom(orderItemsAtom);
-
-    const { id: order_id } = useParams();
-
+export function OrderItemCard({
+    id,
+    thumbnail,
+    title,
+    price,
+    //
+    orderId,
+    orderItems,
+    setOrderItems,
+}: Props) {
     const foundOrderItem = orderItems.find(
-        (orderItem) => orderItem.product.id === id,
+        (orderItem) => orderItem.product_id === id,
     );
+
+    const addProductHandler = () =>
+        setOrderItems((prev) => [
+            ...prev,
+            {
+                order_id: orderId,
+                quantity: 1,
+                product_id: id,
+            },
+        ]);
+
+    const deleteProductHandler = () =>
+        setOrderItems((prev) =>
+            prev.filter((orderItem) => orderItem.product_id !== id),
+        );
+
+    const decrementQuantityHandler = () =>
+        setOrderItems((prev) =>
+            prev.map((orderItem) =>
+                orderItem.product_id === id
+                    ? { ...orderItem, quantity: orderItem.quantity - 1 }
+                    : orderItem,
+            ),
+        );
+
+    const updateQuantityHandler = (ev: ChangeEvent<HTMLInputElement>) =>
+        setOrderItems((prev) =>
+            prev.map((orderItem) =>
+                orderItem.product_id === id
+                    ? {
+                          ...orderItem,
+                          quantity:
+                              ev.target.value !== ''
+                                  ? parseInt(ev.target.value)
+                                  : 0,
+                      }
+                    : orderItem,
+            ),
+        );
+
+    const incrementQuantityHandler = () =>
+        setOrderItems((prev) =>
+            prev.map((orderItem) =>
+                orderItem.product_id === id
+                    ? { ...orderItem, quantity: orderItem.quantity + 1 }
+                    : orderItem,
+            ),
+        );
 
     return (
         <div
-            className={`flex flex-wrap p-4 bg-slate-50 shadow-1 border ${foundOrderItem ? 'border-primary/45' : ''}`}
+            className={`flex flex-wrap p-4 bg-slate-50 shadow-1 h-full border ${foundOrderItem ? 'border-primary/45' : ''}`}
         >
             <img
-                src={thumbnail.url ?? '/placeholder.jpg'}
-                alt={thumbnail.alt_text}
+                src={thumbnail?.url ?? '/placeholder.jpg'}
+                alt={thumbnail?.alt_text}
                 className="size-15 object-cover rounded-md"
             />
 
@@ -40,13 +99,8 @@ export function OrderItemCard({ id, thumbnail, title, price, url }: Props) {
                             <button
                                 type="button"
                                 className="btn btn-sm rounded-none p-2"
-                                disabled={foundOrderItem.quantity === 1}
-                                onClick={() =>
-                                    dispatch({
-                                        type: 'dec_quantity',
-                                        payload: foundOrderItem,
-                                    })
-                                }
+                                disabled={foundOrderItem.quantity <= 1}
+                                onClick={decrementQuantityHandler}
                             >
                                 -
                             </button>
@@ -54,30 +108,14 @@ export function OrderItemCard({ id, thumbnail, title, price, url }: Props) {
                             <input
                                 type="text"
                                 className="w-18 text-center"
+                                onChange={updateQuantityHandler}
                                 value={foundOrderItem.quantity}
-                                onChange={(ev) =>
-                                    dispatch({
-                                        type: 'update_quantity',
-                                        payload: {
-                                            ...foundOrderItem,
-                                            quantity:
-                                                ev.target.value !== ''
-                                                    ? parseInt(ev.target.value)
-                                                    : 0,
-                                        },
-                                    })
-                                }
                             />
 
                             <button
                                 type="button"
                                 className="btn btn-sm rounded-none p-2"
-                                onClick={() =>
-                                    dispatch({
-                                        type: 'inc_quantity',
-                                        payload: foundOrderItem,
-                                    })
-                                }
+                                onClick={incrementQuantityHandler}
                             >
                                 +
                             </button>
@@ -86,12 +124,7 @@ export function OrderItemCard({ id, thumbnail, title, price, url }: Props) {
                         <div>
                             <button
                                 className="btn btn-sm btn-outline border-red-500 text-red-500 hover:bg-red-500 hover:text-white hover:border-red-500 rounded-none"
-                                onClick={() =>
-                                    dispatch({
-                                        type: 'remove_product',
-                                        payload: foundOrderItem,
-                                    })
-                                }
+                                onClick={deleteProductHandler}
                             >
                                 Delete
                             </button>
@@ -101,23 +134,7 @@ export function OrderItemCard({ id, thumbnail, title, price, url }: Props) {
                     <>
                         <button
                             className="btn btn-sm btn-outline border-primary text-primary hover:bg-primary hover:text-white hover:border-primary rounded-none"
-                            onClick={() =>
-                                dispatch({
-                                    type: 'add_product',
-                                    payload: {
-                                        order_id: parseInt(order_id),
-                                        quantity: 1,
-                                        product_id: id,
-                                        product: {
-                                            id,
-                                            title,
-                                            price,
-                                            thumbnail,
-                                            url,
-                                        },
-                                    },
-                                })
-                            }
+                            onClick={addProductHandler}
                         >
                             Add
                         </button>

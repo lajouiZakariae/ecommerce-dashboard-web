@@ -62,7 +62,7 @@ export default function ProductsPage() {
 
             <div className="flex justify-center mt-4">{renderPagination()}</div>
 
-            <Modal />
+            {/* <Modal /> */}
         </div>
     );
 }

@@ -11,48 +11,27 @@ interface OrderItemActionProps {
         | 'inc_quantity'
         | 'dec_quantity'
         | 'update_quantity'
-        | 'add_product'
-        | 'remove_product';
+        | 'add_order_item'
+        | 'remove_order_item';
     payload: OrderItem;
 }
-
-// interface ActionProps {
-//     type: 'update_order_items' | 'remove_product';
-//     payload: OrderItem;
-// }
-
-// interface QuantityActionProps {
-//     type: 'inc_quantity' | 'dec_quantity' | 'update_quantity';
-//     payload: number;
-// }
-
-// const deleteOrderItem = (id: number) => {
-//     setOrderItems((prev) =>
-//         prev.filter((orderItem) => orderItem.id !== id),
-//     );
-// };
 
 const reducer = (
     prev: OrderItem[],
     { type, payload }: ActionProps | OrderItemActionProps,
 ) => {
-    if (type === 'update_order_items') {
-        return payload;
-    }
+    if (type === 'update_order_items') return payload;
 
-    if (type === 'remove_product') {
+    if (type === 'remove_order_item')
         return prev.filter(
             (orderItem) => orderItem.product_id !== payload.product_id,
         );
-    }
 
-    if (type === 'add_product') {
-        return [...prev, payload];
-    }
+    if (type === 'add_order_item') return [...prev, payload];
 
     if (type.includes('quantity')) {
         return prev.map((orderItem) => {
-            if (orderItem.id !== payload.id) return orderItem; // Not Found
+            if (orderItem.product_id !== payload.product_id) return orderItem; // Not Found
 
             let quantity = orderItem.quantity;
 

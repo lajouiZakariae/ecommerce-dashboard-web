@@ -25,15 +25,15 @@ export interface Order {
 }
 
 export interface OrderItem {
-    id: number;
+    id?: number;
     order_id: number;
     product_id: number;
     quantity: number;
-    url: string;
-    total_price: number;
-    decrement_quantity_url: string;
-    increment_quantity_url: string;
-    product: {
+    url?: string;
+    total_price?: number;
+    decrement_quantity_url?: string;
+    increment_quantity_url?: string;
+    product?: {
         id: number;
         title: string;
         price: number;
