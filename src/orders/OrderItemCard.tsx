@@ -34,6 +34,7 @@ export function OrderItemCard({
                 order_id: orderId,
                 quantity: 1,
                 product_id: id,
+                product: { title, price },
             },
         ]);
 
@@ -106,7 +107,7 @@ export function OrderItemCard({
                             </button>
 
                             <input
-                                type="text"
+                                type="number"
                                 className="w-18 text-center"
                                 onChange={updateQuantityHandler}
                                 value={foundOrderItem.quantity}

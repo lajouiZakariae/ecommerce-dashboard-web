@@ -33,11 +33,11 @@ export interface OrderItem {
     total_price?: number;
     decrement_quantity_url?: string;
     increment_quantity_url?: string;
-    product?: {
-        id: number;
+    product: {
+        id?: number;
         title: string;
         price: number;
-        url: string;
-        thumbnail: Image;
+        url?: string;
+        thumbnail?: Image;
     };
 }
