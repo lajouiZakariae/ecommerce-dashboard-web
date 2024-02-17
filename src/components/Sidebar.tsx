@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import Logo from '../images/logo/logo.svg';
 import SidebarLinkGroup from './SidebarLinkGroup';
-import { FaProductHunt, FaShoppingBag } from 'react-icons/fa';
+import { FaProductHunt, FaShoppingBag, FaUserFriends } from 'react-icons/fa';
 import {
     BsBox,
     BsBox2,
@@ -10,6 +10,7 @@ import {
     BsCartFill,
     BsCreditCard,
 } from 'react-icons/bs';
+import { FaRegUser, FaUser, FaUserCheck } from 'react-icons/fa6';
 
 interface SidebarProps {
     sidebarOpen: boolean;
@@ -216,6 +217,21 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             </SidebarLinkGroup>
 
                             {/* <!-- Menu Item Dashboard --> */}
+
+                            {/* <!-- Menu Item  --> */}
+                            <li>
+                                <NavLink
+                                    to="/dashboard/clients"
+                                    className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                                        pathname.includes('clients') &&
+                                        'bg-graydark dark:bg-meta-4'
+                                    }`}
+                                >
+                                    <FaUserFriends />
+                                    Clients
+                                </NavLink>
+                            </li>
+
                             {/* <!-- Menu Item Profile --> */}
                             <li>
                                 <NavLink
@@ -230,22 +246,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                                 </NavLink>
                             </li>
 
-                            {/* <!-- Menu Item Calendar --> */}
-                            <li>
-                                <NavLink
-                                    to="/dashboard/payment-methods"
-                                    className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                                        pathname.includes('payment-methods') &&
-                                        'bg-graydark dark:bg-meta-4'
-                                    }`}
-                                >
-                                    <BsCreditCard />
-                                    Payment Methods
-                                </NavLink>
-                            </li>
-                            {/* <!-- Menu Item Calendar --> */}
-                            {/* <!-- Menu Item Profile --> */}
-                            {/* <!-- Menu Item Tables --> */}
+                            {/* <!-- Menu Item Orders --> */}
                             <li>
                                 <NavLink
                                     to="/dashboard/orders"
@@ -258,7 +259,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                                     Orders
                                 </NavLink>
                             </li>
-                            {/* <!-- Menu Item Tables --> */}
+                            {/* <!-- Menu Item Orders --> */}
                         </ul>
                     </div>
                 </nav>

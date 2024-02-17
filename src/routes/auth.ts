@@ -9,6 +9,9 @@ import ProductEditPage from '../pages/products/ProductEditPage';
 import ProductsPage from '../pages/products/ProductsPage';
 import OrderEditPage from '@/pages/orders/OrderEditPage';
 import OrderDetailsEditPage from '@/pages/orders/OrderDetailsEditPage';
+import ClientsPage from '@/pages/clients/ClientsPage';
+import ClientEditPage from '@/pages/clients/ClientEditPage';
+import ClientCreatePage from '@/pages/clients/ClientCreatePage';
 
 const authRoutes: RouteObject[] = [
     { index: true, Component: Home },
@@ -40,6 +43,16 @@ const authRoutes: RouteObject[] = [
             { path: ':id/details/edit', Component: OrderDetailsEditPage },
         ],
     },
+    {
+        path: 'clients',
+        children: [
+            { index: true, Component: ClientsPage },
+            { path: 'create', Component: ClientCreatePage },
+            { path: ':id/edit', Component: ClientEditPage },
+            // { path: ':id/details/edit', Component: OrderDetailsEditPage },
+        ],
+    },
+
     {
         path: 'profile',
         Component: Profile,

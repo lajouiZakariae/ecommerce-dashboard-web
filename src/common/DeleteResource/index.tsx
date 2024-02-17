@@ -7,7 +7,7 @@ import DropdownButton from '@/products/DropdownButton';
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
     url: string;
-    pendingTxt: string;
+    pendingTxt?: string;
     queryKey: QueryKey;
     size?: 'sm' | 'md';
 }
@@ -15,7 +15,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 export default function DeleteResource({
     url,
     queryKey,
-    pendingTxt,
+    pendingTxt = 'Deleting...',
     size = 'md',
     children,
     ...other

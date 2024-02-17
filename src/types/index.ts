@@ -1,3 +1,29 @@
+export interface PaginationResult<T> {
+    data: T[];
+
+    meta: {
+        current_page: 1;
+        from: 1;
+        last_page: 1;
+        links: {
+            url: string | null;
+            label: string;
+            active: boolean;
+        }[];
+        path: string;
+        per_page: number;
+        to: number;
+        total: number;
+    };
+
+    links: {
+        first: string | null;
+        last: string | null;
+        next: string | null;
+        prev: string | null;
+    };
+}
+
 export interface User {
     id: number;
     first_name: string;
