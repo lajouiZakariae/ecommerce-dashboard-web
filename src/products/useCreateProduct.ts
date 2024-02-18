@@ -1,9 +1,9 @@
-import { Product } from '@/types';
 import apiClient from '@/utils/api-client';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AxiosResponse, HttpStatusCode } from 'axios';
 import { Dispatch, SetStateAction } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Product } from './types/Product';
 
 export default function useCreateProduct(
     setError: Dispatch<SetStateAction<string | undefined>>,

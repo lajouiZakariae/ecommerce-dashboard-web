@@ -1,5 +1,5 @@
-import { Product } from '@/types';
 import { PropsWithChildren } from 'react';
+import { Product } from './types/Product';
 
 type Props = PropsWithChildren<{
     products: Product[];

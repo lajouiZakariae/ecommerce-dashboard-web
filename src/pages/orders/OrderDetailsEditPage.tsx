@@ -4,7 +4,7 @@ import useOrderItems from '@/hooks/queries/useOrderItems';
 import useProducts from '@/hooks/queries/useProducts';
 import usePage from '@/hooks/usePage';
 import OrderDetailsEdit from '@/orders/OrderDetailsEdit/OrderDetailsEdit';
-import Pagination from '@/products/Pagination';
+import Pagination from '@/common/Pagination';
 import { useParams } from 'react-router-dom';
 
 export default function OrderDetailsPage() {

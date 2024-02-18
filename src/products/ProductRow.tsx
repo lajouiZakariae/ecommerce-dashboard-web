@@ -1,13 +1,13 @@
 import { PropsWithChildren } from 'react';
 import { FaEdit } from 'react-icons/fa';
 
-import { Product } from '@/types';
 import DeleteResource from '@/common/DeleteResource';
 import TogglePublish from './TogglePublish';
 import Badge from '@/common/Badge';
 import DropdownDefault from '@/components/DropdownDefault';
 import DropdownButton from './DropdownButton';
 import { Link } from 'react-router-dom';
+import { Product } from './types/Product';
 
 export default function ProductRow({
     id,

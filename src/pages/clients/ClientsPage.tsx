@@ -2,7 +2,7 @@ import ErrorUI from '@/common/ErrorUI';
 import TableLoading from '@/common/Loaders/TableLoading';
 import ClientsTable from '@/clients/ClientsTable';
 import usePage from '@/hooks/usePage';
-import Pagination from '@/products/Pagination';
+import Pagination from '@/common/Pagination';
 import apiClient from '@/utils/api-client';
 import { useQuery } from '@tanstack/react-query';
 import { PaginationResult } from '@/types';

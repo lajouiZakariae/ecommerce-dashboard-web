@@ -3,10 +3,11 @@ import Input from '@/common/Input';
 import Select from '@/common/Select';
 import TextArea from '@/common/TextArea';
 import useUpdateProduct from '@/hooks/mutations/useUpdateProduct';
-import { Category, Product } from '@/types';
+import { Category } from '@/types';
 import { PropsWithChildren } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import ButtonLoading from '@/common/Loaders/ButtonLoading';
+import { Product } from '../types/Product';
 
 interface Props extends PropsWithChildren {
     product: Product;

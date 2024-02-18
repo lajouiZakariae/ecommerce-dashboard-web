@@ -4,7 +4,7 @@ export default function EmptyDataRow({ cols }: { cols: number }) {
     return (
         <tr>
             <td colSpan={cols}>
-                <Alert color="warning">No Products Found</Alert>
+                <Alert variant="warning">No Orders Found</Alert>
             </td>
         </tr>
     );
