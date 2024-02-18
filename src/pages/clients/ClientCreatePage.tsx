@@ -7,7 +7,7 @@ export default function ClientCreatePage() {
             <Breadcrumb
                 links={[
                     { text: 'Dashboard', path: '/dashboard' },
-                    { text: 'Products', path: '/dashboard/products' },
+                    { text: 'Clients', path: '/dashboard/clients' },
                 ]}
                 pageName={'Create Product'}
             />
