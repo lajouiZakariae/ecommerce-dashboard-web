@@ -1,5 +1,5 @@
 import { atomWithReducer } from 'jotai/utils';
-import { OrderItem } from '../types/order';
+import { OrderItem } from '../../../types/Order';
 
 interface ActionProps {
     type: 'update_order_items';

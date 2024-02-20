@@ -1,6 +1,5 @@
-import ErrorUI from '@/common/ErrorUI';
 import Pagination from '@/common/Pagination';
-import useProducts from '@/hooks/queries/useProducts';
+import useProducts from '@/hooks/queries/products/useProducts';
 import usePage from '@/hooks/usePage';
 import { BsX } from 'react-icons/bs';
 
@@ -53,7 +52,7 @@ export default function ProductsListing() {
                                     className="size-15 object-cover rounded-md"
                                 />
 
-                                <div className="ml-5">
+                                <div className="ml-5 flex-1">
                                     <h4 className="font-bold">{title}</h4>
                                     <p className="text-sm">
                                         Price: {price} MAD

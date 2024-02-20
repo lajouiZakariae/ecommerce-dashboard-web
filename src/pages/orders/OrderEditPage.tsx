@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 import Breadcrumb from '@/components/Breadcrumb';
 import NotFound from '@/common/NotFound';
-import useOrder from '@/hooks/queries/useOrder';
-import OrderEditForm from '@/orders/OrderEditForm';
+import useOrder from '@/hooks/queries/orders/useOrder';
+import OrderEditForm from '@/components/orders/OrderEditForm';
 
 export default function OrderEditPage() {
     const { id } = useParams();

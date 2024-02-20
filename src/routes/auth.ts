@@ -12,6 +12,7 @@ import OrderDetailsEditPage from '@/pages/orders/OrderDetailsEditPage';
 import ClientsPage from '@/pages/clients/ClientsPage';
 import ClientEditPage from '@/pages/clients/ClientEditPage';
 import ClientCreatePage from '@/pages/clients/ClientCreatePage';
+import ProductCreatePage from '@/pages/products/ProductCreatePage';
 
 const authRoutes: RouteObject[] = [
     { index: true, Component: Home },
@@ -21,6 +22,10 @@ const authRoutes: RouteObject[] = [
             {
                 index: true,
                 Component: ProductsPage,
+            },
+            {
+                path: 'create',
+                Component: ProductCreatePage,
             },
             {
                 path: ':id/edit',

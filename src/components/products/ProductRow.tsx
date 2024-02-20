@@ -7,14 +7,14 @@ import Badge from '@/common/Badge';
 import DropdownDefault from '@/components/DropdownDefault';
 import DropdownButton from './DropdownButton';
 import { Link } from 'react-router-dom';
-import { Product } from './types/Product';
+import { Product } from '@/types/Product';
 
 export default function ProductRow({
     id,
     title,
     cost,
     price,
-    stock_quantity,
+    quantity,
     published,
     url,
     thumbnail,
@@ -38,7 +38,7 @@ export default function ProductRow({
             </td>
             <td>{price} MAD</td>
             <td>{cost} MAD</td>
-            <td>{stock_quantity}</td>
+            <td>{quantity}</td>
             <td>
                 <Badge
                     color={published ? 'success' : 'danger'}

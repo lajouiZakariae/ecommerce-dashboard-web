@@ -1,7 +1,7 @@
 import Badge from '@/common/Badge';
 import { status } from '@/types';
 import moment from 'moment';
-import { Order } from './types/order';
+import { Order } from '../../types/Order';
 import { FaChevronRight } from 'react-icons/fa6';
 
 function getBadgeType(type: status): 'success' | 'info' | 'warning' | 'danger' {

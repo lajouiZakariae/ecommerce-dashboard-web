@@ -1,13 +1,12 @@
 import ErrorUI from '@/common/ErrorUI';
 import TableLoading from '@/common/Loaders/TableLoading';
-import useFilteredProducts from '@/hooks/queries/useFilteredProducts';
-import ProductsFilter from '@/products/ProductsFilter/ProductsFilter';
-import ProductsTable from '@/products/ProductsTable';
+import useFilteredProducts from '@/hooks/queries/products/useFilteredProducts';
+import ProductsFilter from '@/components/products/ProductsFilter/ProductsFilter';
+import ProductsTable from '@/components/products/ProductsTable';
 import { useMediaQuery } from '@uidotdev/usehooks';
 import FeedLoading from '@/common/Loaders/FeedLoading';
 import Pagination from '@/common/Pagination';
 import usePage from '@/hooks/usePage';
-import Modal from '@/products/Modal';
 
 export default function ProductsPage() {
     const { page, setPage } = usePage();
@@ -18,7 +17,7 @@ export default function ProductsPage() {
         { name: 'Title' },
         { name: 'Price' },
         { name: 'Cost' },
-        { name: 'Stock Quantity' },
+        { name: 'Quantity' },
         { name: 'Published' },
         { name: '' },
     ];

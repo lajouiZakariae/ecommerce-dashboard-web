@@ -1,8 +1,7 @@
 import { useParams } from 'react-router-dom';
 import Breadcrumb from '@/components/Breadcrumb';
-import ProductEditForm from '@/products/ProductEditForm/ProductEditForm';
 import NotFound from '@/common/NotFound';
-import useClient from '@/hooks/queries/useClient';
+import useClient from '@/hooks/queries/clients/useClient';
 import ClientEditForm from '@/clients/ClientEditForm';
 
 export default function ClientEditPage() {

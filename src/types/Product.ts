@@ -7,7 +7,7 @@ export interface Product {
     description?: string;
     cost: number;
     price: number;
-    stock_quantity: number;
+    quantity: number;
     published: boolean;
     category_id?: number;
     store_id?: number;

@@ -2,8 +2,8 @@ import ErrorUI from '@/common/ErrorUI';
 import TableLoading from '@/common/Loaders/TableLoading';
 import { useMediaQuery } from '@uidotdev/usehooks';
 import FeedLoading from '@/common/Loaders/FeedLoading';
-import useOrders from '../../hooks/queries/useOrders';
-import OrdersTable from '@/orders/OrdersTable';
+import useOrders from '../../hooks/queries/orders/useOrders';
+import OrdersTable from '@/components/orders/OrdersTable';
 
 export default function OrdersPage() {
     const { isLoading, isError, isSuccess, data } = useOrders();

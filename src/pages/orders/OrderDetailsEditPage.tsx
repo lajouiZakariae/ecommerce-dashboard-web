@@ -1,7 +1,7 @@
 import NotFound from '@/common/NotFound';
 import Breadcrumb from '@/components/Breadcrumb';
-import useOrderItems from '@/hooks/queries/useOrderItems';
-import OrderDetailsEdit from '@/orders/OrderDetailsEdit/OrderDetailsEdit';
+import useOrderItems from '@/hooks/queries/orders/useOrderItems';
+import OrderDetailsEdit from '@/components/orders/OrderDetailsEdit/OrderDetailsEdit';
 import { useParams } from 'react-router-dom';
 import FeedLoading from '@/common/Loaders/FeedLoading';
 

@@ -1,11 +1,9 @@
 import { PropsWithChildren } from 'react';
 import { useForm } from 'react-hook-form';
-import { Order } from './types/order';
+import { Order } from '../../types/Order';
 import FormSection from './FormSection';
-import OrderItemRow from './OrderItemRow';
 import FormGroup from '@/common/FormGroup';
 import Input from '@/common/Input';
-import OrderDetails from './OrderDetailsEdit/OrderDetailsEdit';
 
 interface Props extends PropsWithChildren {
     order: Order;

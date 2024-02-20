@@ -1,6 +1,6 @@
 import { PropsWithChildren, useState } from 'react';
 import { OrderItemCard } from '../OrderItemCard';
-import { OrderItem } from '../types/order';
+import { OrderItem } from '../../../types/Order';
 import { BsX } from 'react-icons/bs';
 import { IoAdd } from 'react-icons/io5';
 import ProductsListing from './ProductsListing';

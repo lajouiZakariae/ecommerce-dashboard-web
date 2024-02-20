@@ -1,4 +1,4 @@
-import CreateProductForm from '@/products/CreateProductForm';
+import CreateProductForm from '@/components/products/CreateProductForm';
 import { HTMLAttributes, PropsWithChildren, forwardRef, useState } from 'react';
 import { IoAdd } from 'react-icons/io5';
 import { FaChevronLeft } from 'react-icons/fa6';

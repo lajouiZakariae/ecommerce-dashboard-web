@@ -5,7 +5,7 @@ import useUpdatePaymentMethod from '@/hooks/mutations/useUpdatePaymentMethod';
 import { omitBy } from 'lodash';
 import DeleteResource from '@/common/DeleteResource';
 import { Link } from 'react-router-dom';
-import DropdownButton from '@/products/DropdownButton';
+import DropdownButton from '@/components/products/DropdownButton';
 import DropdownDefault from '@/components/DropdownDefault';
 import { FaEdit } from 'react-icons/fa';
 

@@ -1,5 +1,5 @@
 import { PropsWithChildren, useState } from 'react';
-import { Order, OrderItem } from './types/order';
+import { Order, OrderItem } from '../../types/Order';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import apiClient from '@/utils/api-client';
 import { HttpStatusCode } from 'axios';
@@ -66,7 +66,7 @@ export function OrderItemCard(orderItem: Props) {
                 className="size-15 object-cover rounded-md"
             />
 
-            <div className="ml-5">
+            <div className="ml-5 basis-auto">
                 <h4 className="font-bold">{title}</h4>
                 <p className="text-sm">Price: {price} MAD</p>
             </div>

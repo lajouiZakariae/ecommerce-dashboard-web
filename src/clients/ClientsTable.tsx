@@ -3,7 +3,7 @@ import Table from '@/common/Table';
 import { PropsWithChildren } from 'react';
 import { Client } from './types/Client';
 import DropdownDefault from '@/components/DropdownDefault';
-import DropdownButton from '@/products/DropdownButton';
+import DropdownButton from '@/components/products/DropdownButton';
 import { FaEdit } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import DeleteResource from '@/common/DeleteResource';

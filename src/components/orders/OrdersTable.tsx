@@ -2,7 +2,7 @@ import { PropsWithChildren } from 'react';
 import EmptyDataRow from '@/common/Loaders/EmptyData';
 import Table from '@/common/Table';
 import { OrderRow } from './OrderRow';
-import { Order } from './types/order';
+import { Order } from '../../types/Order';
 
 interface Props extends PropsWithChildren {
     headers: { name: string }[];

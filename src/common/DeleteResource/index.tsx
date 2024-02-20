@@ -3,7 +3,7 @@ import { BsTrash3Fill } from 'react-icons/bs';
 import { QueryKey } from '@tanstack/react-query';
 
 import useDelete from './useDelete';
-import DropdownButton from '@/products/DropdownButton';
+import DropdownButton from '@/components/products/DropdownButton';
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
     url: string;

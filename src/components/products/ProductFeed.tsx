@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react';
-import { Product } from './types/Product';
+import { Product } from '../../products/types/Product';
 
 type Props = PropsWithChildren<{
     products: Product[];

@@ -1,4 +1,4 @@
-import { Order } from '@/orders/types/order';
+import { Order } from '@/types/Order';
 import apiClient from '@/utils/api-client';
 import { useQuery } from '@tanstack/react-query';
 

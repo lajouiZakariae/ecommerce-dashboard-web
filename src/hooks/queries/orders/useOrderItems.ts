@@ -1,5 +1,5 @@
-import { orderItemsAtom } from '@/orders/OrderDetailsEdit/orderItemsAtom';
-import { OrderItem } from '@/orders/types/order';
+import { orderItemsAtom } from '@/components/orders/OrderDetailsEdit/orderItemsAtom';
+import { OrderItem } from '@/types/Order';
 import apiClient from '@/utils/api-client';
 import { useQuery } from '@tanstack/react-query';
 import { useAtom } from 'jotai';

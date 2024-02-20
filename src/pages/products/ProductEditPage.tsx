@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 import Breadcrumb from '@/components/Breadcrumb';
-import useCategories from '@/hooks/queries/useCategories';
-import useProduct from '@/hooks/queries/useProduct';
-import ProductEditForm from '@/products/ProductEditForm/ProductEditForm';
+import useCategories from '@/hooks/queries/categories/useCategories';
+import useProduct from '@/hooks/queries/products/useProduct';
+import ProductEditForm from '@/components/products/ProductEditForm/ProductEditForm';
 import NotFound from '@/common/NotFound';
 
 export default function ProductEditPage() {
