@@ -41,7 +41,7 @@ export default function Pagination({ page, count, pageChangeHandler }: Props) {
     return (
         <div className="flex space-x-4">
             <button
-                className="btn"
+                className="btn btn-sm"
                 disabled={page === 1}
                 onClick={() => pageChangeHandler(page - 1)}
             >
@@ -53,7 +53,7 @@ export default function Pagination({ page, count, pageChangeHandler }: Props) {
                     {surrondedLinks.map((_page) => (
                         <button
                             key={_page}
-                            className={`join-item btn ${page === _page ? 'btn-primary' : ''}`}
+                            className={`join-item btn btn-sm ${page === _page ? 'btn-primary' : ''}`}
                             onClick={() => pageChangeHandler(_page)}
                         >
                             {_page}
@@ -61,11 +61,11 @@ export default function Pagination({ page, count, pageChangeHandler }: Props) {
                     ))}
                 </div>
             ) : (
-                <button className="btn">{page}</button>
+                <button className="btn btn-sm">{page}</button>
             )}
 
             <button
-                className="btn"
+                className="btn btn-sm"
                 disabled={page === count}
                 onClick={() => pageChangeHandler(page + 1)}
             >

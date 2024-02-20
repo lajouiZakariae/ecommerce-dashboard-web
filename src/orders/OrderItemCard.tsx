@@ -1,96 +1,64 @@
-import {
-    ChangeEvent,
-    Dispatch,
-    PropsWithChildren,
-    SetStateAction,
-} from 'react';
-import { Product } from '@/types';
-import { OrderItem } from './types/order';
+import { PropsWithChildren, useState } from 'react';
+import { Order, OrderItem } from './types/order';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import apiClient from '@/utils/api-client';
+import { HttpStatusCode } from 'axios';
 
-interface Props extends PropsWithChildren<Product> {
-    orderItems: OrderItem[];
-    orderId: number;
-    setOrderItems: Dispatch<SetStateAction<OrderItem[]>>;
-    setTouched: Dispatch<SetStateAction<boolean>>;
-}
+interface Props extends PropsWithChildren<OrderItem> {}
 
-export function OrderItemCard({
-    id,
-    thumbnail,
-    title,
-    price,
-    //
-    orderId,
-    orderItems,
-    setOrderItems,
-    setTouched,
-}: Props) {
-    const foundOrderItem = orderItems.find(
-        (orderItem) => orderItem.product_id === id,
-    );
+export function OrderItemCard(orderItem: Props) {
+    const [_orderItem, setOrderItem] = useState(orderItem);
 
-    const addProductHandler = () => {
-        setTouched(true);
-        setOrderItems((prev) => [
-            ...prev,
-            {
-                order_id: orderId,
-                quantity: 1,
-                product_id: id,
-                product: { title, price },
-            },
-        ]);
+    const {
+        id,
+        order_id,
+        product: { thumbnail, title, price },
+        quantity,
+        url,
+    } = _orderItem;
+
+    const [isEdit, setIsEdit] = useState(false);
+
+    const client = useQueryClient();
+
+    const deleteMutation = useMutation({
+        mutationKey: ['order-items', id, 'delete'],
+        mutationFn: async () => {
+            return await apiClient.delete(url);
+        },
+        onSuccess(data) {
+            if (data.status === HttpStatusCode.NoContent) {
+                client.invalidateQueries({
+                    queryKey: ['orders', order_id, 'order-items'],
+                });
+            }
+        },
+    });
+
+    const updateMutation = useMutation({
+        mutationKey: ['order-items', id, 'update'],
+        mutationFn: async (data: OrderItem) => await apiClient.put(url, data),
+        async onSuccess(data) {
+            if (data.status === HttpStatusCode.NoContent) {
+                await client.invalidateQueries({
+                    queryKey: ['orders', order_id, 'order-items'],
+                });
+                setIsEdit(false);
+            }
+        },
+    });
+
+    const deleteHandler = () => {
+        deleteMutation.mutate();
     };
 
-    const deleteProductHandler = () => {
-        setTouched(true);
-        setOrderItems((prev) =>
-            prev.filter((orderItem) => orderItem.product_id !== id),
-        );
-    };
-
-    const decrementQuantityHandler = () => {
-        setTouched(true);
-        setOrderItems((prev) =>
-            prev.map((orderItem) =>
-                orderItem.product_id === id
-                    ? { ...orderItem, quantity: orderItem.quantity - 1 }
-                    : orderItem,
-            ),
-        );
-    };
-
-    const updateQuantityHandler = (ev: ChangeEvent<HTMLInputElement>) => {
-        setTouched(true);
-        setOrderItems((prev) =>
-            prev.map((orderItem) =>
-                orderItem.product_id === id
-                    ? {
-                          ...orderItem,
-                          quantity:
-                              ev.target.value !== ''
-                                  ? parseInt(ev.target.value)
-                                  : 0,
-                      }
-                    : orderItem,
-            ),
-        );
-    };
-
-    const incrementQuantityHandler = () => {
-        setTouched(true);
-        setOrderItems((prev) =>
-            prev.map((orderItem) =>
-                orderItem.product_id === id
-                    ? { ...orderItem, quantity: orderItem.quantity + 1 }
-                    : orderItem,
-            ),
-        );
+    const updateHandler = () => {
+        updateMutation.mutate(orderItem);
     };
 
     return (
         <div
-            className={`flex flex-wrap p-4 bg-slate-50 dark:bg-black  shadow-1 h-full border ${foundOrderItem ? 'border-primary/45' : 'dark:border-slate-800'}`}
+            className={`flex flex-wrap p-4 bg-slate-50 dark:bg-black  shadow-1 h-full border ${'dark:border-slate-800'}`}
         >
             <img
                 src={thumbnail?.url ?? '/placeholder.jpg'}
@@ -104,16 +72,21 @@ export function OrderItemCard({
             </div>
 
             <div
-                className={`basis-full flex ${foundOrderItem ? 'justify-between' : 'justify-end'} items-center mt-2`}
+                className={`basis-full flex ${isEdit ? 'justify-between' : 'justify-end'} items-center mt-2`}
             >
-                {foundOrderItem ? (
-                    <>
+                <>
+                    {isEdit && (
                         <div className="flex items-stretch">
                             <button
                                 type="button"
                                 className="btn btn-sm rounded-none p-2"
-                                disabled={foundOrderItem.quantity <= 1}
-                                onClick={decrementQuantityHandler}
+                                disabled={quantity <= 1}
+                                onClick={() =>
+                                    setOrderItem((prev) => ({
+                                        ...prev,
+                                        quantity: prev.quantity - 1,
+                                    }))
+                                }
                             >
                                 -
                             </button>
@@ -121,38 +94,59 @@ export function OrderItemCard({
                             <input
                                 type="number"
                                 className="w-18 text-center"
-                                onChange={updateQuantityHandler}
-                                value={foundOrderItem.quantity}
+                                value={quantity}
+                                onChange={(ev) =>
+                                    setOrderItem((prev) => ({
+                                        ...prev,
+                                        quantity: parseInt(ev.target.value),
+                                    }))
+                                }
                             />
 
                             <button
                                 type="button"
                                 className="btn btn-sm rounded-none p-2"
-                                onClick={incrementQuantityHandler}
+                                onClick={() =>
+                                    setOrderItem((prev) => ({
+                                        ...prev,
+                                        quantity: prev.quantity + 1,
+                                    }))
+                                }
                             >
                                 +
                             </button>
                         </div>
+                    )}
 
-                        <div>
+                    <div>
+                        {isEdit ? (
                             <button
-                                className="btn btn-sm btn-outline border-red-500 text-red-500 hover:bg-red-500 hover:text-white hover:border-red-500 rounded-none"
-                                onClick={deleteProductHandler}
+                                className="btn btn-sm btn-outline btn-success rounded-none"
+                                onClick={updateHandler}
                             >
-                                Delete
+                                {updateMutation.isPending
+                                    ? 'Saving...'
+                                    : 'Save'}
                             </button>
-                        </div>
-                    </>
-                ) : (
-                    <>
+                        ) : (
+                            <button
+                                className="btn btn-sm btn-outline btn-info rounded-none"
+                                onClick={() => setIsEdit(true)}
+                            >
+                                Edit
+                            </button>
+                        )}
+
                         <button
-                            className="btn btn-sm btn-outline border-primary text-primary hover:bg-primary hover:text-white hover:border-primary rounded-none"
-                            onClick={addProductHandler}
+                            className="ml-4 btn btn-sm btn-outline btn-error rounded-none"
+                            onClick={deleteHandler}
                         >
-                            Add
+                            {deleteMutation.isPending
+                                ? 'Deleting...'
+                                : 'Delete'}
                         </button>
-                    </>
-                )}
+                    </div>
+                </>
             </div>
         </div>
     );

@@ -3,23 +3,19 @@ import { useQuery } from '@tanstack/react-query';
 
 import apiClient from '@/utils/api-client';
 import { resolveQueryParamsString } from '@/utils/url-helpers';
-import { Product } from '@/types';
+import { PaginationResult } from '@/types';
 import { Filters } from '@/products/useFiltersFromUrl';
-
-export interface Result {
-    data: Product[];
-    meta: { last_page: number; links: [] };
-}
+import { Product } from '@/products/types/Product';
 
 export default function useProducts(
     filters: Filters = {},
-    callback: ((_data: Result) => void) | null = null,
+    callback: ((_data: PaginationResult<Product[]>) => void) | null = null,
 ) {
     const memoCallback = () => resolveQueryParamsString({ ...filters });
 
     const queryString = useMemo(memoCallback, [filters]);
 
-    const getProducts = async (): Promise<Result> => {
+    const getProducts = async (): Promise<PaginationResult<Product[]>> => {
         const { data } = await apiClient.get(
             `products${queryString.length ? `?${queryString}` : ''}`,
         );

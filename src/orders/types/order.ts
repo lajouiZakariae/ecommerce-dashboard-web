@@ -29,7 +29,7 @@ export interface OrderItem {
     order_id: number;
     product_id: number;
     quantity: number;
-    url?: string;
+    url: string;
     total_price?: number;
     decrement_quantity_url?: string;
     increment_quantity_url?: string;
