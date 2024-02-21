@@ -1,4 +1,3 @@
-import { Image } from '@/types';
 import { Product } from './Product';
 import { Client } from './Client';
 
