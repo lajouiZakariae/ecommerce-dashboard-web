@@ -1,28 +1,14 @@
-import { Image, status } from '@/types';
+import { Image } from '@/types';
+import { Product } from './Product';
+import { Client } from './Client';
 
-export interface Client {
-    id: number;
-    first_name: string;
-    last_name: string;
-    email: string;
-    phone_number: string;
-    city: string;
-    zip_code: string;
-    address: string;
-}
-
-export interface Order {
-    id: number;
-    client: Client;
-    status: status;
-    created_at: string;
-    order_items_url: string;
-    order_items_count: number;
-    order_items: OrderItem[];
-    total_quantity: number;
-    total_unit_price: number;
-    total_price: number;
-}
+export type status =
+    | 'pending'
+    | 'in transit'
+    | 'delivered'
+    | 'delivery attempt'
+    | 'cancelled'
+    | 'return to sender';
 
 export interface OrderItem {
     id?: number;
@@ -31,13 +17,18 @@ export interface OrderItem {
     quantity: number;
     url: string;
     total_price?: number;
-    decrement_quantity_url?: string;
-    increment_quantity_url?: string;
-    product: {
-        id?: number;
-        title: string;
-        price: number;
-        url?: string;
-        thumbnail?: Image;
-    };
+    // decrement_quantity_url?: string;
+    // increment_quantity_url?: string;
+    product: Product;
+}
+
+export interface Order {
+    id: 2;
+    url: string;
+    created_at: string;
+    status: status;
+    total_price: number;
+    client: Client;
+
+    order_items: OrderItem[];
 }

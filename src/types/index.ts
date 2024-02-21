@@ -49,14 +49,6 @@ export enum SortBy {
     STOCK_QUANTITY = 'stock_quantity',
 }
 
-export type status =
-    | 'pending'
-    | 'in transit'
-    | 'delivered'
-    | 'delivery attempt'
-    | 'cancelled'
-    | 'return to sender';
-
 export interface Category {
     id?: number;
     name: string;
